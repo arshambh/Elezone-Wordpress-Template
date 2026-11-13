@@ -211,5 +211,48 @@ function elezone_customize_register( $wp_customize ) {
 			'section'     => 'elezone_about',
 		)
 	) );
+
+	/* Blog section -------------------------------------------------------- */
+
+	$wp_customize->add_section( 'elezone_blog', array(
+		'title'    => __( 'Elezone - Blog', 'elezone' ),
+		'priority' => 40,
+	) );
+
+	$blog_fields = array(
+		'blog_page_banner_title'   => __( 'Blog Grid — banner title', 'elezone' ),
+		'blog_page_tagline'        => __( 'Blog Grid — tagline', 'elezone' ),
+		'blog_page_title'          => __( 'Blog Grid — section title', 'elezone' ),
+		'single_page_banner_title' => __( 'Single Post — banner title', 'elezone' ),
+	);
+
+	foreach ( $blog_fields as $key => $label ) {
+		$wp_customize->add_setting( 'elezone_' . $key, array(
+			'default'           => elezone_defaults()[ $key ] ?? '',
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport'         => 'refresh',
+		) );
+
+		$wp_customize->add_control( 'elezone_' . $key, array(
+			'label'   => $label,
+			'section' => 'elezone_blog',
+			'type'    => 'text',
+		) );
+	}
+
+	$wp_customize->add_setting( 'elezone_blog_sidebar_ad_image', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( new WP_Customize_Image_Control(
+		$wp_customize,
+		'elezone_blog_sidebar_ad_image',
+		array(
+			'label'       => __( 'Sidebar — ad image', 'elezone' ),
+			'description' => __( 'Leave empty to use the bundled Ads.gif.', 'elezone' ),
+			'section'     => 'elezone_blog',
+		)
+	) );
 }
 add_action( 'customize_register', 'elezone_customize_register' );

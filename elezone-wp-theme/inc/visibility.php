@@ -84,6 +84,22 @@ function elezone_register_section_visibility( $wp_customize ) {
 				'contact_map'  => __( 'Google Map', 'elezone' ),
 			),
 		),
+		'blog_page'   => array(
+			'title' => __( 'Blog Grid Page', 'elezone' ),
+			'items' => array(
+				'blog_page_banner' => __( 'Banner', 'elezone' ),
+				'blog_page_grid'   => __( 'Posts Grid', 'elezone' ),
+			),
+		),
+		'single_post' => array(
+			'title' => __( 'Single Blog Post', 'elezone' ),
+			'items' => array(
+				'single_banner'  => __( 'Banner', 'elezone' ),
+				'single_sidebar' => __( 'Sidebar', 'elezone' ),
+				'single_content' => __( 'Post Content', 'elezone' ),
+				'single_share'   => __( 'Share Buttons', 'elezone' ),
+			),
+		),
 	);
 
 	foreach ( $groups as $group_key => $group ) {

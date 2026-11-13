@@ -1,38 +1,68 @@
 <?php
 /**
- * Generic fallback template.
+ * Blog grid (fallback for archives and index).
  *
  * @package Elezone
  */
 
 get_header();
+
+if ( elezone_is_section_visible( 'blog_page_banner' ) ) {
+	get_template_part( 'template-parts/hero/banner', null, array(
+		'title'  => elezone_get_option( 'blog_page_banner_title' ),
+		'crumbs' => array(
+			array( 'label' => 'صفحه اصلی', 'url' => home_url( '/' ) ),
+			array( 'label' => elezone_get_option( 'blog_page_banner_title' ) ),
+		),
+	) );
+}
 ?>
-<main class="container py-5">
-	<div class="row">
-		<div class="col-lg-12 text-right">
-			<?php if ( have_posts() ) : ?>
-				<div class="row">
-					<?php while ( have_posts() ) : the_post(); ?>
-						<div class="col-lg-4 col-md-6 mb-4">
-							<div class="sbox p-4 radius15 h-100">
-								<?php if ( has_post_thumbnail() ) : ?>
-									<a href="<?php the_permalink(); ?>" class="d-block mb-3">
-										<?php the_post_thumbnail( 'elezone-post-card', array( 'class' => 'img-fluid radius15' ) ); ?>
-									</a>
-								<?php endif; ?>
-								<h2 class="h4 IRANSans_Bold"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-								<p><?php echo esc_html( wp_trim_words( get_the_excerpt(), 20 ) ); ?></p>
-								<a class="btn btn-brow radius20 IRANSans_Medium" href="<?php the_permalink(); ?>">ادامه مطلب</a>
-							</div>
-						</div>
-					<?php endwhile; ?>
-				</div>
-				<div class="text-center mt-4"><?php the_posts_pagination(); ?></div>
-			<?php else : ?>
-				<p class="text-center">محتوایی یافت نشد.</p>
-			<?php endif; ?>
+<?php if ( elezone_is_section_visible( 'blog_page_grid' ) ) : ?>
+<section class="container p-md-5 p-4">
+	<div class="d-flex flex-row mb-4">
+		<div class="Dottedstocol ml-3"></div>
+		<div class="singletitle">
+			<span><?php echo esc_html( elezone_get_option( 'blog_page_tagline' ) ); ?></span>
+			<h1 class="text-right"><?php echo esc_html( elezone_get_option( 'blog_page_title' ) ); ?></h1>
 		</div>
 	</div>
-</main>
+
+	<?php if ( have_posts() ) : ?>
+		<div class="row">
+			<?php while ( have_posts() ) : the_post(); ?>
+				<?php get_template_part( 'template-parts/blog/post-card' ); ?>
+			<?php endwhile; ?>
+		</div>
+
+		<div class="row mt-3">
+			<div class="col-12 text-center mx-auto">
+				<?php
+				$links = paginate_links( array(
+					'type'      => 'array',
+					'prev_text' => '«',
+					'next_text' => '»',
+				) );
+
+				if ( ! empty( $links ) ) :
+					?>
+					<ul class="pagination justify-content-center">
+						<?php foreach ( $links as $link ) :
+							$is_current = false !== strpos( $link, 'aria-current="page"' );
+							$link       = str_replace( 'page-numbers', 'page-link', $link );
+							$link       = str_replace( ' current', '', $link );
+							?>
+							<li class="page-item<?php echo $is_current ? ' active' : ''; ?>">
+								<?php echo $link; ?>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+			</div>
+		</div>
+	<?php else : ?>
+		<p class="text-center py-5">هنوز مطلبی منتشر نشده است.</p>
+	<?php endif; ?>
+</section>
+<?php endif; ?>
 <?php
 get_footer();

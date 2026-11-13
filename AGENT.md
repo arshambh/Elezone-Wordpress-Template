@@ -275,6 +275,7 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   ├── starter-content.php      # ⭐ صفحه ادمین Starter + import تصویر
     │   ├── starter-content-data.php # ⭐ توابع ساخت نمونه‌ها
     │   ├── cf7-integration.php      # ⭐ یکپارچه‌سازی CF7 + اعتبارسنجی موبایل ایران
+    │   ├── comment-phone.php        # ⭐ فیلد موبایل اجباری نظرات + ایمیل اختیاری
     │   └── required-plugins.php     # ⭐ چک و اعلان افزونه‌های الزامی (CF7)
     │
     ├── template-parts/
@@ -298,8 +299,11 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   │   ├── manager.php          # ستون مدیریت (تصویر + سمت + سابقه + تحصیلات)
     │   │   ├── stats.php            # نوار آمار (number|label)
     │   │   └── awards.php           # جوایز و افتخارات
-    │   ├── hero/                    # ⭐ جدید — banner مشترک
+    │   ├── hero/                    # banner مشترک
     │   │   └── banner.php           # hero + breadcrumb (args-driven)
+    │   ├── blog/                    # ⭐ جدید — partialهای صفحه وبلاگ
+    │   │   ├── post-card.php        # کارت پست در گرید
+    │   │   └── sidebar.php          # ستون کنار (دسته‌ها/آخرین/تبلیغ/برچسب‌ها)
     │   ├── content/                 # (رزرو — خالی)
     │   └── footer/                  # (رزرو — خالی)
     │
@@ -357,6 +361,19 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
 
 **همه سکشن‌ها fallback دارند:** اگر CPT خالی باشد، همان محتوای HTML اصلی نمایش داده می‌شود.
 
+### ۲.۰. فرم نظرات (نظرات پست وبلاگ)
+
+**فرم نظر وردپرس** با استایل دقیق مطابق `Sample-HTML/blog_destails.html`:
+
+- **ترتیب فیلدها:** نام و نام خانوادگی → شماره همراه → ایمیل (اختیاری) → متن نظر
+- **فیلد وب‌سایت (URL) حذف شده**
+- **موبایل اجباری** با اعتبارسنجی ایران (regex: `^(?:\+98|0098|0)?9\d{9}$`)
+- **ایمیل اختیاری** (با `option_require_name_email` غیرفعال)
+- **موبایل در کوکی** (`comment_author_phone`) ذخیره می‌شود تا بازدیدکننده‌ی بعدی دوباره تایپ نکند
+- **موبایل به‌عنوان comment_meta** با کلید `phone` ذخیره می‌شود
+- **پیاده‌سازی:** `inc/comment-phone.php` (اعتبارسنجی + فیلتر `comment_form_fields`)
+- **CSS:** بلوک Comments در `Style.css` (`.comment-form-phone`, `#respond .comment-form-phone input`)
+
 ### ۲.۱. صفحه تماس با ما (`page-contact.php`)
 
 - **Template Name:** «تماس با ما» — از ادیتور Page قابل انتخاب (Page Attributes → Template)
@@ -397,8 +414,23 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
 - **↺ تکی** کنار هر فیلد → مقدار آن رنگ را خالی می‌کند
 - **↺ Reset all colors** بالای پنل → همه را صفر می‌کند (با `confirm`)
 
+#### پنل Elezone - Blog (۴ فیلد متنی + ۱ تصویر)
+`blog_page_banner_title` (پیش‌فرض: وبلاگ), `blog_page_tagline` (پیش‌فرض: مقالات سایت), `blog_page_title` (پیش‌فرض: دسته مقالات مربوط به مهندسی سازه), `single_page_banner_title` (پیش‌فرض: جزئیات مطالب), `blog_sidebar_ad_image` (تصویر تبلیغات sidebar)
+
 #### پنل Elezone - About (۱۴ فیلد + ۲ تصویر)
 `about_goals_tagline`, `about_goals_title`, `about_goals_items` (textarea، هر خط یک آیتم), `about_manager_tagline`, `about_manager_name`, `about_manager_position`, `about_manager_experience`, `about_manager_education`, `about_manager_image` (image), `about_stats_items` (textarea، فرمت `number|label`), `about_awards_tagline`, `about_awards_title`, `about_awards_text`, `about_awards_image` (image)
+
+#### پنل Elezone - Sections (۱۶ چک‌باکس → ۲۲ پس از اضافه شدن Blog)
+
+**گروه Home** (۹): `hero`, `benefits`, `brand`, `projects_interior`, `intro`, `services`, `cta`, `projects_facade`, `blog`
+
+**گروه About** (۴): `about_goals`, `about_manager`, `about_stats`, `about_awards`
+
+**گروه Contact** (۳): `contact_form`, `contact_info`, `contact_map`
+
+**گروه Blog Grid Page** (۲): `blog_page_banner`, `blog_page_grid`
+
+**گروه Single Blog Post** (۴): `single_banner`, `single_sidebar`, `single_content`, `single_share`
 
 #### پنل Elezone - Contact & Social (۱۵ فیلد — شامل cf7_form_id)
 `phone`, `mobile`, `email`, `address`, `business_hours`, `map_embed`, `cf7_form_id`, `cta_text`, `cta_phone`, `intro_title`, `intro_text`, `social_whatsapp`, `social_telegram`, `social_instagram`, `social_facebook`
@@ -624,7 +656,7 @@ delete_option( 'elezone_folder_migration_done' );
 |---|---|
 | فایل PHP (ریشه) | ۱۶ |
 | فایل PHP (inc) | ۱۰ |
-| فایل PHP (template-parts) | ۱۸ |
+| فایل PHP (template-parts) | ۲۰ |
 | فایل JS | ۵ |
 | فایل CSS | ۶ |
 | تصاویر | ۹۱ + ۱۳ icons + ۲۲ Shot |
@@ -677,6 +709,9 @@ e965176 feat: complete Elezone v1.0.0 release
 | ۱۶ | رفع باگ سایز تصویر `arsham-project-card` → `elezone-project-card` (در `single-project.php` و `archive-project.php`) | ✅ |
 | ۱۷ | رفع باگ sanitize ایمیل در `customizer.php` (`email` + `contact_recipient` → `sanitize_email`) | ✅ |
 | ۱۸ | صفحه درباره ما (`page-about.php` + ۴ partial + ۱۴ فیلد Customizer) | ✅ |
+| ۱۹ | گرید وبلاگ (`index.php` بازنویسی + `post-card.php` + pagination) | ✅ |
+| ۲۰ | جزئیات وبلاگ (`single.php` بازنویسی + `sidebar.php` + شمارنده بازدید + دکمه‌های اشتراک) | ✅ |
+| ۲۱ | پنل Sections گسترش یافت به ۲۲ چک‌باکس در ۵ گروه | ✅ |
 | ⏳ | `screenshot.png` | اختیاری |
 | ⏳ | تست نهایی در وردپرس | توصیه اکید قبل از انتشار |
 

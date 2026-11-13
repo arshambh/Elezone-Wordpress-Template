@@ -18,6 +18,7 @@ require_once ELEZONE_THEME_DIR . '/inc/theme-setup.php';
 require_once ELEZONE_THEME_DIR . '/inc/enqueue.php';
 require_once ELEZONE_THEME_DIR . '/inc/cpt.php';
 require_once ELEZONE_THEME_DIR . '/inc/customizer.php';
+require_once ELEZONE_THEME_DIR . '/inc/comment-phone.php';
 require_once ELEZONE_THEME_DIR . '/inc/visibility.php';
 require_once ELEZONE_THEME_DIR . '/inc/class-mega-menu-walker.php';
 require_once ELEZONE_THEME_DIR . '/inc/project-meta.php';
@@ -160,6 +161,11 @@ function elezone_defaults() {
 		'about_awards_title'       => 'جوایز و افتخارات کسب شده',
 		'about_awards_text'        => 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.',
 		'about_awards_image'       => '',
+		'blog_page_banner_title'   => 'وبلاگ',
+		'blog_page_tagline'        => 'مقالات سایت',
+		'blog_page_title'          => 'دسته مقالات مربوط به مهندسی سازه',
+		'single_page_banner_title' => 'جزئیات مطالب',
+		'blog_sidebar_ad_image'    => '',
 	);
 }
 
