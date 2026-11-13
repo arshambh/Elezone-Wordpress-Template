@@ -81,6 +81,45 @@ function elezone_migrate_legacy_settings() {
 add_action( 'after_setup_theme', 'elezone_migrate_legacy_settings' );
 
 /**
+ * One-time migration: copy theme_mods from the old folder name (wp-theme)
+ * to the new folder name (elezone-wp-theme).
+ *
+ * Runs once after the folder rename. Sets a flag so it never runs again.
+ * Harmless to leave in place forever - on a fresh install there is nothing
+ * to migrate, and the flag prevents any repeated work.
+ */
+function elezone_migrate_from_old_theme_folder() {
+	if ( get_option( 'elezone_folder_migration_done' ) ) {
+		return;
+	}
+
+	$old_slug = 'wp-theme';
+	$new_slug = get_option( 'stylesheet' );
+
+	if ( $old_slug === $new_slug ) {
+		update_option( 'elezone_folder_migration_done', 1 );
+		return;
+	}
+
+	$old_mods = get_option( 'theme_mods_' . $old_slug );
+	if ( is_array( $old_mods ) && ! empty( $old_mods ) ) {
+		$new_mods = get_option( 'theme_mods_' . $new_slug, array() );
+		if ( ! is_array( $new_mods ) ) {
+			$new_mods = array();
+		}
+		foreach ( $old_mods as $k => $v ) {
+			if ( ! isset( $new_mods[ $k ] ) || '' === $new_mods[ $k ] ) {
+				$new_mods[ $k ] = $v;
+			}
+		}
+		update_option( 'theme_mods_' . $new_slug, $new_mods );
+	}
+
+	update_option( 'elezone_folder_migration_done', 1 );
+}
+add_action( 'after_setup_theme', 'elezone_migrate_from_old_theme_folder' );
+
+/**
  * Default values used by Customizer controls and templates.
  *
  * @return array
