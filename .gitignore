@@ -13,7 +13,8 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon?
+Icon
+# !pattern for macOS Icon file (was Icon? which wrongly matched icons/)
 ._*
 
 # Windows
@@ -190,3 +191,6 @@ secrets/
 
 # فایل‌های vendor که باید کامیت شوند (در صورت وجود)
 !vendor/autoload.php
+
+// zip file
+*.zip

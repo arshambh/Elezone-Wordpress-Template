@@ -102,24 +102,37 @@ function elezone_customize_register( $wp_customize ) {
 	) );
 
 	$fields = array(
-		'phone'            => array( 'label' => __( 'Phone number', 'elezone' ), 'type' => 'text' ),
-		'mobile'           => array( 'label' => __( 'Mobile number', 'elezone' ), 'type' => 'text' ),
-		'email'            => array( 'label' => __( 'Email', 'elezone' ), 'type' => 'text' ),
-		'address'          => array( 'label' => __( 'Address', 'elezone' ), 'type' => 'textarea' ),
-		'cta_text'         => array( 'label' => __( 'CTA banner text', 'elezone' ), 'type' => 'textarea' ),
-		'cta_phone'        => array( 'label' => __( 'CTA phone', 'elezone' ), 'type' => 'text' ),
-		'intro_title'      => array( 'label' => __( 'Intro band title', 'elezone' ), 'type' => 'text' ),
-		'intro_text'       => array( 'label' => __( 'Intro band text', 'elezone' ), 'type' => 'textarea' ),
-		'social_whatsapp'  => array( 'label' => __( 'WhatsApp URL', 'elezone' ), 'type' => 'url' ),
-		'social_telegram'  => array( 'label' => __( 'Telegram URL', 'elezone' ), 'type' => 'url' ),
-		'social_instagram' => array( 'label' => __( 'Instagram URL', 'elezone' ), 'type' => 'url' ),
-		'social_facebook'  => array( 'label' => __( 'Facebook URL', 'elezone' ), 'type' => 'url' ),
+		'phone'             => array( 'label' => __( 'Phone number', 'elezone' ), 'type' => 'text' ),
+		'mobile'            => array( 'label' => __( 'Mobile number', 'elezone' ), 'type' => 'text' ),
+		'email'             => array( 'label' => __( 'Email', 'elezone' ), 'type' => 'text' ),
+		'address'           => array( 'label' => __( 'Address', 'elezone' ), 'type' => 'textarea' ),
+		'business_hours'    => array( 'label' => __( 'Business hours', 'elezone' ), 'type' => 'textarea' ),
+		'map_embed'         => array( 'label' => __( 'Google Maps embed URL', 'elezone' ), 'type' => 'url' ),
+		'cta_text'          => array( 'label' => __( 'CTA banner text', 'elezone' ), 'type' => 'textarea' ),
+		'cta_phone'         => array( 'label' => __( 'CTA phone', 'elezone' ), 'type' => 'text' ),
+		'intro_title'       => array( 'label' => __( 'Intro band title', 'elezone' ), 'type' => 'text' ),
+		'intro_text'        => array( 'label' => __( 'Intro band text', 'elezone' ), 'type' => 'textarea' ),
+		'social_whatsapp'   => array( 'label' => __( 'WhatsApp URL', 'elezone' ), 'type' => 'url' ),
+		'social_telegram'   => array( 'label' => __( 'Telegram URL', 'elezone' ), 'type' => 'url' ),
+		'social_instagram'  => array( 'label' => __( 'Instagram URL', 'elezone' ), 'type' => 'url' ),
+		'social_facebook'   => array( 'label' => __( 'Facebook URL', 'elezone' ), 'type' => 'url' ),
+		'cf7_form_id'       => array( 'label' => __( 'Contact Form 7 ID (0 = auto-detect)', 'elezone' ), 'type' => 'text' ),
 	);
 
 	foreach ( $fields as $key => $field ) {
+		if ( 'url' === $field['type'] ) {
+			$sanitize = 'esc_url_raw';
+		} elseif ( 'textarea' === $field['type'] ) {
+			$sanitize = 'sanitize_textarea_field';
+		} elseif ( 'email' === $key ) {
+			$sanitize = 'sanitize_email';
+		} else {
+			$sanitize = 'sanitize_text_field';
+		}
+
 		$wp_customize->add_setting( 'elezone_' . $key, array(
 			'default'           => elezone_defaults()[ $key ] ?? '',
-			'sanitize_callback' => $field['type'] === 'url' ? 'esc_url_raw' : 'sanitize_text_field',
+			'sanitize_callback' => $sanitize,
 			'transport'         => 'refresh',
 		) );
 

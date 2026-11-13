@@ -118,7 +118,7 @@ get_header();
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="blog_style m-0 h-100">
 								<a href="<?php the_permalink(); ?>">
-									<?php the_post_thumbnail( 'arsham-project-card', array( 'class' => 'card-img-top' ) ); ?>
+									<?php the_post_thumbnail( 'elezone-project-card', array( 'class' => 'card-img-top' ) ); ?>
 								</a>
 								<div class="card-body">
 									<h3 class="h6 IRANSans_Bold"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>

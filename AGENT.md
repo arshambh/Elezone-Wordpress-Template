@@ -10,6 +10,106 @@
 
 ---
 
+## ⚠️ قوانین الزامی (MANDATORY — قابل نقض نیست)
+
+> **این قوانین بر تمام کارهای آینده روی این قالب حاکم است. هر Agent یا توسعه‌دهنده‌ای که این فایل را می‌خواند، موظف به رعایت آن‌هاست. نقض این قوانین = رد شدن کار.**
+
+### قانون ۱ — رنگ‌بندی و اطلاعات برند از Customizer
+
+**این قالب تک‌زبانه فارسی است و نیازی به ترجمه ندارد.** هدف از Customizer فقط این است که ادمین بتواند **ظاهر و اطلاعات برند** را بدون دست زدن به کد تغییر دهد.
+
+#### مواردی که **باید** از Customizer خوانده شوند (اجباری)
+
+1. **رنگ‌ها** — تمام ۳۹ رنگ در پنل `Elezone - Colors` (General, Header, Intro Band, CTA, Footer, Buttons, Social, Cards & Boxes, Footer Extras)
+2. **لوگو** — هدر و فوتر در پنل `Elezone - Logo`
+3. **اطلاعات تماس** — تلفن، موبایل، ایمیل، آدرس، ساعات کاری، نقشه در پنل `Elezone - Contact & Social`
+4. **شبکه‌های اجتماعی** — واتساپ، تلگرام، اینستاگرام، فیسبوک
+5. **محتوای معرفی** — `intro_title`, `intro_text`, `cta_text`, `cta_phone`
+
+#### مواردی که **hardcoded** می‌مانند (نیازی به Customizer ندارند)
+
+- **برچسب‌های UI** — متن دکمه‌ها، عنوان سکشن‌ها، placeholderها، متن‌های خالی‌بودن
+- **متن‌های ساختاری** — مثل «ثبت نظر»، «راه‌های ارتباطی دیگر»، «همه پروژه‌ها»، «صفحه اصلی» در breadcrumb
+- **پیام‌های سیستمی** — success/error فرم، no-results، 404
+- **متن‌های نمونه Starter Content**
+
+#### روش افزودن مقدار جدید به Customizer (فقط برای ۶ مورد بالا)
+
+1. فیلد در `inc/customizer.php` در پنل مربوطه ثبت شود
+2. default در `elezone_defaults()` در `functions.php` اضافه شود
+3. با `elezone_get_option( '<key>' )` در partial مصرف شود
+4. sanitize مناسب: `esc_url_raw` (URL) / `sanitize_email` (ایمیل) / `sanitize_textarea_field` (textarea) / `sanitize_text_field` (بقیه)
+5. لیست فیلدهای پنل در `AGENT.md` به‌روز شود
+
+#### درباره‌ی `esc_html_e()` و ترجمه
+
+این قالب **تک‌زبانه است** و نیازی به فایل ترجمه ندارد. اما:
+- `esc_html_e( 'متن', 'elezone' )` در کد فعلی **بی‌خطر است** و می‌تواند بماند — کارکردش مثل `echo 'متن'` است چون فایل ترجمه بارگذاری نمی‌شود
+- **حذف آن اولویت ندارد** و ریسک بی‌مورد دارد؛ فقط اگر فایل دستکاری شد به `esc_html( 'متن' )` یا `echo 'متن'` تغییر کند
+- فایل‌های `languages/fa_IR.po` و `.mo` می‌توانند بمانند (بی‌خطر) یا حذف شوند (تصمیم ادمین)
+
+#### نمونه‌ی صحیح (اطلاعات برند)
+
+```php
+// ✅ درست
+$address = elezone_get_option( 'address' );
+if ( $address ) {
+    echo '<p>' . esc_html( $address ) . '</p>';
+}
+```
+
+#### نمونه‌ی ممنوع (اطلاعات برند hardcoded)
+
+```php
+// ❌ ممنوع
+<p>استان تهران، سعادت‌آباد، خیابان آزادگان</p>
+<a href="tel:09304567896">09304567896</a>
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+```
+
+#### نمونه‌ی مجاز (برچسب UI hardcoded)
+
+```php
+// ✅ مجاز و طبیعی
+<button class="btn btn-warning">ارسال پیام</button>
+<h3>راه‌های ارتباطی دیگر</h3>
+<input placeholder="نام">
+```
+
+### قانون ۲ — افزونه‌های الزامی هنگام نصب
+
+**قالب Elezone برای کارکرد کامل به افزونه‌های زیر نیاز دارد. هنگام فعال‌سازی قالب، کاربر باید حتماً از نصب و فعال‌سازی این افزونه‌ها مطلع شود.**
+
+| افزونه | نسخه حداقلی | کاربرد در قالب | وضعیت |
+|---|---|---|---|
+| **Contact Form 7** (`contact-form-7`) | 5.0 | موتور فرم صفحه‌ی «تماس با ما» (`page-contact.php`) | **الزامی** |
+
+#### پیاده‌سازی اعلان (MANDATORY)
+
+- فایل `inc/required-plugins.php` مسئول تشخیص و اعلان است.
+- اگر CF7 **نصب نباشد** → اعلان قرمز با دکمه‌ی «نصب Contact Form 7» (لینک مستقیم به `update.php?action=install-plugin`).
+- اگر CF7 **نصب باشد ولی فعال نباشد** → همان اعلان با دکمه‌ی «فعال‌سازی Contact Form 7» (لینک مستقیم به `plugins.php?action=activate`).
+- اگر CF7 **فعال باشد** → هیچ اعلانی نمایش داده نمی‌شود.
+- این اعلان باید **در همه‌ی صفحات پیشخوان** نمایش داده شود (نه فقط صفحه‌ی قالب) — از `admin_notices` استفاده کن.
+- علاوه بر آن، یک اعلان جدا در صفحه‌ی **نمایش → پوسته‌ها** با پیام فعال‌سازی قالب نمایش داده شود.
+
+#### قوانین توسعه
+
+1. **هنگام افزودن هر افزونه‌ی الزامی جدید** (به هر دلیلی در آینده):
+   - تابع `elezone_required_<slug>_active()` بساز
+   - اعلان مربوطه را به `elezone_required_plugin_notice()` اضافه کن
+   - به جدول بالا در `AGENT.md` اضافه کن
+2. **اعلان باید غیرقابل بستن (not dismissible)** باشد تا کاربر واقعاً متوجه شود (به‌جز اعلان صفحه‌ی themes که dismissible است).
+3. **در `README.md`** و متن بازاریابی قالب، این افزونه‌ها باید به‌عنوان «نیازمندی‌ها» ذکر شوند.
+
+#### چک‌لیست الزامی (قبل از هر انتشار)
+
+- [ ] آیا در صفحه‌ی نصب/فعال‌سازی، افزونه‌های الزامی به کاربر اعلام می‌شود؟
+- [ ] آیا اعلان install/activate درست کار می‌کند (نصب‌شده ولی غیرفعال → پیام فعال‌سازی)؟
+- [ ] آیا در `README.md` ذکر شده؟
+
+---
+
 ## 📦 مشخصات پروژه
 
 | مورد | مقدار |
@@ -45,6 +145,7 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │
     ├── index.php                    # فهرست پست‌ها (fallback)
     ├── page.php                     # برگه ساده
+    ├── page-contact.php             # ⭐ تماس با ما (Page Template)
     ├── single.php                   # پست تکی
     ├── single-project.php           # ⭐ صفحه جزئیات پروژه
     ├── single-service.php           # ⭐ صفحه جزئیات خدمت
@@ -65,7 +166,9 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   ├── project-meta.php         # متاباکس پروژه (مدت/شهر/متراژ/سنگ)
     │   ├── class-mega-menu-walker.php # Walker منوی هدر + Walker فوتر
     │   ├── starter-content.php      # ⭐ صفحه ادمین Starter + import تصویر
-    │   └── starter-content-data.php # ⭐ توابع ساخت نمونه‌ها
+    │   ├── starter-content-data.php # ⭐ توابع ساخت نمونه‌ها
+    │   ├── cf7-integration.php      # ⭐ یکپارچه‌سازی CF7 + اعتبارسنجی موبایل ایران
+    │   └── required-plugins.php     # ⭐ چک و اعلان افزونه‌های الزامی (CF7)
     │
     ├── template-parts/
     │   ├── header/offcanvas.php     # منوی موبایل آفلاین
@@ -79,6 +182,12 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   │   ├── cta-band.php
     │   │   └── blog-grid.php
     │   ├── cards/project-card.php   # کارت پروژه (variant-aware)
+    │   ├── contact/                 # ⭐ جدید — partialهای صفحه تماس
+    │   │   ├── form.php             # فرم (nonce + honeypot + transient message)
+    │   │   ├── info.php             # اطلاعات تماس از Customizer
+    │   │   └── map.php              # نقشه اگر URL در Customizer پر باشد
+    │   ├── hero/                    # ⭐ جدید — banner مشترک
+    │   │   └── banner.php           # hero + breadcrumb (args-driven)
     │   ├── content/                 # (رزرو — خالی)
     │   └── footer/                  # (رزرو — خالی)
     │
@@ -136,6 +245,18 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
 
 **همه سکشن‌ها fallback دارند:** اگر CPT خالی باشد، همان محتوای HTML اصلی نمایش داده می‌شود.
 
+### ۲.۱. صفحه تماس با ما (`page-contact.php`)
+
+- **Template Name:** «تماس با ما» — از ادیتور Page قابل انتخاب (Page Attributes → Template)
+- **ترکیب partialها:**
+  - `template-parts/hero/banner.php` — hero + breadcrumb (args: `title`، `crumbs[]`)
+  - `template-parts/contact/form.php` — فرم با nonce + honeypot + پیام transient
+  - `template-parts/contact/info.php` — آدرس/ساعات/تلفن/ایمیل/شبکه‌ها از Customizer
+  - `template-parts/contact/map.php` — نقشه Google (فقط اگر `elezone_map_embed` پر باشد)
+- **فرم تماس:** POST به `admin-post.php` → action `elezone_contact` → `elezone_handle_contact_submission()`
+- **امنیت:** nonce + honeypot (`elezone_contact_website`) + rate-limit ۳۰ ثانیه‌ای per IP + sanitize کامل
+- **Redirect:** پیام از transient (کلید `elezone_contact_msg_<ip_hash>`) خوانده می‌شود و با `?elezone_contact=success|error` نمایش داده می‌شود
+
 ### ۳. Customizer
 
 #### پنل Elezone - Logo (بخش مستقل)
@@ -164,8 +285,8 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
 - **↺ تکی** کنار هر فیلد → مقدار آن رنگ را خالی می‌کند
 - **↺ Reset all colors** بالای پنل → همه را صفر می‌کند (با `confirm`)
 
-#### پنل Elezone - Contact & Social (۱۲ فیلد)
-`phone`, `mobile`, `email`, `address`, `cta_text`, `cta_phone`, `intro_title`, `intro_text`, `social_whatsapp`, `social_telegram`, `social_instagram`, `social_facebook`
+#### پنل Elezone - Contact & Social (۱۵ فیلد — شامل cf7_form_id)
+`phone`, `mobile`, `email`, `address`, `business_hours`, `map_embed`, `cf7_form_id`, `cta_text`, `cta_phone`, `intro_title`, `intro_text`, `social_whatsapp`, `social_telegram`, `social_instagram`, `social_facebook`
 
 ### ۴. Starter Content
 **نمایش → Elezone Starter**
@@ -197,7 +318,12 @@ elezone-wp-theme/ → zip (style.css در ریشه)
 پیشخوان → نمایش → پوسته‌ها → افزودن → بارگذاری → جایگزینی
 ```
 
-### ۲. تنظیمات اولیه (اجباری)
+### ۲. نصب افزونه‌های الزامی
+- **Contact Form 7** — **الزامی**. هنگام فعال‌سازی قالب، اعلانی در پیشخوان ظاهر می‌شود با دکمه‌ی «نصب» یا «فعال‌سازی».
+- بدون این افزونه، فرم صفحه‌ی «تماس با ما» کار نمی‌کند (نقشه و اطلاعات تماس کار می‌کنند، ولی فرم تماس نمایش داده نمی‌شود).
+- پس از نصب و فعال‌سازی، یک بار به پیشخوان برو تا فرم «Elezone Contact» خودکار ساخته شود.
+
+### ۳. تنظیمات اولیه (اجباری)
 - **تنظیمات → پیوندهای یکتا → «نام نوشته» → ذخیره**
   *(بدون این، آرشیو پروژه/خدمت ۴۰۴ می‌دهد)*
 - **تنظیمات → عمومی → زبان سایت = فارسی**
@@ -240,6 +366,10 @@ elezone-wp-theme/ → zip (style.css در ریشه)
 | 11 | `Menu.js` حذف شد ولی هنوز در `enqueue.php` لود می‌شد | `findstr` | enqueue حذف شد |
 | 12 | **`.gitignore` الگوی `Icon?`** — ۱۳ آیکون بی‌صدا از گیت خارج شدند | `git status` + `check-ignore` | `Icon?` → `Icon` |
 | 13 | **۱۳ آیکون در گیت نبودند** | `git ls-tree` | commit جداگانه `3462b4e` |
+| 14 | **`Contactus2.html`** فیلدهای نام و ایمیل خارج از `<form>` بودند | خواندن نمونه قبل از پیاده‌سازی | هر دو فیلد داخل `<form>` (بازسازی ساختار) |
+| 15 | **`customizer.php`** فیلد `address` با `sanitize_text_field` به‌جای `sanitize_textarea_field` sanitize می‌شد | بازبینی کد | sanitize بر اساس `type` فیلد تعیین می‌شود |
+| 16 | **`single-project.php`** و **`archive-project.php`** از سایز تصویر `arsham-project-card` استفاده می‌کردند که در `theme-setup.php` ثبت نشده (ثبت‌شده `elezone-project-card` است) → تصویر به سایز `full` fallback می‌کرد | بازبینی `single-project.php` | `arsham-project-card` → `elezone-project-card` در هر دو فایل |
+| 17 | **`customizer.php`** فیلدهای ایمیل (`email` و `contact_recipient`) با `sanitize_text_field` sanitize می‌شدند به‌جای `sanitize_email` | بازبینی sanitize switch | branch جدید: `in_array( $key, array( 'email', 'contact_recipient' ), true )` → `sanitize_email` |
 
 ---
 
@@ -301,6 +431,17 @@ elezone-wp-theme/ → zip (style.css در ریشه)
 
 ## 🔐 نکات مهم برای توسعه‌دهنده
 
+> ⚠️ **قبل از هر تغییر، بخش «قوانین الزامی» در بالای این فایل را بخوان. قانون ۱ (رنگ‌بندی و اطلاعات برند از Customizer) الزامی است و نقض آن = رد شدن کار.**
+
+### ۰. Customizer — رنگ‌ها و اطلاعات برند
+**فقط این ۶ مورد** به Customizer می‌روند: رنگ‌ها، لوگو، اطلاعات تماس، شبکه‌های اجتماعی، مقصد فرم، محتوای معرفی (intro/CTA). **برچسب‌های UI و متن‌های ساختاری hardcoded می‌مانند.**
+
+مسیر ۴ مرحله‌ای برای مقدار Customizer جدید:
+1. **تعریف** در `inc/customizer.php`
+2. **default** در `elezone_defaults()` (functions.php)
+3. **مصرف** با `elezone_get_option()`
+4. **مستندسازی** در `AGENT.md`
+
 ### ۱. مسیر فونت‌ها
 `@font-face`ها در `assets/Css/Style.css` و `assets/Css/Main.css` از مسیر نسبی `../Fonts/` استفاده می‌کنند. **هرگز `assets/` را از حالت `Css/` و `Fonts/` همسطح خارج نکنید.**
 
@@ -358,18 +499,18 @@ delete_option( 'elezone_folder_migration_done' );
 
 | مورد | تعداد |
 |---|---|
-| فایل PHP (ریشه) | ۱۴ |
-| فایل PHP (inc) | ۹ |
-| فایل PHP (template-parts) | ۱۰ |
+| فایل PHP (ریشه) | ۱۵ |
+| فایل PHP (inc) | ۱۰ |
+| فایل PHP (template-parts) | ۱۴ |
 | فایل JS | ۵ |
 | فایل CSS | ۶ |
 | تصاویر | ۹۱ + ۱۳ icons + ۲۲ Shot |
 | فونت | ۱۹ |
 | ترجمه | ۷۲ رشته (`.po` + `.mo`) |
-| **کل فایل‌ها** | **~۱۶۰** |
-| **حجم کل** | **~۲۳.۷ MB** |
-| **Git commits** | **۶** |
-| **باگ رفع‌شده** | **۱۳** |
+| **کل فایل‌ها** | **~۱۷۰** |
+| **حجم کل** | **~۲۳.۹ MB** |
+| **Git commits** | **۶ (+ تغییرات جاری commit نشده)** |
+| **باگ رفع‌شده** | **۱۷** |
 
 ---
 
@@ -407,9 +548,14 @@ e965176 feat: complete Elezone v1.0.0 release
 | ۱۰ | rename + ۲ migration | ✅ |
 | ۱۱ | ۱۳ آیکون benefit/service در گیت | ✅ |
 | ۱۲ | Git: ۶ commit push شده | ✅ |
+| ۱۳ | صفحه تماس با ما (`page-contact.php` + ۳ partial + هندلر) | ✅ |
+| ۱۴ | Customizer: +۳ فیلد (`business_hours`, `map_embed`, `contact_recipient`) | ✅ |
+| ۱۵ | رفع باگ sanitize `address` + بازسازی ساختار فرم | ✅ |
+| ۱۶ | رفع باگ سایز تصویر `arsham-project-card` → `elezone-project-card` (در `single-project.php` و `archive-project.php`) | ✅ |
+| ۱۷ | رفع باگ sanitize ایمیل در `customizer.php` (`email` + `contact_recipient` → `sanitize_email`) | ✅ |
 | ⏳ | `screenshot.png` | اختیاری |
 | ⏳ | تست نهایی در وردپرس | توصیه اکید قبل از انتشار |
 
 ---
 
-*آخرین به‌روزرسانی: 2026-11-13 — نسخه 1.0.0*
+*آخرین به‌روزرسانی: 2026-11-13 — نسخه 1.0.0 + افزودن Contact Page (آماده برای v1.1.0)*

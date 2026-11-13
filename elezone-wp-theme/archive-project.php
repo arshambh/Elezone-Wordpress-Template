@@ -51,7 +51,7 @@ $terms        = get_terms( array( 'taxonomy' => 'project_type', 'hide_empty' => 
 					<div class="blog_style m-0 h-100">
 						<a href="<?php the_permalink(); ?>">
 							<?php if ( has_post_thumbnail() ) : ?>
-								<?php the_post_thumbnail( 'arsham-project-card', array( 'class' => 'card-img-top' ) ); ?>
+								<?php the_post_thumbnail( 'elezone-project-card', array( 'class' => 'card-img-top' ) ); ?>
 							<?php else : ?>
 								<img src="<?php echo esc_url( elezone_asset( 'Img/1.jpg' ) ); ?>" class="card-img-top" alt="">
 							<?php endif; ?>

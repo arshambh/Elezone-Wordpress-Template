@@ -13,6 +13,7 @@ define( 'ELEZONE_THEME_VERSION', '1.0.0' );
 define( 'ELEZONE_THEME_DIR', get_template_directory() );
 define( 'ELEZONE_THEME_URI', get_template_directory_uri() );
 
+require_once ELEZONE_THEME_DIR . '/inc/required-plugins.php';
 require_once ELEZONE_THEME_DIR . '/inc/theme-setup.php';
 require_once ELEZONE_THEME_DIR . '/inc/enqueue.php';
 require_once ELEZONE_THEME_DIR . '/inc/cpt.php';
@@ -20,6 +21,8 @@ require_once ELEZONE_THEME_DIR . '/inc/customizer.php';
 require_once ELEZONE_THEME_DIR . '/inc/class-mega-menu-walker.php';
 require_once ELEZONE_THEME_DIR . '/inc/project-meta.php';
 require_once ELEZONE_THEME_DIR . '/inc/colors.php';
+require_once ELEZONE_THEME_DIR . '/inc/cf7-integration.php';
+
 require_once ELEZONE_THEME_DIR . '/inc/starter-content.php';
 require_once ELEZONE_THEME_DIR . '/inc/starter-content-data.php';
 
@@ -130,6 +133,10 @@ function elezone_defaults() {
 		'mobile'           => '09125468547',
 		'email'            => 'Info@test.com',
 		'address'          => 'استان - شهرستان - خیابان بهارستان - مجتمع صوفیا',
+		'business_hours'   => 'شنبه تا چهارشنبه - 9 صبح الی 17 عصر',
+		'map_embed'        => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101637.20058196294!2d55.12445659536889!3d37.24385138392286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f82bf0f3681aac1%3A0xb8eacc0ae01e8b94!2sQabus%20Ibn%20Voshmgir%20Tower!5e0!3m2!1sen!2s!4v1611689478637!5m2!1sen!2s',
+
+		'cf7_form_id'       => '',
 		'cta_text'         => 'ما تنها ساختمان های شما را نمیسازیم بلکه رویاهای شما را خواهیم ساخت ..',
 		'cta_phone'        => '09304567896',
 		'intro_title'      => 'همواره همراه شما هستیم ..',
