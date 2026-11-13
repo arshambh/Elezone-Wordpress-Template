@@ -1,5 +1,5 @@
 /*
- * Carousel initialisation for ArshamDecor.
+ * Carousel initialisation for Elezone.
  *
  * The original static HTML never called .owlCarousel(), which left every
  * Owl slider hidden (Owl's CSS sets display:none until .owl-loaded is added).

@@ -2,7 +2,7 @@
 /**
  * Benefits strip.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 $benefits = new WP_Query(
@@ -38,7 +38,7 @@ $fallback = array(
 		<?php else : ?>
 			<?php foreach ( $fallback as $b ) : ?>
 				<div class="col-xl-2 col-md-4 col-6 mb-lg-1 mb-3">
-					<img src="<?php echo esc_url( arsham_asset( $b['icon'] ) ); ?>" class="mb-2" alt="">
+					<img src="<?php echo esc_url( elezone_asset( $b['icon'] ) ); ?>" class="mb-2" alt="">
 					<h2><?php echo esc_html( $b['title'] ); ?></h2>
 				</div>
 			<?php endforeach; ?>

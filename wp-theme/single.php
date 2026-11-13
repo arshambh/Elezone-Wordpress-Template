@@ -2,7 +2,7 @@
 /**
  * Single post template.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 get_header();

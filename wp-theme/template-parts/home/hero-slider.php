@@ -2,7 +2,7 @@
 /**
  * Hero slider section.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 $slides = new WP_Query(
@@ -25,7 +25,7 @@ $slides = new WP_Query(
 		<?php endwhile; ?>
 		<?php wp_reset_postdata(); ?>
 	<?php else : ?>
-		<div class="item"><img src="<?php echo esc_url( arsham_asset( 'Img/slide9.jpg' ) ); ?>" class="img-fluid" alt=""></div>
-		<div class="item"><img src="<?php echo esc_url( arsham_asset( 'Img/slide8.jpg' ) ); ?>" class="img-fluid" alt=""></div>
+		<div class="item"><img src="<?php echo esc_url( elezone_asset( 'Img/slide9.jpg' ) ); ?>" class="img-fluid" alt=""></div>
+		<div class="item"><img src="<?php echo esc_url( elezone_asset( 'Img/slide8.jpg' ) ); ?>" class="img-fluid" alt=""></div>
 	<?php endif; ?>
 </div>

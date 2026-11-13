@@ -2,7 +2,7 @@
 /**
  * Theme setup: supports, menus, image sizes, sidebars.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,8 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register theme supports, menus and image sizes.
  */
-function arsham_setup() {
-	load_theme_textdomain( 'arshamdecor', ARSHAM_THEME_DIR . '/languages' );
+function elezone_setup() {
+	load_theme_textdomain( 'elezone', ELEZONE_THEME_DIR . '/languages' );
 
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
@@ -28,31 +28,31 @@ function arsham_setup() {
 	) );
 
 	register_nav_menus( array(
-		'primary'      => __( 'Primary (Mega Menu)', 'arshamdecor' ),
-		'footer-demos' => __( 'Footer - Demos column', 'arshamdecor' ),
-		'footer-quick' => __( 'Footer - Quick links column', 'arshamdecor' ),
+		'primary'      => __( 'Primary (Mega Menu)', 'elezone' ),
+		'footer-demos' => __( 'Footer - Demos column', 'elezone' ),
+		'footer-quick' => __( 'Footer - Quick links column', 'elezone' ),
 	) );
 
-	add_image_size( 'arsham-project-card', 600, 400, true );
-	add_image_size( 'arsham-post-card', 500, 350, true );
+	add_image_size( 'elezone-project-card', 600, 400, true );
+	add_image_size( 'elezone-post-card', 500, 350, true );
 }
-add_action( 'after_setup_theme', 'arsham_setup' );
+add_action( 'after_setup_theme', 'elezone_setup' );
 
 /**
  * Register sidebars.
  */
-function arsham_widgets_init() {
+function elezone_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Footer Widgets', 'arshamdecor' ),
+		'name'          => __( 'Footer Widgets', 'elezone' ),
 		'id'            => 'footer-widgets',
-		'description'   => __( 'Widgets rendered inside the footer.', 'arshamdecor' ),
+		'description'   => __( 'Widgets rendered inside the footer.', 'elezone' ),
 		'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h3>',
 		'after_title'   => '</h3>',
 	) );
 }
-add_action( 'widgets_init', 'arsham_widgets_init' );
+add_action( 'widgets_init', 'elezone_widgets_init' );
 
 /**
  * Body classes: RTL and sticky menu context.
@@ -60,8 +60,8 @@ add_action( 'widgets_init', 'arsham_widgets_init' );
  * @param array $classes Body classes.
  * @return array
  */
-function arsham_body_classes( $classes ) {
+function elezone_body_classes( $classes ) {
 	$classes[] = 'rtl';
 	return $classes;
 }
-add_filter( 'body_class', 'arsham_body_classes' );
+add_filter( 'body_class', 'elezone_body_classes' );

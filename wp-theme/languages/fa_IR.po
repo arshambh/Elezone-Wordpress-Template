@@ -1,0 +1,228 @@
+# Persian (Iran) translation for Elezone theme
+msgid ""
+msgstr ""
+"Project-Id-Version: Elezone 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-13 00:00+0000\n"
+"PO-Revision-Date: 2026-11-13 00:00+0000\n"
+"Last-Translator: ArshamCoder <info@example.com>\n"
+"Language-Team: Persian <fa@li.org>\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Manual\n"
+"X-Domain: elezone\n"
+
+msgid "Projects"
+msgstr "پروژه‌ها"
+
+msgid "Project"
+msgstr "پروژه"
+
+msgid "Add New Project"
+msgstr "افزودن پروژه جدید"
+
+msgid "Edit Project"
+msgstr "ویرایش پروژه"
+
+msgid "View Project"
+msgstr "مشاهده پروژه"
+
+msgid "Search Projects"
+msgstr "جستجوی پروژه‌ها"
+
+msgid "No projects found"
+msgstr "پروژه‌ای یافت نشد"
+
+msgid "Services"
+msgstr "خدمات"
+
+msgid "Service"
+msgstr "خدمت"
+
+msgid "Add New Service"
+msgstr "افزودن خدمت جدید"
+
+msgid "Edit Service"
+msgstr "ویرایش خدمت"
+
+msgid "Slides"
+msgstr "اسلایدها"
+
+msgid "Slide"
+msgstr "اسلاید"
+
+msgid "Add New Slide"
+msgstr "افزودن اسلاید جدید"
+
+msgid "Edit Slide"
+msgstr "ویرایش اسلاید"
+
+msgid "Benefits"
+msgstr "مزایا"
+
+msgid "Benefit"
+msgstr "مزیت"
+
+msgid "Add New Benefit"
+msgstr "افزودن مزیت جدید"
+
+msgid "Edit Benefit"
+msgstr "ویرایش مزیت"
+
+msgid "Project Types"
+msgstr "نوع پروژه"
+
+msgid "Project Type"
+msgstr "نوع پروژه"
+
+msgid "Primary (Mega Menu)"
+msgstr "منوی اصلی (مگا منو)"
+
+msgid "Footer - Demos column"
+msgstr "فوتر - ستون دموها"
+
+msgid "Footer - Quick links column"
+msgstr "فوتر - ستون لینک‌های سریع"
+
+msgid "Footer Widgets"
+msgstr "ابزارک‌های فوتر"
+
+msgid "Elezone - Logo"
+msgstr "الزون - لوگو"
+
+msgid "Elezone - Colors"
+msgstr "الزون - رنگ‌ها"
+
+msgid "Elezone - Contact & Social"
+msgstr "الزون - تماس و شبکه‌های اجتماعی"
+
+msgid "Header Logo"
+msgstr "لوگوی هدر"
+
+msgid "Footer Logo"
+msgstr "لوگوی فوتر"
+
+msgid "Header Logo Width (px)"
+msgstr "عرض لوگوی هدر (پیکسل)"
+
+msgid "Footer Logo Width (px)"
+msgstr "عرض لوگوی فوتر (پیکسل)"
+
+msgid "Header Logo Position"
+msgstr "موقعیت لوگوی هدر"
+
+msgid "Start (right in RTL)"
+msgstr "شروع (راست در RTL)"
+
+msgid "Center"
+msgstr "وسط"
+
+msgid "End (left in RTL)"
+msgstr "پایان (چپ در RTL)"
+
+msgid "Reset all colors"
+msgstr "ریست همه رنگ‌ها"
+
+msgid "Reset to original"
+msgstr "بازگشت به رنگ اصلی"
+
+msgid "Already at original value"
+msgstr "هم‌اکنون روی رنگ اصلی است"
+
+msgid "Clears every color. The original theme palette returns."
+msgstr "همه رنگ‌ها پاک می‌شوند و پالت اصلی قالب بازمی‌گردد."
+
+msgid "Reset ALL colors to their original values?"
+msgstr "همه رنگ‌ها به مقدار اصلی بازگردند؟"
+
+msgid "Colors reset"
+msgstr "رنگ‌ها ریست شدند"
+
+msgid "Nothing to reset"
+msgstr "چیزی برای ریست وجود ندارد"
+
+msgid "Primary (accent) color"
+msgstr "رنگ اصلی (تاکیدی)"
+
+msgid "Body background"
+msgstr "پس‌زمینه بدنه"
+
+msgid "Body text"
+msgstr "متن بدنه"
+
+msgid "General link"
+msgstr "لینک عمومی"
+
+msgid "General link (hover)"
+msgstr "لینک عمومی (هاور)"
+
+msgid "Header background (outer)"
+msgstr "پس‌زمینه هدر (بیرونی)"
+
+msgid "Header pill background (inner)"
+msgstr "پس‌زمینه قرص هدر (داخلی)"
+
+msgid "Header background (sticky, outer)"
+msgstr "پس‌زمینه هدر چسبیده (بیرونی)"
+
+msgid "Header pill background (sticky, inner)"
+msgstr "پس‌زمینه قرص هدر چسبیده (داخلی)"
+
+msgid "Menu link"
+msgstr "لینک منو"
+
+msgid "Menu link (hover)"
+msgstr "لینک منو (هاور)"
+
+msgid "Submenu background"
+msgstr "پس‌زمینه زیرمنو"
+
+msgid "Submenu link"
+msgstr "لینک زیرمنو"
+
+msgid "Submenu link (hover)"
+msgstr "لینک زیرمنو (هاور)"
+
+msgid "Intro band background"
+msgstr "پس‌زمینه نوار معرفی"
+
+msgid "CTA background"
+msgstr "پس‌زمینه CTA"
+
+msgid "CTA text"
+msgstr "متن CTA"
+
+msgid "CTA button background"
+msgstr "پس‌زمینه دکمه CTA"
+
+msgid "CTA button text"
+msgstr "متن دکمه CTA"
+
+msgid "Footer background"
+msgstr "پس‌زمینه فوتر"
+
+msgid "Footer text"
+msgstr "متن فوتر"
+
+msgid "Footer link"
+msgstr "لینک فوتر"
+
+msgid "Footer link (hover)"
+msgstr "لینک فوتر (هاور)"
+
+msgid "Footer headings"
+msgstr "عنوان‌های فوتر"
+
+msgid "Primary button background (.btn-brow)"
+msgstr "پس‌زمینه دکمه اصلی"
+
+msgid "Primary button text (.btn-brow)"
+msgstr "متن دکمه اصلی"
+
+msgid "Elezone - Starter Content"
+msgstr "الزون - محتوای نمونه"
+
+msgid "Elezone Starter"
+msgstr "شروع‌کننده الزون"

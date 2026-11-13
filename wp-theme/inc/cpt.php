@@ -2,7 +2,7 @@
 /**
  * Custom post types and taxonomies.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,18 +12,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Register CPTs: project, service, slide, benefit.
  */
-function arsham_register_post_types() {
+function elezone_register_post_types() {
 
 	register_post_type( 'project', array(
 		'labels'       => array(
-			'name'               => __( 'Projects', 'arshamdecor' ),
-			'singular_name'      => __( 'Project', 'arshamdecor' ),
-			'add_new_item'       => __( 'Add New Project', 'arshamdecor' ),
-			'edit_item'          => __( 'Edit Project', 'arshamdecor' ),
-			'view_item'          => __( 'View Project', 'arshamdecor' ),
-			'search_items'       => __( 'Search Projects', 'arshamdecor' ),
-			'not_found'          => __( 'No projects found', 'arshamdecor' ),
-			'menu_name'          => __( 'Projects', 'arshamdecor' ),
+			'name'               => __( 'Projects', 'elezone' ),
+			'singular_name'      => __( 'Project', 'elezone' ),
+			'add_new_item'       => __( 'Add New Project', 'elezone' ),
+			'edit_item'          => __( 'Edit Project', 'elezone' ),
+			'view_item'          => __( 'View Project', 'elezone' ),
+			'search_items'       => __( 'Search Projects', 'elezone' ),
+			'not_found'          => __( 'No projects found', 'elezone' ),
+			'menu_name'          => __( 'Projects', 'elezone' ),
 		),
 		'public'       => true,
 		'has_archive'  => true,
@@ -35,11 +35,11 @@ function arsham_register_post_types() {
 
 	register_post_type( 'service', array(
 		'labels'       => array(
-			'name'          => __( 'Services', 'arshamdecor' ),
-			'singular_name' => __( 'Service', 'arshamdecor' ),
-			'add_new_item'  => __( 'Add New Service', 'arshamdecor' ),
-			'edit_item'     => __( 'Edit Service', 'arshamdecor' ),
-			'menu_name'     => __( 'Services', 'arshamdecor' ),
+			'name'          => __( 'Services', 'elezone' ),
+			'singular_name' => __( 'Service', 'elezone' ),
+			'add_new_item'  => __( 'Add New Service', 'elezone' ),
+			'edit_item'     => __( 'Edit Service', 'elezone' ),
+			'menu_name'     => __( 'Services', 'elezone' ),
 		),
 		'public'       => true,
 		'has_archive'  => true,
@@ -51,11 +51,11 @@ function arsham_register_post_types() {
 
 	register_post_type( 'slide', array(
 		'labels'     => array(
-			'name'          => __( 'Slides', 'arshamdecor' ),
-			'singular_name' => __( 'Slide', 'arshamdecor' ),
-			'add_new_item'  => __( 'Add New Slide', 'arshamdecor' ),
-			'edit_item'     => __( 'Edit Slide', 'arshamdecor' ),
-			'menu_name'     => __( 'Slides', 'arshamdecor' ),
+			'name'          => __( 'Slides', 'elezone' ),
+			'singular_name' => __( 'Slide', 'elezone' ),
+			'add_new_item'  => __( 'Add New Slide', 'elezone' ),
+			'edit_item'     => __( 'Edit Slide', 'elezone' ),
+			'menu_name'     => __( 'Slides', 'elezone' ),
 		),
 		'public'     => false,
 		'show_ui'    => true,
@@ -65,11 +65,11 @@ function arsham_register_post_types() {
 
 	register_post_type( 'benefit', array(
 		'labels'     => array(
-			'name'          => __( 'Benefits', 'arshamdecor' ),
-			'singular_name' => __( 'Benefit', 'arshamdecor' ),
-			'add_new_item'  => __( 'Add New Benefit', 'arshamdecor' ),
-			'edit_item'     => __( 'Edit Benefit', 'arshamdecor' ),
-			'menu_name'     => __( 'Benefits', 'arshamdecor' ),
+			'name'          => __( 'Benefits', 'elezone' ),
+			'singular_name' => __( 'Benefit', 'elezone' ),
+			'add_new_item'  => __( 'Add New Benefit', 'elezone' ),
+			'edit_item'     => __( 'Edit Benefit', 'elezone' ),
+			'menu_name'     => __( 'Benefits', 'elezone' ),
 		),
 		'public'     => false,
 		'show_ui'    => true,
@@ -77,18 +77,18 @@ function arsham_register_post_types() {
 		'supports'   => array( 'title', 'thumbnail', 'page-attributes' ),
 	) );
 }
-add_action( 'init', 'arsham_register_post_types' );
+add_action( 'init', 'elezone_register_post_types' );
 
 /**
  * Register taxonomies.
  */
-function arsham_register_taxonomies() {
+function elezone_register_taxonomies() {
 
 	register_taxonomy( 'project_type', array( 'project' ), array(
 		'labels'       => array(
-			'name'          => __( 'Project Types', 'arshamdecor' ),
-			'singular_name' => __( 'Project Type', 'arshamdecor' ),
-			'menu_name'     => __( 'Project Types', 'arshamdecor' ),
+			'name'          => __( 'Project Types', 'elezone' ),
+			'singular_name' => __( 'Project Type', 'elezone' ),
+			'menu_name'     => __( 'Project Types', 'elezone' ),
 		),
 		'hierarchical' => true,
 		'public'       => true,
@@ -96,4 +96,4 @@ function arsham_register_taxonomies() {
 		'rewrite'      => array( 'slug' => 'project-type' ),
 	) );
 }
-add_action( 'init', 'arsham_register_taxonomies' );
+add_action( 'init', 'elezone_register_taxonomies' );

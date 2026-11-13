@@ -2,7 +2,7 @@
 /**
  * Blog grid section.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 $posts_query = new WP_Query(
@@ -44,9 +44,9 @@ $blog_url     = $blog_page_id ? get_permalink( $blog_page_id ) : home_url( '/' )
 						<a href="<?php the_permalink(); ?>" class="piec4 grid mb-lg-3">
 							<figure class="effect-sadie radius15">
 								<?php if ( has_post_thumbnail() ) : ?>
-									<?php the_post_thumbnail( 'arsham-post-card', array( 'class' => 'radius15' ) ); ?>
+									<?php the_post_thumbnail( 'elezone-post-card', array( 'class' => 'radius15' ) ); ?>
 								<?php else : ?>
-									<img src="<?php echo esc_url( arsham_asset( 'Img/grid-img.jpg' ) ); ?>" class="radius15" alt="">
+									<img src="<?php echo esc_url( elezone_asset( 'Img/grid-img.jpg' ) ); ?>" class="radius15" alt="">
 								<?php endif; ?>
 								<figcaption>
 									<h3 class="IRANSans_Bold"><?php echo esc_html( wp_trim_words( get_the_title(), 4 ) ); ?></h3>
@@ -64,7 +64,7 @@ $blog_url     = $blog_page_id ? get_permalink( $blog_page_id ) : home_url( '/' )
 					<div class="d-flex flex-lg-column flex-md-row flex-column mb-3">
 						<a href="<?php echo esc_url( $blog_url ); ?>" class="piec4 grid mb-lg-3">
 							<figure class="effect-sadie radius15">
-								<img src="<?php echo esc_url( arsham_asset( $item['img'] ) ); ?>" class="radius15" alt="">
+								<img src="<?php echo esc_url( elezone_asset( $item['img'] ) ); ?>" class="radius15" alt="">
 								<figcaption>
 									<h3 class="IRANSans_Bold"><?php echo esc_html( $item['title'] ); ?></h3>
 									<p>جهت مشاهده مطلب کلیک کنید ..</p>

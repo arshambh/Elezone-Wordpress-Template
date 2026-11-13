@@ -2,7 +2,7 @@
 /**
  * 404 template.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 get_header();

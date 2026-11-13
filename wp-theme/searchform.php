@@ -2,7 +2,7 @@
 /**
  * Search form (matches the header search markup).
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 ?>
 <form role="search" class="search_wrap active mt-lg-0" id="ajax-form-search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">

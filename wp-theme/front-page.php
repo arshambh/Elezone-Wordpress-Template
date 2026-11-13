@@ -2,7 +2,7 @@
 /**
  * Front page template.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 get_header();

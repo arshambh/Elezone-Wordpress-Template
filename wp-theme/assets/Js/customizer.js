@@ -1,5 +1,5 @@
 /*
- * ArshamDecor Customizer: per-field and global color reset buttons.
+ * Elezone Customizer: per-field and global color reset buttons.
  *
  * - Each color control gets a small ↺ button next to its label.
  *   Clicking it clears that setting (empty = original theme color).
@@ -12,7 +12,7 @@
 		return;
 	}
 
-	var PREFIX = 'arsham_color_';
+	var PREFIX = 'elezone_color_';
 
 	function isColorSetting(id) {
 		return id.indexOf(PREFIX) === 0;
@@ -24,7 +24,7 @@
 		if (!setting || !control || !control.container) {
 			return;
 		}
-		var $btn = control.container.find('.arsham-reset-color');
+		var $btn = control.container.find('.elezone-reset-color');
 		if (!$btn.length) {
 			return;
 		}
@@ -33,7 +33,7 @@
 			opacity: hasValue ? '1' : '0.25',
 			cursor: hasValue ? 'pointer' : 'default'
 		});
-		$btn.attr('title', hasValue ? arshamCustomizer.resetLabel : arshamCustomizer.emptyLabel);
+		$btn.attr('title', hasValue ? elezoneCustomizer.resetLabel : elezoneCustomizer.emptyLabel);
 	}
 
 	function injectIndividualButtons() {
@@ -46,14 +46,14 @@
 				return;
 			}
 			var $title = control.container.find('.customize-control-title').first();
-			if (!$title.length || $title.find('.arsham-reset-color').length) {
+			if (!$title.length || $title.find('.elezone-reset-color').length) {
 				return;
 			}
 			$title.append(
-				' <button type="button" class="button-link arsham-reset-color" ' +
+				' <button type="button" class="button-link elezone-reset-color" ' +
 				'data-setting="' + setting.id + '" ' +
 				'style="margin-left:8px;font-size:14px;line-height:1;text-decoration:none;vertical-align:middle;" ' +
-				'title="' + arshamCustomizer.resetLabel + '">\u21ba</button>'
+				'title="' + elezoneCustomizer.resetLabel + '">\u21ba</button>'
 			);
 			updateResetIndicator(setting.id);
 			setting.bind(function () {
@@ -63,17 +63,17 @@
 	}
 
 	function injectGlobalButton() {
-		var $panelContent = $('#accordion-panel-arsham_colors .accordion-section-content');
-		if (!$panelContent.length || $('#arsham-reset-all-colors').length) {
+		var $panelContent = $('#accordion-panel-elezone_colors .accordion-section-content');
+		if (!$panelContent.length || $('#elezone-reset-all-colors').length) {
 			return;
 		}
 		$panelContent.prepend(
-			'<li class="customize-control arsham-reset-all-wrap" style="background:#fafafa;border-bottom:1px solid #ddd;padding:12px;">' +
-			'<button type="button" class="button button-secondary" id="arsham-reset-all-colors" style="width:100%;text-align:center;">' +
-			'\u21ba ' + arshamCustomizer.resetAllLabel +
+			'<li class="customize-control elezone-reset-all-wrap" style="background:#fafafa;border-bottom:1px solid #ddd;padding:12px;">' +
+			'<button type="button" class="button button-secondary" id="elezone-reset-all-colors" style="width:100%;text-align:center;">' +
+			'\u21ba ' + elezoneCustomizer.resetAllLabel +
 			'</button>' +
 			'<p class="description" style="margin:6px 0 0;font-size:11px;color:#666;">' +
-			arshamCustomizer.resetAllHint +
+			elezoneCustomizer.resetAllHint +
 			'</p>' +
 			'</li>'
 		);
@@ -86,7 +86,7 @@
 			injectGlobalButton();
 		}, 150);
 
-		$(document).on('click', '.arsham-reset-color', function (e) {
+		$(document).on('click', '.elezone-reset-color', function (e) {
 			e.preventDefault();
 			e.stopPropagation();
 			var settingId = $(this).data('setting');
@@ -96,9 +96,9 @@
 			}
 		});
 
-		$(document).on('click', '#arsham-reset-all-colors', function (e) {
+		$(document).on('click', '#elezone-reset-all-colors', function (e) {
 			e.preventDefault();
-			if (!window.confirm(arshamCustomizer.confirmReset)) {
+			if (!window.confirm(elezoneCustomizer.confirmReset)) {
 				return;
 			}
 
@@ -113,9 +113,9 @@
 			var $btn = $(this);
 			var original = $btn.text();
 			if (count > 0) {
-				$btn.text('\u2713 ' + arshamCustomizer.resetDone).prop('disabled', true);
+				$btn.text('\u2713 ' + elezoneCustomizer.resetDone).prop('disabled', true);
 			} else {
-				$btn.text(arshamCustomizer.resetNothing).prop('disabled', true);
+				$btn.text(elezoneCustomizer.resetNothing).prop('disabled', true);
 			}
 			setTimeout(function () {
 				$btn.text(original).prop('disabled', false);

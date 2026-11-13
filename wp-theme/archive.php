@@ -2,7 +2,7 @@
 /**
  * Archive template.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 get_header();
@@ -19,7 +19,7 @@ get_header();
 					<div class="sbox p-4 radius15 h-100 text-right">
 						<?php if ( has_post_thumbnail() ) : ?>
 							<a href="<?php the_permalink(); ?>" class="d-block mb-3">
-								<?php the_post_thumbnail( 'arsham-post-card', array( 'class' => 'img-fluid radius15' ) ); ?>
+								<?php the_post_thumbnail( 'elezone-post-card', array( 'class' => 'img-fluid radius15' ) ); ?>
 							</a>
 						<?php endif; ?>
 						<h2 class="h5 IRANSans_Bold"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>

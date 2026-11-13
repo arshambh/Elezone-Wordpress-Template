@@ -2,7 +2,7 @@
 /**
  * Intro band section.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 ?>
 <section class="container bg-cudark text-white radius15 text-lg-right text-center my-5">
@@ -12,11 +12,11 @@
 			<div class="border-top flex-grow-1 ms-2 border-gold"></div>
 		</div>
 		<div class="col-lg-10 order-lg-0 order-1">
-			<h3 class="IRANSans_Bold text-bro mb-2">"<?php echo esc_html( arsham_get_option( 'intro_title' ) ); ?>"</h3>
-			<p class="mb-3"><?php echo esc_html( arsham_get_option( 'intro_text' ) ); ?></p>
+			<h3 class="IRANSans_Bold text-bro mb-2">"<?php echo esc_html( elezone_get_option( 'intro_title' ) ); ?>"</h3>
+			<p class="mb-3"><?php echo esc_html( elezone_get_option( 'intro_text' ) ); ?></p>
 		</div>
 		<div class="col-lg-2 text-lg-left order-lg-1 order-0">
-			<img src="<?php echo esc_url( arsham_asset( 'Img/logomiddle.png' ) ); ?>" class="py-lg-0 p-3" alt="">
+			<img src="<?php echo esc_url( elezone_asset( 'Img/logomiddle.png' ) ); ?>" class="py-lg-0 p-3" alt="">
 		</div>
 	</div>
 </section>

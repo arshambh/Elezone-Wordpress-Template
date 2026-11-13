@@ -2,7 +2,7 @@
 /**
  * Projects carousel section (reusable for interior & facade).
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 $projects_query = get_query_var( 'projects_query' );

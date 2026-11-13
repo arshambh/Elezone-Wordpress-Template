@@ -2,7 +2,7 @@
 /**
  * Services section.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 $services = new WP_Query(
@@ -30,7 +30,7 @@ $fallback = array(
 	</div>
 	<div class="row Service">
 		<div class="col-lg-3 col-md-6 d-lg-block d-none">
-			<img src="<?php echo esc_url( arsham_asset( 'Img/service.png' ) ); ?>" alt="">
+			<img src="<?php echo esc_url( elezone_asset( 'Img/service.png' ) ); ?>" alt="">
 		</div>
 		<?php if ( $services->have_posts() ) : ?>
 			<?php while ( $services->have_posts() ) : $services->the_post(); ?>
@@ -54,7 +54,7 @@ $fallback = array(
 			<?php foreach ( $fallback as $svc ) : ?>
 				<div class="col-lg-3 col-md-6">
 					<div class="d-flex flex-column sbox py-4 px-5 mb-4 radius15">
-						<div class="mb-3"><img src="<?php echo esc_url( arsham_asset( $svc['icon'] ) ); ?>" alt=""></div>
+						<div class="mb-3"><img src="<?php echo esc_url( elezone_asset( $svc['icon'] ) ); ?>" alt=""></div>
 						<div class="line_bottom"></div>
 						<div>
 							<h3 class="IRANSans_Medium"><?php echo esc_html( $svc['title'] ); ?></h3>

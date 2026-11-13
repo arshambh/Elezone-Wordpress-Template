@@ -2,11 +2,11 @@
 /**
  * Navigation menu walkers.
  *
- * - Arsham_Mega_Menu_Walker: preserves the .second > .inner > ul markup for
+ * - Elezone_Mega_Menu_Walker: preserves the .second > .inner > ul markup for
  *   the desktop mega menu.
- * - Arsham_Footer_Menu_Walker: prepends an angle icon to each footer link.
+ * - Elezone_Footer_Menu_Walker: prepends an angle icon to each footer link.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Mega-menu walker for the primary header menu.
  */
-class Arsham_Mega_Menu_Walker extends Walker_Nav_Menu {
+class Elezone_Mega_Menu_Walker extends Walker_Nav_Menu {
 
 	/**
 	 * Open a sub-menu level.
@@ -114,7 +114,7 @@ class Arsham_Mega_Menu_Walker extends Walker_Nav_Menu {
 /**
  * Footer menu walker: prepends an angle icon to each link.
  */
-class Arsham_Footer_Menu_Walker extends Walker_Nav_Menu {
+class Elezone_Footer_Menu_Walker extends Walker_Nav_Menu {
 
 	/**
 	 * Render a single footer item.

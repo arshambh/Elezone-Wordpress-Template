@@ -2,12 +2,12 @@
 /**
  * Header template.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
-$logo_url      = arsham_get_logo_url( 'header' );
-$logo_width    = (int) get_theme_mod( 'arsham_logo_width', 120 );
-$logo_position = get_theme_mod( 'arsham_logo_position', 'start' );
+$logo_url      = elezone_get_logo_url( 'header' );
+$logo_width    = (int) get_theme_mod( 'elezone_logo_width', 120 );
+$logo_position = get_theme_mod( 'elezone_logo_position', 'start' );
 $logo_img      = '<img src="' . esc_url( $logo_url ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" style="width:' . $logo_width . 'px;height:auto;max-width:100%;" />';
 ?><!DOCTYPE html>
 <html lang="<?php echo esc_attr( get_bloginfo( 'language' ) ); ?>" dir="rtl">
@@ -39,7 +39,7 @@ $logo_img      = '<img src="' . esc_url( $logo_url ) . '" alt="' . esc_attr( get
 									'theme_location' => 'primary',
 									'container'      => false,
 									'items_wrap'     => '%3$s',
-									'walker'         => new Arsham_Mega_Menu_Walker(),
+									'walker'         => new Elezone_Mega_Menu_Walker(),
 									'depth'          => 0,
 									'fallback_cb'    => false,
 								) );

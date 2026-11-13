@@ -2,7 +2,7 @@
 /**
  * Project card (used inside projects carousel).
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 $project_id = get_the_ID();
@@ -19,9 +19,9 @@ $excerpt    = wp_trim_words( get_the_excerpt( $project_id ), 10 );
 <div class="m-2 blog_style">
 	<a href="<?php echo esc_url( get_permalink( $project_id ) ); ?>">
 		<?php if ( has_post_thumbnail( $project_id ) ) : ?>
-			<?php echo get_the_post_thumbnail( $project_id, 'arsham-project-card', array( 'class' => 'card-img-top' ) ); ?>
+			<?php echo get_the_post_thumbnail( $project_id, 'elezone-project-card', array( 'class' => 'card-img-top' ) ); ?>
 		<?php else : ?>
-			<img class="card-img-top" src="<?php echo esc_url( arsham_asset( 'Img/1.jpg' ) ); ?>" alt="">
+			<img class="card-img-top" src="<?php echo esc_url( elezone_asset( 'Img/1.jpg' ) ); ?>" alt="">
 		<?php endif; ?>
 	</a>
 	<div class="card-body">

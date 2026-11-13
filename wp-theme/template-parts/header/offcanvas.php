@@ -5,7 +5,7 @@
  * WordPress automatically adds the `menu-item-has-children` class, which the
  * theme's Custom.js relies on to inject the explain-menu arrows.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

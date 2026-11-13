@@ -2,7 +2,7 @@
 /**
  * Search results template.
  *
- * @package ArshamDecor
+ * @package Elezone
  */
 
 get_header();
@@ -13,7 +13,7 @@ get_header();
 			<?php
 			printf(
 				/* translators: %s: search query. */
-				esc_html__( 'نتایج جستجو برای: %s', 'arshamdecor' ),
+				esc_html__( 'نتایج جستجو برای: %s', 'elezone' ),
 				'<span class="text-bro">' . esc_html( get_search_query() ) . '</span>'
 			);
 			?>
