@@ -142,5 +142,74 @@ function elezone_customize_register( $wp_customize ) {
 			'type'    => $field['type'],
 		) );
 	}
+	/* About section -------------------------------------------------------- */
+
+	$wp_customize->add_section( 'elezone_about', array(
+		'title'    => __( 'Elezone - About', 'elezone' ),
+		'priority' => 35,
+	) );
+
+	$about_fields = array(
+		'about_goals_tagline'      => array( 'label' => __( 'Goals — tagline', 'elezone' ), 'type' => 'text' ),
+		'about_goals_title'        => array( 'label' => __( 'Goals — title', 'elezone' ), 'type' => 'text' ),
+		'about_goals_items'        => array( 'label' => __( 'Goals — items (one per line)', 'elezone' ), 'type' => 'textarea' ),
+		'about_manager_tagline'    => array( 'label' => __( 'Manager — tagline', 'elezone' ), 'type' => 'text' ),
+		'about_manager_name'       => array( 'label' => __( 'Manager — full name', 'elezone' ), 'type' => 'text' ),
+		'about_manager_position'   => array( 'label' => __( 'Manager — position', 'elezone' ), 'type' => 'text' ),
+		'about_manager_experience' => array( 'label' => __( 'Manager — years of experience', 'elezone' ), 'type' => 'text' ),
+		'about_manager_education'  => array( 'label' => __( 'Manager — education', 'elezone' ), 'type' => 'text' ),
+		'about_stats_items'        => array( 'label' => __( 'Stats — items (format: number|label, one per line)', 'elezone' ), 'type' => 'textarea' ),
+		'about_awards_tagline'     => array( 'label' => __( 'Awards — tagline', 'elezone' ), 'type' => 'text' ),
+		'about_awards_title'       => array( 'label' => __( 'Awards — title', 'elezone' ), 'type' => 'text' ),
+		'about_awards_text'        => array( 'label' => __( 'Awards — text', 'elezone' ), 'type' => 'textarea' ),
+	);
+
+	foreach ( $about_fields as $key => $field ) {
+		$sanitize = 'textarea' === $field['type'] ? 'sanitize_textarea_field' : 'sanitize_text_field';
+
+		$wp_customize->add_setting( 'elezone_' . $key, array(
+			'default'           => elezone_defaults()[ $key ] ?? '',
+			'sanitize_callback' => $sanitize,
+			'transport'         => 'refresh',
+		) );
+
+		$wp_customize->add_control( 'elezone_' . $key, array(
+			'label'   => $field['label'],
+			'section' => 'elezone_about',
+			'type'    => $field['type'],
+		) );
+	}
+
+	/* Image controls for About -------------------------------------------- */
+
+	$wp_customize->add_setting( 'elezone_about_manager_image', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( new WP_Customize_Image_Control(
+		$wp_customize,
+		'elezone_about_manager_image',
+		array(
+			'label'       => __( 'Manager — photo', 'elezone' ),
+			'description' => __( 'Leave empty to use the bundled image12.jpeg.', 'elezone' ),
+			'section'     => 'elezone_about',
+		)
+	) );
+
+	$wp_customize->add_setting( 'elezone_about_awards_image', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( new WP_Customize_Image_Control(
+		$wp_customize,
+		'elezone_about_awards_image',
+		array(
+			'label'       => __( 'Awards — image', 'elezone' ),
+			'description' => __( 'Leave empty to use the bundled tandis.png.', 'elezone' ),
+			'section'     => 'elezone_about',
+		)
+	) );
 }
 add_action( 'customize_register', 'elezone_customize_register' );

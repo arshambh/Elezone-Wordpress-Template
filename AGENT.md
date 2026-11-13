@@ -147,6 +147,7 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     ├── index.php                    # فهرست پست‌ها (fallback)
     ├── page.php                     # برگه ساده
     ├── page-contact.php             # ⭐ تماس با ما (Page Template)
+    ├── page-about.php               # ⭐ درباره ما (Page Template)
     ├── single.php                   # پست تکی
     ├── single-project.php           # ⭐ صفحه جزئیات پروژه
     ├── single-service.php           # ⭐ صفحه جزئیات خدمت
@@ -183,10 +184,15 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   │   ├── cta-band.php
     │   │   └── blog-grid.php
     │   ├── cards/project-card.php   # کارت پروژه (variant-aware)
-    │   ├── contact/                 # ⭐ جدید — partialهای صفحه تماس
+    │   ├── contact/                 # partialهای صفحه تماس
     │   │   ├── form.php             # فرم (nonce + honeypot + transient message)
     │   │   ├── info.php             # اطلاعات تماس از Customizer
     │   │   └── map.php              # نقشه اگر URL در Customizer پر باشد
+    │   ├── about/                   # ⭐ جدید — partialهای صفحه درباره ما
+    │   │   ├── goals.php            # ستون اهداف (لیست تیک‌دار)
+    │   │   ├── manager.php          # ستون مدیریت (تصویر + سمت + سابقه + تحصیلات)
+    │   │   ├── stats.php            # نوار آمار (number|label)
+    │   │   └── awards.php           # جوایز و افتخارات
     │   ├── hero/                    # ⭐ جدید — banner مشترک
     │   │   └── banner.php           # hero + breadcrumb (args-driven)
     │   ├── content/                 # (رزرو — خالی)
@@ -285,6 +291,9 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
 **دکمه‌های ریست:**
 - **↺ تکی** کنار هر فیلد → مقدار آن رنگ را خالی می‌کند
 - **↺ Reset all colors** بالای پنل → همه را صفر می‌کند (با `confirm`)
+
+#### پنل Elezone - About (۱۴ فیلد + ۲ تصویر)
+`about_goals_tagline`, `about_goals_title`, `about_goals_items` (textarea، هر خط یک آیتم), `about_manager_tagline`, `about_manager_name`, `about_manager_position`, `about_manager_experience`, `about_manager_education`, `about_manager_image` (image), `about_stats_items` (textarea، فرمت `number|label`), `about_awards_tagline`, `about_awards_title`, `about_awards_text`, `about_awards_image` (image)
 
 #### پنل Elezone - Contact & Social (۱۵ فیلد — شامل cf7_form_id)
 `phone`, `mobile`, `email`, `address`, `business_hours`, `map_embed`, `cf7_form_id`, `cta_text`, `cta_phone`, `intro_title`, `intro_text`, `social_whatsapp`, `social_telegram`, `social_instagram`, `social_facebook`
@@ -508,9 +517,9 @@ delete_option( 'elezone_folder_migration_done' );
 
 | مورد | تعداد |
 |---|---|
-| فایل PHP (ریشه) | ۱۵ |
+| فایل PHP (ریشه) | ۱۶ |
 | فایل PHP (inc) | ۱۰ |
-| فایل PHP (template-parts) | ۱۴ |
+| فایل PHP (template-parts) | ۱۸ |
 | فایل JS | ۵ |
 | فایل CSS | ۶ |
 | تصاویر | ۹۱ + ۱۳ icons + ۲۲ Shot |
@@ -562,6 +571,7 @@ e965176 feat: complete Elezone v1.0.0 release
 | ۱۵ | رفع باگ sanitize `address` + بازسازی ساختار فرم | ✅ |
 | ۱۶ | رفع باگ سایز تصویر `arsham-project-card` → `elezone-project-card` (در `single-project.php` و `archive-project.php`) | ✅ |
 | ۱۷ | رفع باگ sanitize ایمیل در `customizer.php` (`email` + `contact_recipient` → `sanitize_email`) | ✅ |
+| ۱۸ | صفحه درباره ما (`page-about.php` + ۴ partial + ۱۴ فیلد Customizer) | ✅ |
 | ⏳ | `screenshot.png` | اختیاری |
 | ⏳ | تست نهایی در وردپرس | توصیه اکید قبل از انتشار |
 
