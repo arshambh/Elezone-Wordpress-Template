@@ -778,7 +778,7 @@ object-fit: cover;
 	margin-right: 0.5rem;
 }
 
-/* Comments list styles ------------------------------------------------ */
+/* Comments list — Clean Design System --------------------------------- */
 
 .comments-area .comment-list {
 	padding: 0;
@@ -786,56 +786,135 @@ object-fit: cover;
 	list-style: none;
 }
 
-.comments-area .comment-list .comment-body {
-	background: #f8f9fa;
-	border-radius: 15px;
-	padding: 1rem 1.25rem;
-	margin-bottom: 1rem;
+.comments-area .comment-list li {
+	list-style: none;
 }
 
-.comments-area .comment-list .comment-author {
-	display: flex;
-	align-items: center;
-	gap: 0.75rem;
-	margin-bottom: 0.5rem;
+/* The main card for each comment */
+.comments-area .comment-inner {
+	background: #f8f9fa !important; /* Soft grey background to stand out from white page */
+	border: 1px solid #e9ecef !important;
+	border-radius: 15px !important;
+	padding: 24px !important;
+	margin-bottom: 24px !important;
+	box-shadow: 0 4px 6px rgba(0,0,0,0.03) !important;
+	transition: all 0.2s ease;
+	position: relative;
 }
 
-.comments-area .comment-list .comment-author img {
+/* Accent line on the right side (RTL) for a polished look */
+.comments-area .comment-inner::before {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 24px;
+	bottom: 24px;
+	width: 4px;
+	background-color: #fbbf24; /* Theme yellow accent */
+	border-radius: 4px 0 0 4px;
+}
+
+.comments-area .comment-inner:hover {
+	background: #ffffff !important;
+	box-shadow: 0 8px 15px rgba(0,0,0,0.06) !important;
+	border-color: #fbbf24 !important;
+}
+
+/* Header separator inside the comment card */
+.comments-area .comment-inner > .d-flex {
+	border-bottom: 1px solid #e9ecef;
+	padding-bottom: 16px !important;
+	margin-bottom: 16px !important;
+}
+
+/* Ensure the form inputs look balanced */
+#respond .comment-form-author input,
+#respond .comment-form-email input,
+#respond .comment-form-phone input {
+	width: 75% !important;
+	max-width: 100% !important;
+	display: block !important;
+	margin-right: auto !important;
+	margin-left: 0 !important;
+}
+
+/* Nested comments (replies) */
+.comments-area .children {
+	list-style: none;
+	padding: 0;
+	margin-right: 32px;
+	margin-top: 16px;
+	border-right: 2px solid #f1f3f5;
+	padding-right: 16px;
+}
+
+/* Avatar */
+.comments-area .comment-avatar img {
 	border-radius: 50%;
 	width: 48px;
 	height: 48px;
 	object-fit: cover;
+	border: 2px solid #fff;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.comments-area .comment-list .comment-meta,
-.comments-area .comment-list .comment-metadata {
-	font-size: 0.85rem;
-	color: #6c757d;
+/* Author Name */
+.comments-area .comment-author-name {
+	font-family: 'IRANSansWeb_Medium', 'IRANSans', sans-serif;
+	font-size: 1rem;
+	font-weight: 700;
+	color: #212529;
 }
 
-.comments-area .comment-list .comment-content {
-	margin-top: 0.5rem;
-	line-height: 1.8;
-}
-
-.comments-area .comment-list .comment-list {
-	margin-right: 2rem;
-	margin-top: 1rem;
-}
-
-.comments-area .comment-list .reply a {
-	display: inline-block;
-	font-size: 0.85rem;
-	padding: 0.3rem 0.85rem;
-	border-radius: 20px;
-	background: #f1f3f5;
+.comments-area .comment-author-name a {
 	color: #212529;
 	text-decoration: none;
 }
 
-.comments-area .comment-list .reply a:hover {
-	background: #fbbf24;
-	color: #111;
+.comments-area .comment-author-name a:hover {
+	color: #d97706;
+}
+
+/* Meta (Date/Time) */
+.comments-area .comment-meta {
+	font-size: 0.85rem;
+	color: #6c757d;
+}
+
+/* Comment Text */
+.comments-area .comment-text {
+	color: #333333;
+	line-height: 1.8;
+	font-size: 0.95rem;
+	margin-top: 8px;
+}
+
+.comments-area .comment-text p {
+	margin-bottom: 8px;
+}
+
+.comments-area .comment-text p:last-child {
+	margin-bottom: 0;
+}
+
+/* Reply Button */
+.comments-area .comment-actions a {
+	display: inline-flex;
+	align-items: center;
+	font-size: 0.85rem;
+	padding: 4px 12px;
+	border-radius: 20px;
+	background: #f8f9fa;
+	color: #6c757d;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	border: 1px solid transparent;
+}
+
+.comments-area .comment-actions a:hover {
+	background: #fff3cd;
+	color: #b45309;
+	border-color: #fde68a;
 }
 
 .comment img {

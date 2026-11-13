@@ -18,6 +18,7 @@ require_once ELEZONE_THEME_DIR . '/inc/theme-setup.php';
 require_once ELEZONE_THEME_DIR . '/inc/enqueue.php';
 require_once ELEZONE_THEME_DIR . '/inc/cpt.php';
 require_once ELEZONE_THEME_DIR . '/inc/customizer.php';
+require_once ELEZONE_THEME_DIR . '/inc/jalali-date.php';
 require_once ELEZONE_THEME_DIR . '/inc/comment-phone.php';
 require_once ELEZONE_THEME_DIR . '/inc/visibility.php';
 require_once ELEZONE_THEME_DIR . '/inc/class-mega-menu-walker.php';

@@ -17,6 +17,52 @@ if ( post_password_required() ) {
 	return;
 }
 
+/**
+ * Custom comment callback for clean, modern UI.
+ * Matches the CSS defined in Style.css.
+ */
+function elezone_comment_callback( $comment, $args, $depth ) {
+	?>
+	<li <?php comment_class( 'comment-item' ); ?> id="comment-<?php comment_ID(); ?>">
+		<div class="comment-inner">
+			<div class="d-flex align-items-start mb-3">
+				<div class="comment-avatar ml-3">
+					<?php echo get_avatar( $comment, 48 ); ?>
+				</div>
+				<div class="flex-grow-1 pt-1">
+					<div class="d-flex justify-content-between align-items-center w-100 flex-wrap">
+						<div class="comment-author-name">
+							<?php echo get_comment_author_link(); ?>
+						</div>
+						<div class="comment-meta">
+							<i class="fal fa-calendar ml-1"></i>
+							<?php echo esc_html( elezone_jalali_date( $comment->comment_date ) ); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="comment-text">
+				<?php if ( '0' == $comment->comment_approved ) : ?>
+					<p class="text-muted font-italic small"><i class="fal fa-info-circle"></i> <?php esc_html_e( 'دیدگاه شما در انتظار تأیید است.', 'elezone' ); ?></p>
+				<?php endif; ?>
+				<?php comment_text(); ?>
+			</div>
+
+			<div class="comment-actions mt-3">
+				<?php
+				comment_reply_link( array_merge( $args, array(
+					'depth'      => $depth,
+					'max_depth'  => $args['max_depth'],
+					'reply_text' => '<i class="fal fa-reply ml-1"></i> ' . esc_html__( 'پاسخ', 'elezone' ),
+				) ) );
+				?>
+			</div>
+		</div>
+	<?php
+	// Note: No closing </li> here, WordPress adds it automatically.
+}
+
 global $post;
 $post_id      = (int) get_the_ID();
 $commenter    = wp_get_current_commenter();
@@ -38,6 +84,7 @@ $phone_cookie = isset( $_COOKIE['comment_author_phone'] ) ? sanitize_text_field(
 				'style'       => 'ol',
 				'short_ping'  => true,
 				'avatar_size' => 48,
+				'callback'    => 'elezone_comment_callback',
 			) );
 			?>
 		</ol>
