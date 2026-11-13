@@ -539,3 +539,655 @@
 	bottom: 0;
 	right: 0;
 }
+
+/* ============================================================
+   Elezone Modern Single Product Design
+   ============================================================ */
+
+/* متغیرهای رنگ برای سهولت تغییر (مطابق با قالب) */
+:root {
+  --ez-primary: #d4a24a; /* رنگ اصلی قالب (طلایی/نارنجی) */
+  --ez-text-dark: #1a1a1a;
+  --ez-text-muted: #666666;
+  --ez-bg-light: #f9f9f9;
+  --ez-border: #e5e5e5;
+  --ez-radius: 16px;
+}
+
+/* ریست و پایه */
+.ez-modern-product {
+  font-family: inherit;
+  color: var(--ez-text-dark);
+  padding: 40px 0;
+}
+
+.ez-modern-product .ez-hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  background: #fff;
+  border-radius: var(--ez-radius);
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  margin-bottom: 48px;
+}
+
+/* بخش گالری */
+.ez-modern-product .ez-gallery-wrap {
+  flex: 1 1 50%;
+  max-width: 50%;
+  position: relative;
+}
+
+.ez-modern-product .ez-gallery-wrap .woocommerce-product-gallery {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ez-modern-product .ez-gallery-wrap .woocommerce-product-gallery__image img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.ez-modern-product .flex-control-thumbs {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.ez-modern-product .flex-control-thumbs li {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ez-modern-product .flex-control-thumbs li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ez-modern-product .flex-control-thumbs li.flex-active {
+  border-color: var(--ez-primary);
+}
+
+/* بخش اطلاعات محصول */
+.ez-modern-product .ez-product-info {
+  flex: 1 1 40%;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ez-modern-product .product_title {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  color: var(--ez-text-dark);
+  letter-spacing: -0.5px;
+}
+
+.ez-modern-product .price {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ez-primary);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ez-modern-product .price del {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ez-text-muted);
+  text-decoration: line-through;
+}
+
+.ez-modern-product .price ins {
+  text-decoration: none;
+}
+
+.ez-modern-product .woocommerce-product-details__short-description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ez-text-muted);
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--ez-border);
+}
+
+/* انتخاب ویژگی‌ها (رنگ و سایز) */
+.ez-modern-product .variations {
+  border: none;
+  margin-bottom: 24px;
+}
+
+.ez-modern-product .variations th.label {
+  padding: 0 0 8px 0;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ez-text-dark);
+}
+
+.ez-modern-product .variations td.value {
+  padding: 0 0 16px 0;
+}
+
+.ez-modern-product .variations select {
+  width: 100%;
+  max-width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border: 1px solid var(--ez-border);
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fff;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: left 16px center;
+  background-size: 18px;
+  transition: border-color 0.2s;
+}
+
+.ez-modern-product .variations select:focus {
+  border-color: var(--ez-primary);
+  outline: none;
+}
+
+/* دکمه افزودن به سبد خرید */
+.ez-modern-product .single_add_to_cart_button {
+  width: 100%;
+  height: 56px;
+  background: var(--ez-primary) !important;
+  color: #fff !important;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(212, 162, 74, 0.3);
+}
+
+.ez-modern-product .single_add_to_cart_button:hover {
+  background: #c08b36 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 162, 74, 0.4);
+}
+
+/* فرآیند افزایش تعداد */
+.ez-modern-product .quantity {
+  border: 1px solid var(--ez-border);
+  border-radius: 8px;
+  height: 56px;
+  margin-bottom: 16px;
+  width: 100%;
+  display: flex;
+}
+
+.ez-modern-product .quantity .qty {
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* نشان‌های اعتماد */
+.ez-trust-badges {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ez-border);
+}
+
+.ez-trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.ez-trust-icon {
+  color: var(--ez-primary);
+  background: rgba(212, 162, 74, 0.1);
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+}
+
+.ez-trust-text {
+  font-size: 13px;
+  color: var(--ez-text-muted);
+  font-weight: 500;
+}
+
+/* آکاردئون / تب‌ها */
+.ez-modern-product .ez-tabs-section {
+  background: #fff;
+  border-radius: var(--ez-radius);
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.ez-modern-product .woocommerce-tabs ul.tabs {
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--ez-border);
+}
+
+.ez-modern-product .woocommerce-tabs ul.tabs li {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.ez-modern-product .woocommerce-tabs ul.tabs li a {
+  padding: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ez-text-muted);
+  border: none;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.ez-modern-product .woocommerce-tabs ul.tabs li.active a {
+  color: var(--ez-primary);
+  border-bottom-color: var(--ez-primary);
+}
+
+.ez-modern-product .woocommerce-Tabs-panel {
+  padding: 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ez-text-muted);
+}
+
+/* محصولات مرتبط */
+.ez-modern-product .related.products {
+  margin-top: 64px;
+}
+
+.ez-modern-product .related.products > h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 32px;
+  color: var(--ez-text-dark);
+}
+
+.ez-modern-product ul.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 0;
+}
+
+.ez-modern-product ul.products li.product {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ez-modern-product ul.products li.product:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* رسپانسیو */
+@media (max-width: 992px) {
+  .ez-modern-product .ez-hero-section {
+    flex-direction: column;
+    padding: 24px;
+    gap: 32px;
+  }
+  .ez-modern-product .ez-gallery-wrap,
+  .ez-modern-product .ez-product-info {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .ez-modern-product ul.products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .ez-modern-product .product_title {
+    font-size: 24px;
+  }
+  .ez-modern-product .ez-trust-badges {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .ez-modern-product ul.products {
+    grid-template-columns: 1fr;
+  }
+  .ez-modern-product .ez-tabs-section {
+    padding: 24px;
+  }
+}
+
+/* ============================================================
+   Elezone Refactored Product Tabs (Description Box)
+   ============================================================ */
+
+/* باکس اصلی */
+.ez-modern-product .ez-tabs-section {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f2f2f2;
+    margin-top: 32px;
+    margin-bottom: 48px;
+}
+
+/* نوار تب‌ها */
+.ez-modern-product .woocommerce-tabs ul.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    margin: 0 0 32px 0;
+    list-style: none;
+    border-bottom: 1px solid #e5e5e5;
+    gap: 32px;
+}
+
+/* حذف استایل‌های پیش‌فرض ووکامرس */
+.ez-modern-product .woocommerce-tabs ul.tabs::before,
+.ez-modern-product .woocommerce-tabs ul.tabs::after {
+    display: none !important;
+}
+
+.ez-modern-product .woocommerce-tabs ul.tabs li {
+    margin: 0;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.ez-modern-product .woocommerce-tabs ul.tabs li a {
+    display: inline-block;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #666;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* استایل تب فعال (خط طلایی زیرین) */
+.ez-modern-product .woocommerce-tabs ul.tabs li.active a {
+    color: var(--ez-primary);
+}
+
+.ez-modern-product .woocommerce-tabs ul.tabs li.active a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--ez-primary);
+    border-radius: 3px 3px 0 0;
+}
+
+/* محتوای تب‌ها */
+.ez-modern-product .woocommerce-Tabs-panel {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    padding: 0;
+}
+
+/* پنهان کردن تیترهای تکراری ووکامرس */
+.ez-modern-product .woocommerce-Tabs-panel h2:first-child {
+    display: none;
+}
+
+/* استایل جدول مشخصات فنی (Additional Information) */
+.ez-modern-product .woocommerce-Tabs-panel table.shop_attributes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.ez-modern-product .woocommerce-Tabs-panel table.shop_attributes th,
+.ez-modern-product .woocommerce-Tabs-panel table.shop_attributes td {
+    padding: 16px;
+    border: 1px solid #eaeaea;
+    text-align: right;
+}
+
+.ez-modern-product .woocommerce-Tabs-panel table.shop_attributes th {
+    background-color: #fafafa;
+    font-weight: 600;
+    width: 30%;
+}
+
+/* ============================================================
+   ریسپانسیو (Responsive)
+   ============================================================ */
+
+@media (max-width: 991px) {
+    .ez-modern-product .ez-tabs-section {
+        padding: 24px;
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ez-modern-product .woocommerce-tabs ul.tabs {
+        gap: 16px;
+    }
+    .ez-modern-product .woocommerce-tabs ul.tabs li a {
+        font-size: 15px;
+    }
+    .ez-modern-product .woocommerce-Tabs-panel table.shop_attributes th,
+    .ez-modern-product .woocommerce-Tabs-panel table.shop_attributes td {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* حالت موبایل: تب‌ها به صورت عمودی */
+@media (max-width: 480px) {
+    .ez-modern-product .ez-tabs-section {
+        padding: 16px;
+        border-radius: 12px;
+    }
+    .ez-modern-product .woocommerce-tabs ul.tabs {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .ez-modern-product .woocommerce-tabs ul.tabs li a {
+        width: 100%;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .ez-modern-product .woocommerce-tabs ul.tabs li.active a::after {
+        display: none;
+    }
+    .ez-modern-product .woocommerce-tabs ul.tabs li.active a {
+        border-bottom: 2px solid var(--ez-primary);
+    }
+}
+
+/* ============================================================
+   Elezone 3D Depth & Box Separation
+   ============================================================ */
+
+/* 1. تغییر بک‌گراند کل صفحه محصول به یک خاکستری بسیار ملایم */
+.elezone-wc-single {
+    padding-top: 32px;
+    padding-bottom: 64px;
+}
+
+/* 2. افکت 3D شناور برای باکس‌ها */
+.ez-modern-product .ez-hero-section,
+.ez-modern-product .ez-tabs-section,
+.ez-modern-product .related.products {
+    background: #ffffff;
+    border-radius: 16px;
+    /* سایه سه لایه برای حس عمق واقعی */
+    box-shadow: 
+        0 10px 30px -5px rgba(0, 0, 0, 0.08),
+        0 4px 10px -2px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* افکت هاور (بالا آمدن باکس) */
+.ez-modern-product .ez-hero-section:hover,
+.ez-modern-product .ez-tabs-section:hover {
+    box-shadow: 
+        0 20px 40px -5px rgba(0, 0, 0, 0.12),
+        0 8px 16px -4px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(0, 0, 0, 0.03);
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   Fix Broken Related Products (محصولات مرتبط)
+   ============================================================ */
+
+.ez-modern-product .related.products {
+    margin-top: 48px;
+    padding: 32px;
+}
+
+/* ریست کردن گرید ووکامرس */
+.ez-modern-product .related.products ul.products {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ریست کردن کارت محصول */
+.ez-modern-product .related.products ul.products li.product {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    float: none !important;
+    display: flex !important;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.ez-modern-product .related.products ul.products li.product:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: transparent;
+}
+
+/* تصویر محصول */
+.ez-modern-product .related.products ul.products li.product img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    margin-bottom: 16px !important;
+}
+
+/* عنوان محصول */
+.ez-modern-product .related.products ul.products li.product .woocommerce-loop-product__title {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #1a1a1a !important;
+    margin-bottom: 8px !important;
+    line-height: 1.5 !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+/* قیمت محصول */
+.ez-modern-product .related.products ul.products li.product .price {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    color: var(--ez-primary, #d4a24a) !important;
+    margin-top: auto !important;
+    margin-bottom: 12px !important;
+}
+
+/* دکمه افزودن به سبد خرید در کارت */
+.ez-modern-product .related.products ul.products li.product .button {
+    width: 100% !important;
+    text-align: center !important;
+    background-color: var(--ez-primary, #d4a24a) !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    padding: 10px 16px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: background 0.2s ease !important;
+}
+
+.ez-modern-product .related.products ul.products li.product .button:hover {
+    background-color: #c08b36 !important;
+}
+
+/* ============================================================
+   Responsive Related Products
+   ============================================================ */
+
+@media (max-width: 992px) {
+    .ez-modern-product .related.products ul.products {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+    .ez-modern-product .related.products {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .ez-modern-product .related.products ul.products {
+        grid-template-columns: 1fr !important;
+    }
+    .ez-modern-product .ez-hero-section,
+    .ez-modern-product .ez-tabs-section,
+    .ez-modern-product .related.products {
+        padding: 16px;
+        border-radius: 12px;
+    }
+    .ez-modern-product .related.products ul.products li.product img {
+        height: 240px !important;
+    }
+}

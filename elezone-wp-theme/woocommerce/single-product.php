@@ -48,12 +48,9 @@ if ( elezone_is_section_visible( 'product_page_banner' ) ) {
 echo '<div class="container elezone-wc-single">';
 echo '<div class="row">';
 
-$elezone_has_psidebar = elezone_is_section_visible( 'product_page_sidebar' );
+// سایدبار برای طراحی مدرن حذف شد تا محصول تمام‌عرض نمایش داده شود.
 
-// Render sidebar FIRST so it appears on the RIGHT in RTL layouts.
-elezone_wc_product_sidebar();
-
-echo '<div class="' . ( $elezone_has_psidebar ? 'col-xl-9' : 'col-12' ) . ' elezone-wc-single__main">';
+echo '<div class="col-12 elezone-wc-single__main">';
 
 while ( have_posts() ) {
 	the_post();
