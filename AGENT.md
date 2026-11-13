@@ -245,6 +245,8 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     ├── style.css                    # شناسنامه قالب (Theme Name: Elezone)
     ├── functions.php                # bootstrap + helperها + ۲ migration
     ├── README.md                    # راهنمای نصب سریع
+    ├── docs/
+    │   └── CF7-SETUP.md             # راهنمای نصب و پیکربندی Contact Form 7
     ├── header.php                   # سکشن هدر (RTL، Mega Menu، جستجو)
     ├── footer.php                   # سکشن فوتر (۴ ستون + سوشال)
     ├── front-page.php               # صفحه اصلی (۱۱ سکشن)
@@ -276,7 +278,9 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   ├── starter-content-data.php # ⭐ توابع ساخت نمونه‌ها
     │   ├── cf7-integration.php      # ⭐ یکپارچه‌سازی CF7 + اعتبارسنجی موبایل ایران
     │   ├── comment-phone.php        # ⭐ فیلد موبایل اجباری نظرات + ایمیل اختیاری
-    │   └── required-plugins.php     # ⭐ چک و اعلان افزونه‌های الزامی (CF7)
+    │   ├── required-plugins.php     # ⭐ چک و اعلان افزونه‌های الزامی (CF7)
+    │   ├── visibility.php           # ⭐ کلیدهای نمایش/مخفی سکشن‌ها (قانون ۴)
+    │   └── jalali-date.php          # تبدیل تاریخ شمسی برای نمایش در قالب
     │
     ├── template-parts/
     │   ├── header/offcanvas.php     # منوی موبایل آفلاین
@@ -304,7 +308,6 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   ├── blog/                    # ⭐ جدید — partialهای صفحه وبلاگ
     │   │   ├── post-card.php        # کارت پست در گرید
     │   │   └── sidebar.php          # ستون کنار (دسته‌ها/آخرین/تبلیغ/برچسب‌ها)
-    │   ├── content/                 # (رزرو — خالی)
     │   └── footer/                  # (رزرو — خالی)
     │
     ├── assets/
@@ -517,6 +520,7 @@ elezone-wp-theme/ → zip (style.css در ریشه)
 | 15 | **`customizer.php`** فیلد `address` با `sanitize_text_field` به‌جای `sanitize_textarea_field` sanitize می‌شد | بازبینی کد | sanitize بر اساس `type` فیلد تعیین می‌شود |
 | 16 | **`single-project.php`** و **`archive-project.php`** از سایز تصویر `arsham-project-card` استفاده می‌کردند که در `theme-setup.php` ثبت نشده (ثبت‌شده `elezone-project-card` است) → تصویر به سایز `full` fallback می‌کرد | بازبینی `single-project.php` | `arsham-project-card` → `elezone-project-card` در هر دو فایل |
 | 17 | **`customizer.php`** فیلدهای ایمیل (`email` و `contact_recipient`) با `sanitize_text_field` sanitize می‌شدند به‌جای `sanitize_email` | بازبینی sanitize switch | branch جدید: `in_array( $key, array( 'email', 'contact_recipient' ), true )` → `sanitize_email` |
+| 18 | **`AGENT.md`** با ساختار واقعی پوشه‌ها عقب بود: `inc/` ۱۰ اعلام شده ولی ۱۴ فایل دارد (`visibility.php` و `jalali-date.php` در درخت نیامده بودند)؛ PHP ریشه ۱۶ اعلام شده ولی ۱۸ فایل دارد؛ `template-parts/content/` ذکر شده ولی وجود ندارد؛ `docs/CF7-SETUP.md` وجود داشت ولی مستند نشده بود | مقایسه `directory_tree` با AGENT.md در 2026-11-13 | درخت، آمار و همین جدول به‌روز شدند |
 
 ---
 
@@ -654,8 +658,8 @@ delete_option( 'elezone_folder_migration_done' );
 
 | مورد | تعداد |
 |---|---|
-| فایل PHP (ریشه) | ۱۶ |
-| فایل PHP (inc) | ۱۰ |
+| فایل PHP (ریشه) | ۱۸ |
+| فایل PHP (inc) | ۱۴ |
 | فایل PHP (template-parts) | ۲۰ |
 | فایل JS | ۵ |
 | فایل CSS | ۶ |
@@ -665,7 +669,7 @@ delete_option( 'elezone_folder_migration_done' );
 | **کل فایل‌ها** | **~۱۷۰** |
 | **حجم کل** | **~۲۳.۹ MB** |
 | **Git commits** | **۶ (+ تغییرات جاری commit نشده)** |
-| **باگ رفع‌شده** | **۱۷** |
+| **باگ رفع‌شده** | **۱۸** |
 
 ---
 
@@ -718,3 +722,5 @@ e965176 feat: complete Elezone v1.0.0 release
 ---
 
 *آخرین به‌روزرسانی: 2026-11-13 — نسخه 1.0.0 + افزودن Contact Page (آماده برای v1.1.0)*
+
+> **📌 هم‌ترازسازی مستندات با ساختار واقعی (2026-11-13):** پس از بازبینی `directory_tree`، موارد زیر اصلاح شد: `inc/` از ۱۰ به ۱۴ فایل (افزودن `visibility.php` و `jalali-date.php` که در درخت نیامده بودند)، PHP ریشه از ۱۶ به ۱۸ فایل، حذف `template-parts/content/` از درخت (در واقعیت وجود ندارد)، و افزودن `docs/CF7-SETUP.md`. آمار در جدول «📊 آمار پروژه» و ردیف ۱۸ در جدول باگ‌ها به‌روز شد.
