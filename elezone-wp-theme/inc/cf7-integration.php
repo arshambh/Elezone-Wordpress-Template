@@ -23,6 +23,68 @@ function elezone_cf7_is_active() {
 }
 
 /**
+ * Resolve a CF7 form reference to its numeric post ID.
+ *
+ * Accepts any of these formats (as the user sees them in the admin):
+ *   - Full shortcode:   [contact-form-7 id="f707eb4" title="..."]
+ *   - Hash ID:          f707eb4
+ *   - Numeric ID:       123
+ *
+ * @param string $ref Raw reference from Customizer.
+ * @return int Numeric ID, or 0 if not resolvable.
+ */
+function elezone_resolve_cf7_form_id( $ref ) {
+	$ref = trim( (string) $ref );
+
+	if ( '' === $ref ) {
+		return 0;
+	}
+
+	// 1) Full shortcode pasted? Extract the id attribute.
+	if ( false !== strpos( $ref, '[' ) ) {
+		if ( preg_match( '/id\s*=\s*["' . chr( 39 ) . ']?([a-zA-Z0-9_\-]+)["' . chr( 39 ) . ']?/', $ref, $m ) ) {
+			$ref = $m[1];
+		} else {
+			return 0;
+		}
+	}
+
+	// 2) Numeric ID → lookup the post directly.
+	if ( ctype_digit( $ref ) ) {
+		$post = get_post( (int) $ref );
+		if ( $post && 'wpcf7_contact_form' === $post->post_type && 'publish' === $post->post_status ) {
+			return (int) $ref;
+		}
+		return 0;
+	}
+
+	// 3) Hash → use the official CF7 API (available since CF7 5.8).
+	if ( function_exists( 'wpcf7_get_contact_form_by_hash' ) ) {
+		$form = wpcf7_get_contact_form_by_hash( $ref );
+		if ( $form instanceof WPCF7_ContactForm ) {
+			return (int) $form->id();
+		}
+	}
+
+	// 4) Fallback: query wp_postmeta for _hash (covers edge cases).
+	global $wpdb;
+	$post_id = $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_hash' AND meta_value = %s LIMIT 1",
+			$ref
+		)
+	);
+	if ( $post_id ) {
+		$post = get_post( (int) $post_id );
+		if ( $post && 'wpcf7_contact_form' === $post->post_type && 'publish' === $post->post_status ) {
+			return (int) $post_id;
+		}
+	}
+
+	return 0;
+}
+
+/**
  * Resolve the CF7 form ID to render on the contact page.
  *
  * Priority:
@@ -38,11 +100,11 @@ function elezone_get_cf7_form_id() {
 		return 0;
 	}
 
-	$custom_id = (int) elezone_get_option( 'cf7_form_id' );
-	if ( $custom_id > 0 ) {
-		$post = get_post( $custom_id );
-		if ( $post && 'wpcf7_contact_form' === $post->post_type && 'publish' === $post->post_status ) {
-			return $custom_id;
+	$custom_raw = trim( (string) elezone_get_option( 'cf7_form_id' ) );
+	if ( '' !== $custom_raw ) {
+		$resolved = elezone_resolve_cf7_form_id( $custom_raw );
+		if ( $resolved > 0 ) {
+			return $resolved;
 		}
 	}
 

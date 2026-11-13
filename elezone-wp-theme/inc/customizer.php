@@ -116,7 +116,7 @@ function elezone_customize_register( $wp_customize ) {
 		'social_telegram'   => array( 'label' => __( 'Telegram URL', 'elezone' ), 'type' => 'url' ),
 		'social_instagram'  => array( 'label' => __( 'Instagram URL', 'elezone' ), 'type' => 'url' ),
 		'social_facebook'   => array( 'label' => __( 'Facebook URL', 'elezone' ), 'type' => 'url' ),
-		'cf7_form_id'       => array( 'label' => __( 'Contact Form 7 ID (0 = auto-detect)', 'elezone' ), 'type' => 'text' ),
+		'cf7_form_id'       => array( 'label' => __( 'Contact Form 7 — paste Shortcode, Hash, or ID (empty = auto-detect)', 'elezone' ), 'type' => 'text' ),
 	);
 
 	foreach ( $fields as $key => $field ) {

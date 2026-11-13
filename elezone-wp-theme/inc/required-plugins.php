@@ -14,12 +14,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Minimum required version of Contact Form 7.
+ *
+ * @return string
+ */
+function elezone_required_cf7_min_version() {
+	return '6.2.5';
+}
+
+/**
  * Check whether Contact Form 7 is active.
  *
  * @return bool
  */
 function elezone_required_cf7_active() {
 	return class_exists( 'WPCF7' );
+}
+
+/**
+ * Check whether the installed Contact Form 7 version meets the minimum (6.2.5).
+ *
+ * @return bool
+ */
+function elezone_required_cf7_version_ok() {
+	if ( ! defined( 'WPCF7_VERSION' ) ) {
+		return false;
+	}
+	return version_compare( WPCF7_VERSION, elezone_required_cf7_min_version(), '>=' );
 }
 
 /**
@@ -43,12 +64,44 @@ function elezone_required_plugin_notice() {
 		return;
 	}
 
-	if ( elezone_required_cf7_active() ) {
+	if ( elezone_required_cf7_active() && elezone_required_cf7_version_ok() ) {
 		return;
 	}
 
-	$slug     = elezone_required_cf7_slug();
+	$slug      = elezone_required_cf7_slug();
 	$installed = elezone_required_cf7_installed();
+	$min_ver   = elezone_required_cf7_min_version();
+
+	// Version installed but too old → distinct upgrade notice.
+	if ( elezone_required_cf7_active() && ! elezone_required_cf7_version_ok() ) {
+		$current = defined( 'WPCF7_VERSION' ) ? WPCF7_VERSION : __( 'نامشخص', 'elezone' );
+		?>
+		<div class="notice notice-error" style="border-right-color:#d97706;border-left:4px solid #d97706;padding:14px 16px;font-size:14px;line-height:1.6">
+			<p style="margin:0 0 8px;font-size:15px">
+				<strong style="color:#b45309">⚠️ قالب Elezone &mdash; نسخه‌ی Contact Form 7 قدیمی است</strong>
+			</p>
+			<p style="margin:0 0 10px">
+				<?php
+				printf(
+					/* translators: 1: current version, 2: minimum version */
+					esc_html__( 'نسخه‌ی فعلی Contact Form 7 شما %1$s است، اما قالب Elezone به نسخه‌ی %2$s یا بالاتر نیاز دارد.', 'elezone' ),
+					esc_html( $current ),
+					esc_html( $min_ver )
+				);
+				?>
+			</p>
+			<p style="margin:0">
+				<a href="<?php echo esc_url( admin_url( 'plugins.php' ) ); ?>" class="button button-primary" style="background:#d97706;border-color:#b45309">
+					<?php esc_html_e( 'به‌روزرسانی Contact Form 7', 'elezone' ); ?>
+				</a>
+				<a href="https://wordpress.org/plugins/contact-form-7/" target="_blank" rel="noopener noreferrer" style="margin-right:8px;line-height:30px;display:inline-block">
+					<?php esc_html_e( 'اطلاعات بیشتر', 'elezone' ); ?>
+				</a>
+			</p>
+		</div>
+		<?php
+		return;
+	}
 
 	if ( $installed ) {
 		$action_url = wp_nonce_url(
@@ -134,7 +187,7 @@ function elezone_theme_activation_notice() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-	if ( elezone_required_cf7_active() ) {
+	if ( elezone_required_cf7_active() && elezone_required_cf7_version_ok() ) {
 		return;
 	}
 	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
