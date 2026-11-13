@@ -394,3 +394,12 @@ function elezone_woocommerce_required_notice() {
 		esc_html( $label )
 	);
 }
+
+/**
+ * Remove the WooCommerce product review rating field completely.
+ */
+add_filter( 'woocommerce_product_review_comment_form_args', 'elezone_remove_review_rating' );
+function elezone_remove_review_rating( $args ) {
+    $args['comment_field'] = '';
+    return $args;
+}

@@ -1191,3 +1191,562 @@
         height: 240px !important;
     }
 }
+
+/* ============================================================
+   Product Reviews Rating Stars
+   ============================================================ */
+.ez-modern-product .comment-form-rating p.stars {
+    display: inline-flex;
+    gap: 4px;
+    margin: 0;
+    direction: ltr;
+}
+
+.ez-modern-product .comment-form-rating p.stars a {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    text-indent: -999em;
+    position: relative;
+    color: #e0e0e0;
+    transition: color 0.2s ease;
+}
+
+.ez-modern-product .comment-form-rating p.stars a::before {
+    content: '★';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-indent: 0;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.ez-modern-product .comment-form-rating p.stars a:hover,
+.ez-modern-product .comment-form-rating p.stars a.active,
+.ez-modern-product .comment-form-rating p.stars a:hover ~ a {
+    color: var(--ez-primary, #d4a24a);
+}
+
+/* For WooCommerce default star display in review list */
+.ez-modern-product .comment-rating .star-rating {
+    float: none;
+    margin: 0;
+    font-size: 14px;
+    color: var(--ez-primary, #d4a24a);
+}
+
+/* ============================================================
+   Perfect Star Rating Styling (WooCommerce)
+   ============================================================ */
+
+/* 1. کانتینر اصلی ستاره‌ها */
+.ez-modern-product .comment-form-rating p.stars {
+    display: inline-flex !important;
+    gap: 4px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    direction: ltr !important; /* ستاره‌ها از چپ به راست */
+    float: none !important;
+}
+
+.ez-modern-product .comment-form-rating p.stars span {
+    display: flex !important;
+    gap: 4px !important;
+}
+
+/* 2. مخفی کردن متن و آماده‌سازی لینک ستاره */
+.ez-modern-product .comment-form-rating p.stars a {
+    display: inline-block !important;
+    position: relative !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0 !important; /* مخفی کردن کامل متن «۱ از ۵ ستاره» */
+    color: #d1d1d1 !important; /* رنگ پیش‌فرض (خاکستری) */
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+/* 3. ایجاد آیکون ستاره با CSS */
+.ez-modern-product .comment-form-rating p.stars a::before {
+    content: '★' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-size: 24px !important;
+    line-height: 24px !important;
+    text-align: center !important;
+    color: inherit !important;
+    font-family: Arial, sans-serif !important;
+    transition: color 0.2s ease !important;
+}
+
+/* 4. رفتار Hover (وقتی ماوس روی ستاره‌ها است، از ستاره ۱ تا ستاره هاور شده رنگی می‌شوند) */
+.ez-modern-product .comment-form-rating p.stars:hover a::before {
+    color: var(--ez-primary, #d4a24a) !important;
+}
+
+/* ستاره‌های بعد از ستاره هاور شده به رنگ خاکستری برمی‌گردند */
+.ez-modern-product .comment-form-rating p.stars a:hover ~ a::before {
+    color: #d1d1d1 !important;
+}
+
+/* 5. رفتار Selected (وقتی کاربر یک امتیاز را کلیک می‌کند) */
+.ez-modern-product .comment-form-rating p.stars.selected a::before {
+    color: var(--ez-primary, #d4a24a) !important;
+}
+
+/* ستاره‌های بعد از ستاره انتخاب شده، خاکستری می‌شوند */
+.ez-modern-product .comment-form-rating p.stars.selected a.active ~ a::before {
+    color: #d1d1d1 !important;
+}
+
+/* ============================================================
+   Perfect Star Rating Styling (Fixing 10 stars issue)
+   ============================================================ */
+
+/* 1. نابود کردن هرگونه ستاره اضافی که توسط قالب یا ووکامرس ساخته شده */
+.ez-modern-product .comment-form-rating p.stars a::after,
+.ez-modern-product .comment-form-rating p.stars span::before,
+.ez-modern-product .comment-form-rating p.stars span::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* 2. کانتینر اصلی (چیدمان از چپ به راست و فاصله منظم) */
+.ez-modern-product .comment-form-rating p.stars {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    gap: 4px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    direction: ltr !important;
+    float: none !important;
+}
+
+.ez-modern-product .comment-form-rating p.stars span {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    gap: 4px !important;
+}
+
+/* 3. مخفی کردن عدد داخل لینک‌ها و تنظیم ابعاد دقیق */
+.ez-modern-product .comment-form-rating p.stars a {
+    display: inline-block !important;
+    position: relative !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0 !important; /* مخفی کردن کامل اعداد 1 تا 5 */
+    color: #d1d1d1 !important; /* رنگ پیش‌فرض خاکستری */
+    text-decoration: none !important;
+    outline: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 4. تولید فقط و فقط یک ستاره تمیز */
+.ez-modern-product .comment-form-rating p.stars a::before {
+    content: '★' !important;
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-size: 24px !important;
+    line-height: 24px !important;
+    text-align: center !important;
+    font-family: Arial, sans-serif !important;
+    color: inherit !important;
+    transition: color 0.2s ease !important;
+    text-indent: 0 !important;
+}
+
+/* 5. رفتار هاور هوشمند (رنگ گرفتن از ستاره اول تا ستاره هاور شده) */
+.ez-modern-product .comment-form-rating p.stars:hover a::before {
+    color: var(--ez-primary, #d4a24a) !important;
+}
+.ez-modern-product .comment-form-rating p.stars a:hover ~ a::before {
+    color: #d1d1d1 !important;
+}
+
+/* 6. رفتار انتخاب شده (بعد از کلیک روی ستاره) */
+.ez-modern-product .comment-form-rating p.stars.selected a::before {
+    color: var(--ez-primary, #d4a24a) !important;
+}
+.ez-modern-product .comment-form-rating p.stars.selected a.active ~ a::before {
+    color: #d1d1d1 !important;
+}
+
+/* ============================================================
+   Fix Duplicate Stars (10 stars issue) - Ultimate Fix
+   ============================================================ */
+
+/* 1. تنظیم کانتینر */
+.ez-modern-product .comment-form-rating p.stars {
+    display: inline-flex !important;
+    gap: 6px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    direction: ltr !important;
+}
+
+.ez-modern-product .comment-form-rating p.stars span {
+    display: inline-flex !important;
+    gap: 6px !important;
+}
+
+/* 2. مخفی کردن کامل متن‌ها و تنظیم ابعاد لینک */
+.ez-modern-product .comment-form-rating p.stars a {
+    display: inline-block !important;
+    position: relative !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0 !important; /* مخفی کردن اعداد و متن‌ها */
+    margin: 0 !important;
+    padding: 0 !important;
+    outline: none !important;
+}
+
+/* 3. نابودی هرگونه آیکون متنی قبلی (ووکامرس یا قالب) */
+.ez-modern-product .comment-form-rating p.stars a::before,
+.ez-modern-product .comment-form-rating p.stars a::after {
+    content: '' !important;
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-size: 24px 24px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    transition: background-image 0.2s ease !important;
+}
+
+/* 4. حذف کامل ستاره دوم (::after) که باعث ایجاد ۱۰ ستاره می‌شد */
+.ez-modern-product .comment-form-rating p.stars a::after {
+    display: none !important;
+}
+
+/* 5. ستاره پیش‌فرض (خاکستری) با SVG */
+.ez-modern-product .comment-form-rating p.stars a::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* 6. رفتار Hover (رنگ طلایی برای ستاره‌های انتخاب‌شده از چپ) */
+.ez-modern-product .comment-form-rating p.stars:hover a::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+.ez-modern-product .comment-form-rating p.stars a:hover ~ a::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* 7. رفتار انتخاب شدن (Selected) */
+.ez-modern-product .comment-form-rating p.stars.selected a::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+.ez-modern-product .comment-form-rating p.stars.selected a.active ~ a::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* ============================================================
+   Fix RTL Alignment for Product Review Inputs
+   ============================================================ */
+
+/* 1. راست‌چین کردن متن و مکان‌نما در تمام فیلدهای ورودی */
+.ez-modern-product .comment-form input[type="text"],
+.ez-modern-product .comment-form input[type="tel"],
+.ez-modern-product .comment-form input[type="email"],
+.ez-modern-product .comment-form textarea {
+    text-align: right !important;
+    direction: rtl !important;
+    width: 100% !important;
+    float: none !important;
+}
+
+/* 2. اطمینان از اینکه کانتینر فیلدها (form-group) تمام‌عرض و راست‌چین است */
+.ez-modern-product .comment-form .form-group {
+    float: none !important;
+    width: 100% !important;
+    margin-bottom: 16px !important;
+    text-align: right !important;
+}
+
+/* 3. راست‌چین کردن پلیس‌هولدرها (اگر مرورگر پشتیبانی کند) */
+.ez-modern-product .comment-form input::placeholder,
+.ez-modern-product .comment-form textarea::placeholder {
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* ============================================================
+   Ultimate Fix: Remove ::before and apply SVG to <a> tag
+   ============================================================ */
+
+/* 1. نابودی کامل شبه‌عنصر ::before (حذف اعداد 1، 2، 3) */
+.ez-modern-product .comment-form-rating p.stars a::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* 2. اعمال تصویر ستاره مستقیماً روی تگ لینک (a) */
+.ez-modern-product .comment-form-rating p.stars a {
+    display: inline-block !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0 !important; /* مخفی کردن متن داخل تگ a */
+    text-indent: -9999px !important; /* اطمینان از مخفی شدن متن */
+    background-size: 24px 24px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+    transition: background-image 0.2s ease !important;
+    margin: 0 2px !important;
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+/* 3. رفتار Hover (رنگ طلایی برای ستاره‌های انتخاب‌شده) */
+.ez-modern-product .comment-form-rating p.stars:hover a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* ستاره‌های بعد از ستاره هاور شده، خاکستری می‌شوند */
+.ez-modern-product .comment-form-rating p.stars a:hover ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* 4. رفتار انتخاب (Selected) بعد از کلیک */
+.ez-modern-product .comment-form-rating p.stars.selected a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* ستاره‌های بعد از ستاره انتخاب شده، خاکستری می‌شوند */
+.ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* ============================================================
+   The Ultimate 5-Star Fix (Destroy WooCommerce Defaults)
+   ============================================================ */
+
+/* 1. مخفی کردن کامل ساختار span برای جلوگیری از به‌هم‌ریختگی */
+.ez-modern-product .comment-form-rating p.stars span {
+    display: inline-flex !important;
+    gap: 6px !important;
+    border: none !important;
+}
+
+/* 2. مخفی کردن متن «۱ از ۵ ستاره» و حذف هرگونه شبه‌عنصر (::before / ::after) */
+.ez-modern-product .comment-form-rating p.stars a {
+    display: inline-block !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0 !important; /* مخفی کردن متن */
+    color: transparent !important;
+    text-indent: -9999px !important;
+    position: relative !important;
+    background: none !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+    background-size: 24px 24px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    margin: 0 2px !important;
+    text-decoration: none !important;
+    outline: none !important;
+    transition: background-image 0.2s ease !important;
+}
+
+/* 3. نابودی هر ستاره‌ای که ووکامرس با ::before یا ::after می‌سازد */
+.ez-modern-product .comment-form-rating p.stars a::before,
+.ez-modern-product .comment-form-rating p.stars a::after {
+    content: none !important;
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* 4. افکت Hover (رنگ طلایی) */
+.ez-modern-product .comment-form-rating p.stars:hover a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* 5. برگشت ستاره‌های بعد از Hover به رنگ خاکستری */
+.ez-modern-product .comment-form-rating p.stars a:hover ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* 6. افکت انتخاب (کلیک شده) */
+.ez-modern-product .comment-form-rating p.stars.selected a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+.ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* ============================================================
+   Final Clean Star Rating (Span Removed)
+   ============================================================ */
+
+.ez-modern-product .comment-form-rating p.stars {
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+    direction: ltr !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.ez-modern-product .comment-form-rating p.stars a {
+    display: inline-block !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0 !important;
+    text-indent: -9999px !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    transition: background-image 0.2s ease !important;
+}
+
+/* حذف کامل هر شبه‌عنصری که باعث ستاره اضافی می‌شود */
+.ez-modern-product .comment-form-rating p.stars a::before,
+.ez-modern-product .comment-form-rating p.stars a::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* افکت Hover */
+.ez-modern-product .comment-form-rating p.stars:hover a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+.ez-modern-product .comment-form-rating p.stars a:hover ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* افکت انتخاب (Selected) */
+.ez-modern-product .comment-form-rating p.stars.selected a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+.ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* ============================================================
+   Absolute Final 5-Star Fix (High Specificity)
+   ============================================================ */
+
+/* 1. حذف کامل و صددرصدی هرگونه شبه‌عنصر (ستاره‌های پیش‌فرض ووکامرس) */
+body .ez-modern-product .comment-form-rating p.stars a::before,
+body .ez-modern-product .comment-form-rating p.stars a::after {
+    content: none !important;
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* 2. تنظیم کانتینر */
+body .ez-modern-product .comment-form-rating p.stars {
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 6px !important;
+    direction: ltr !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+/* 3. اعمال ستاره SVG روی خود تگ a */
+body .ez-modern-product .comment-form-rating p.stars a {
+    display: inline-block !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0 !important;
+    text-indent: -9999px !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    transition: background-image 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+/* 4. افکت Hover */
+body .ez-modern-product .comment-form-rating p.stars:hover a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+body .ez-modern-product .comment-form-rating p.stars a:hover ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* 5. افکت انتخاب (Selected) */
+body .ez-modern-product .comment-form-rating p.stars.selected a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+body .ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* ============================================================
+   Final Clean 5-Star Rating
+   ============================================================ */
+
+.ez-modern-product .comment-form-rating p.stars {
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+    direction: ltr !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.ez-modern-product .comment-form-rating p.stars a {
+    display: inline-block !important;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0 !important;
+    text-indent: -9999px !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+    background-size: 100% 100% !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    cursor: pointer !important;
+    transition: background-image 0.2s ease !important;
+}
+
+/* نابودی هرگونه شبه‌عنصر اضافی */
+.ez-modern-product .comment-form-rating p.stars a::before,
+.ez-modern-product .comment-form-rating p.stars a::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* افکت Hover */
+.ez-modern-product .comment-form-rating p.stars:hover a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+.ez-modern-product .comment-form-rating p.stars a:hover ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+/* افکت انتخاب */
+.ez-modern-product .comment-form-rating p.stars.selected a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4a24a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+.ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
