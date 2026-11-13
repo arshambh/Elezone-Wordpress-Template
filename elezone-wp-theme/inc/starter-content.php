@@ -24,16 +24,16 @@ function elezone_starter_render_page() {
 	$has_content = elezone_starter_has_content();
 	?>
 	<div class="wrap" style="max-width:820px;direction:rtl;text-align:right;">
-		<h1><span style="font-size:28px;">\u{1F3A8}</span> <?php esc_html_e( 'Elezone - Starter Content', 'elezone' ); ?></h1>
+		<h1><span style="font-size:28px;">🎨</span> <?php esc_html_e( 'Elezone - Starter Content', 'elezone' ); ?></h1>
 
 		<?php if ( isset( $_GET['done'] ) && '1' === $_GET['done'] ) : ?>
-			<div class="notice notice-success is-dismissible"><p><strong>\u2705 نمونه محتوا نصب شد!</strong> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" target="_blank">مشاهده صفحه اصلی \u2192</a></p></div>
+			<div class="notice notice-success is-dismissible"><p><strong>✅ نمونه محتوا نصب شد!</strong> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" target="_blank">مشاهده صفحه اصلی →</a></p></div>
 		<?php elseif ( isset( $_GET['reset'] ) && '1' === $_GET['reset'] ) : ?>
-			<div class="notice notice-success is-dismissible"><p>\u2705 نمونه‌های قبلی حذف شدند.</p></div>
+			<div class="notice notice-success is-dismissible"><p>✅ نمونه‌های قبلی حذف شدند.</p></div>
 		<?php endif; ?>
 
 		<div style="background:#fff;border:1px solid #ccd0d4;padding:24px;margin-top:20px;border-radius:8px;">
-			<h2 style="margin-top:0;">\u{1F4E6} محتوایی که نصب می‌شود:</h2>
+			<h2 style="margin-top:0;">📦 محتوایی که نصب می‌شود:</h2>
 			<ul style="list-style:disc;padding-right:24px;line-height:1.9;">
 				<li><strong>۲ اسلاید</strong> (slide9, slide8)</li>
 				<li><strong>۶ مزیت</strong> (آیکون SVG)</li>
@@ -42,24 +42,24 @@ function elezone_starter_render_page() {
 				<li><strong>۵ پروژه نما</strong> (نوع سنگ، مدت)</li>
 				<li><strong>۴ پست وبلاگ</strong></li>
 			</ul>
-			<p style="font-size:13px;color:#666;margin:0;">\u{1F4A1} تصاویر از <code>assets/Img/</code> به کتابخانه رسانه منتقل می‌شوند.</p>
+			<p style="font-size:13px;color:#666;margin:0;">💡 تصاویر از <code>assets/Img/</code> به کتابخانه رسانه منتقل می‌شوند.</p>
 		</div>
 
 		<?php if ( $has_content && ! $installed ) : ?>
-			<div class="notice notice-warning inline" style="margin-top:20px;"><p>\u26A0\uFE0F محتوای مشابه قبلاً وجود دارد.</p></div>
+			<div class="notice notice-warning inline" style="margin-top:20px;"><p>⚠️ محتوای مشابه قبلاً وجود دارد.</p></div>
 		<?php endif; ?>
 
 		<div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="elezone_install_starter">
 				<?php wp_nonce_field( 'elezone_install_starter' ); ?>
-				<button type="submit" class="button button-primary button-hero" onclick="return confirm('نمونه محتوا نصب شود؟');">\u{1F680} نصب نمونه محتوا</button>
+				<button type="submit" class="button button-primary button-hero" onclick="return confirm('نمونه محتوا نصب شود؟');">🚀 نصب نمونه محتوا</button>
 			</form>
 			<?php if ( $installed || $has_content ) : ?>
 				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 					<input type="hidden" name="action" value="elezone_reset_starter">
 					<?php wp_nonce_field( 'elezone_reset_starter' ); ?>
-					<button type="submit" class="button button-secondary" style="color:#b32d2e;border-color:#b32d2e;" onclick="return confirm('همه‌ی نمونه‌ها حذف شوند؟');">\u{1F5D1}\uFE0F حذف نمونه‌ها</button>
+					<button type="submit" class="button button-secondary" style="color:#b32d2e;border-color:#b32d2e;" onclick="return confirm('همه‌ی نمونه‌ها حذف شوند؟');">🗑️ حذف نمونه‌ها</button>
 				</form>
 			<?php endif; ?>
 		</div>
@@ -67,6 +67,8 @@ function elezone_starter_render_page() {
 		<?php if ( $installed ) : ?>
 			<p style="margin-top:20px;font-size:13px;color:#666;">آخرین نصب: <?php echo esc_html( date_i18n( 'Y/m/d - H:i', (int) $installed ) ); ?></p>
 		<?php endif; ?>
+
+		<?php do_action( 'elezone_starter_extra_sections', $installed, $has_content ); ?>
 	</div>
 	<?php
 }
@@ -95,7 +97,7 @@ function elezone_handle_reset_starter() {
 	if ( ! current_user_can( 'manage_options' ) ) { wp_die( 'Unauthorized' ); }
 	check_admin_referer( 'elezone_reset_starter' );
 
-	foreach ( array( 'slide', 'benefit', 'service', 'project', 'post' ) as $type ) {
+	foreach ( array( 'slide', 'benefit', 'service', 'project', 'post', 'page', 'product' ) as $type ) {
 		$posts = get_posts( array(
 			'post_type'      => $type,
 			'posts_per_page' => -1,

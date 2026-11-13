@@ -499,6 +499,86 @@ elezone-wp-theme/ → zip (style.css در ریشه)
 
 ---
 
+## 🛒 یکپارچه‌سازی WooCommerce (v1.1.0)
+
+> قوانین ۱، ۲ و ۴ در این بخش رعایت شده‌اند.
+
+### فایل‌های افزوده‌شده
+
+| فایل | نقش |
+|---|---|
+| `inc/woocommerce.php` | ماژول کامل: theme support، wrapperها، sidebar فروشگاه، enqueue شرطی، اعلان الزامی WooCommerce |
+| `template-parts/cards/product-card.php` | کارت محصول با حفظ کامل hookهای WC |
+| `woocommerce/archive-product.php` | آرشیو محصولات (shop/category/tag) با banner و sidebar |
+| `woocommerce/content-product.php` | آیتم حلقه با `wc_product_class()` |
+| `woocommerce/single-product.php` | پوستهٔ صفحهٔ محصول |
+| `woocommerce/content-single-product.php` | محتوای محصول با حفظ کامل hookها |
+| `assets/Css/WooCommerce.css` | استایل فروشگاه بر پایهٔ توکن‌های رنگ قالب |
+
+### کلیدهای نمایش/مخفی جدید (قانون ۴)
+
+**گروه Shop Archive:**
+- `shop_page_banner` — partial `template-parts/hero/banner` در `archive-product.php`
+- `shop_page_sidebar` — `elezone_wc_shop_sidebar()` در `archive-product.php` (با استفاده از ساختار و کلاس‌های سایدبار وبلاگ)
+- `shop_page_grid` — بلوک `woocommerce_product_loop_start()` … `woocommerce_product_loop_end()` در `archive-product.php`
+
+**گروه Single Product:**
+- `product_page_banner` — partial `template-parts/hero/banner` در `single-product.php`
+- `product_page_sidebar` — `elezone_wc_product_sidebar()` در `single-product.php` (سایدبار ستون چپ با ساختار وبلاگ؛ اگر غیرفعال باشد، `col-12` استفاده می‌شود)
+- `product_page_related` — `remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 )` روی `template_redirect`
+
+**سایدبار جدید ثبت‌شده:** `elezone-product-sidebar` (در `widgets_init`). اگر ویجت نداشته باشد، به `product_search` fallback می‌کند.
+
+### سازگاری WooCommerce
+
+- فقط از `wc_get_product()` / `wc_get_products()` / `WC_Product_Query` استفاده می‌شود — هیچ `WP_Query( post_type=product )` یا کوئری مستقیم `$wpdb`.
+- تمام `do_action()`های WooCommerce در template overrideها حفظ شده‌اند (hooks-first).
+- `wc-cart-fragments` فقط در صفحات فروشگاه/سبد/تسویه/حساب کاربری لود می‌شود.
+- اعلان نصب/فعال‌سازی WooCommerce در همهٔ صفحات پیشخوان (غیرقابل بستن، به‌جز صفحهٔ پوسته‌ها).
+
+### نکات باز
+
+- فایل CSS از `var(--elezone-*, fallback)` استفاده می‌کند؛ در صورت تفاوت نام متغیرها در `assets/Css/Style.css`، فقط بلوک `.woocommerce { --ez-*: ... }` ابتدای فایل باید هم‌تراز شود.
+- آرگومان‌های `template-parts/hero/banner.php` فرض شده `title` و `crumbs` هستند (طبق AGENT.md)؛ در صورت تفاوت، فراخوانی‌ها در `archive-product.php` و `single-product.php` اصلاح شود.
+
+---
+
+## 🎲 تولید داده نمونه دلخواه (v1.2.0)
+
+> صفحهٔ **نمایش → Elezone Starter** حالا یک پنل «تولید داده نمونه دلخواه» هم دارد.
+
+### فایل جدید
+
+`inc/starter-generator.php` — UI، handler و ۵ generator:
+
+| هدف | post_type | ویژگی |
+|---|---|---|
+| پست | `post` | دستهٔ «نمونه»، تصویر شاخص |
+| برگه | `page` | متن نمونه |
+| پروژه | `project` | متا: مدت، شهر، متراژ، سنگ؛ ترم `project_type` |
+| خدمت | `service` | متن نمونه |
+| **محصول (متغیر)** | `product` | رنگ‌ها به‌صورت `pa_color` با ورییشن‌های مستقل، گارانتی `pa_warranty`، قیمت، تخفیف، موجودی، SKU، تصویر مجزا |
+
+### آنچه هر محصول می‌گیرد
+
+- نام فارسی از پیش‌تعریف‌شده
+- توضیح کوتاه + مشخصات فنی
+- دسته‌بندی محصول
+- **ویژگی رنگ** با ۱ تا ۷ ورییشن، هر کدام با قیمت، تخفیف، موجودی، SKU و تصویر اختصاصی
+- **ویژگی گارانتی** (اختیاری) با مقدار ۱۲/۲۴/۳۶ ماه
+- ۳ محصول اول featured
+- در صورت نبود WooCommerce، اعلان داده و محصول ساخته نمی‌شود
+
+### سازگاری
+
+- تمام محصولات از `WC_Product_Variable` / `WC_Product_Variation` / `WC_Product_Attribute` استفاده می‌کنند — هیچ `wp_insert_post( post_type=product )`.
+- ویژگی‌ها (`pa_color` / `pa_warranty`) با `wc_create_attribute()` ساخته می‌شوند و در صورت وجود، از دیتابیس خوانده می‌شوند.
+- `WC_Product_Variable::sync()` بعد از ساخت ورییشن‌ها صدا زده می‌شود.
+- همهٔ آیتم‌ها با `_elezone_starter = 1` و `_elezone_generator = '<target>'` مارک می‌شوند.
+- دکمهٔ «حذف نمونه‌ها» حالا `product` و `page` را هم پاک می‌کند (تغییر در `starter-content.php`).
+
+---
+
 ## 🐛 باگ‌هایی که رفع شدند (مرجع کامل)
 
 | # | باگ | نحوه پیدا کردن | رفع |

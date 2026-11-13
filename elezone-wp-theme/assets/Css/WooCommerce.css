@@ -1,0 +1,541 @@
+/* ==========================================================================
+   Elezone - WooCommerce styles
+   Based on the real theme tokens: #fdb900, IRANSans, .box shadow, radius10
+   ========================================================================== */
+
+.woocommerce,
+.woocommerce-page {
+	font-family: IRANSans, Tahoma, sans-serif;
+	direction: rtl;
+	text-align: right;
+	color: #333;
+	font-size: 13px;
+	line-height: 2.4;
+}
+
+.woocommerce h1, .woocommerce h2, .woocommerce h3, .woocommerce h4,
+.woocommerce-page h1, .woocommerce-page h2, .woocommerce-page h3, .woocommerce-page h4 {
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	line-height: 1.8;
+	color: #2b2626;
+}
+
+.woocommerce a {
+	color: #2b2626;
+}
+
+.woocommerce a:hover {
+	color: #fdb900;
+}
+
+/* ---------------------------------------------------------------- Archive */
+
+.elezone-wc-shop {
+	padding-top: 50px;
+	padding-bottom: 70px;
+}
+
+.elezone-wc-shop__main .woocommerce-result-count,
+.elezone-wc-shop__main .woocommerce-ordering {
+	color: #666;
+	font-size: 13px;
+}
+
+.elezone-wc-shop__main .woocommerce-ordering select {
+	border: 1px solid #e6e6e6;
+	border-radius: 10px;
+	padding: 8px 14px;
+	background: #fff;
+	color: #333;
+	font-family: inherit;
+}
+
+/* Sidebar is now handled by the native Style.css classes from template-parts/blog/sidebar.php */
+
+/* -------------------------------------------------------------- Product Grid */
+
+.woocommerce ul.products {
+	margin: 0 -12px !important;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.woocommerce ul.products::before,
+.woocommerce ul.products::after {
+	display: none;
+}
+
+.woocommerce ul.products li.product {
+	width: calc(33.3333% - 24px) !important;
+	margin: 0 12px 30px !important;
+	padding: 0 !important;
+	float: none !important;
+	clear: none !important;
+}
+
+@media (max-width: 991px) {
+	.woocommerce ul.products li.product {
+		width: calc(50% - 24px) !important;
+	}
+}
+
+@media (max-width: 575px) {
+	.woocommerce ul.products li.product {
+		width: calc(100% - 24px) !important;
+	}
+}
+
+/* -------------------------------------------------------------- Product Card */
+
+.elezone-product-card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0px 5px 10px 3px rgba(154, 161, 171, 0.15);
+	overflow: hidden;
+	transition: box-shadow .3s ease, transform .3s ease;
+	border: 1px solid transparent;
+}
+
+.elezone-product-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0px 15px 30px 5px rgba(154, 161, 171, 0.25);
+}
+
+.elezone-product-card > a {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	color: inherit;
+	text-decoration: none;
+}
+
+.elezone-product-card__media {
+	position: relative;
+	overflow: hidden;
+	background: #f9f9f9;
+	padding-top: 100%; /* 1:1 aspect ratio */
+}
+
+.elezone-product-card__media img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform .4s ease;
+}
+
+.elezone-product-card:hover .elezone-product-card__media img {
+	transform: scale(1.05);
+}
+
+.elezone-product-card .onsale {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	left: auto;
+	margin: 0;
+	min-height: 0;
+	min-width: 0;
+	padding: 4px 10px;
+	border-radius: 20px;
+	background: #fdb900;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1.6;
+	z-index: 2;
+}
+
+.elezone-product-card__body {
+	padding: 20px 20px 10px;
+	flex: 1 1 auto;
+	text-align: center;
+}
+
+.elezone-product-card__body h2,
+.elezone-product-card__body .woocommerce-loop-product__title {
+	font-size: 15px;
+	line-height: 1.8;
+	margin: 0 0 8px;
+	padding: 0 !important;
+	color: #2b2626;
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+}
+
+.elezone-product-card__body .star-rating {
+	margin: 0 auto 10px;
+	color: #fdb900;
+	float: none;
+}
+
+.elezone-product-card__body .price {
+	margin: 0;
+	color: #fdb900;
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	font-size: 16px;
+	display: block;
+}
+
+.elezone-product-card__body .price del {
+	color: #999;
+	font-family: IRANSans_Light, IRANSans, Tahoma, sans-serif;
+	font-weight: 400;
+	margin-left: 6px;
+	font-size: 13px;
+}
+
+.elezone-product-card__body .price ins {
+	text-decoration: none;
+}
+
+.elezone-product-card__footer {
+	padding: 0 20px 20px;
+}
+
+.elezone-product-card .button,
+.elezone-product-card .added_to_cart {
+	display: block;
+	width: 100%;
+	text-align: center;
+	padding: 10px 14px;
+	border-radius: 10px;
+	background: #fdb900;
+	color: #fff;
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	font-size: 13px;
+	text-decoration: none;
+	border: 0;
+	transition: background .2s ease;
+	cursor: pointer;
+}
+
+.elezone-product-card .button:hover,
+.elezone-product-card .added_to_cart:hover {
+	background: #e5a700;
+	color: #fff;
+}
+
+.elezone-product-card .added_to_cart {
+	margin-top: 8px;
+	background: transparent;
+	color: #fdb900;
+	border: 1px solid #fdb900;
+}
+
+/* ----------------------------------------------------------- Pagination */
+
+.woocommerce nav.woocommerce-pagination ul {
+	border: 0;
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+}
+
+.woocommerce nav.woocommerce-pagination ul li {
+	border: 0;
+}
+
+.woocommerce nav.woocommerce-pagination ul li a,
+.woocommerce nav.woocommerce-pagination ul li span {
+	display: block;
+	min-width: 40px;
+	padding: 8px 12px;
+	border: 1px solid #e6e6e6;
+	border-radius: 10px;
+	color: #333;
+	font-family: inherit;
+}
+
+.woocommerce nav.woocommerce-pagination ul li span.current,
+.woocommerce nav.woocommerce-pagination ul li a:hover {
+	background: #fdb900;
+	border-color: #fdb900;
+	color: #fff;
+}
+
+/* ------------------------------------------------------------ Single Product */
+
+.elezone-wc-single {
+	padding-top: 50px;
+	padding-bottom: 70px;
+}
+
+.elezone-wc-single__main {
+	min-width: 0;
+}
+
+.elezone-wc-product__top {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+}
+
+/* Product Gallery - RTL fix */
+.elezone-wc-product__gallery {
+	flex: 1 1 46%;
+	min-width: 300px;
+}
+
+.woocommerce div.product div.images {
+	float: right !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	width: 100% !important;
+}
+
+.woocommerce div.product div.images .flex-control-thumbs {
+	display: flex;
+	gap: 10px;
+	margin-top: 15px;
+}
+
+.woocommerce div.product div.images .flex-control-thumbs li {
+	width: 25% !important;
+	float: none !important;
+}
+
+.woocommerce div.product div.images .flex-control-thumbs img {
+	border-radius: 8px;
+	border: 2px solid transparent;
+}
+
+.woocommerce div.product div.images .flex-control-thumbs img.flex-active,
+.woocommerce div.product div.images .flex-control-thumbs img:hover {
+	border-color: #fdb900;
+}
+
+.woocommerce div.product div.images img {
+	border-radius: 15px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* Product Summary */
+.elezone-wc-product__summary {
+	flex: 1 1 46%;
+	min-width: 300px;
+	float: left !important;
+	width: auto !important;
+}
+
+.elezone-wc-product__summary .product_title {
+	font-size: 24px;
+	line-height: 1.7;
+	margin-bottom: 16px;
+	color: #2b2626;
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+}
+
+.elezone-wc-product__summary .price {
+	color: #fdb900;
+	font-size: 22px;
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	margin-bottom: 20px;
+	display: block;
+}
+
+.elezone-wc-product__summary .price del {
+	color: #999;
+	font-size: 16px;
+	font-family: IRANSans_Light, IRANSans, Tahoma, sans-serif;
+	font-weight: 400;
+}
+
+.elezone-wc-product__summary .price ins {
+	text-decoration: none;
+}
+
+.elezone-wc-product__summary .woocommerce-product-details__short-description {
+	color: #555;
+	line-height: 2.2;
+	margin-bottom: 24px;
+	font-size: 14px;
+}
+
+/* Variations Form */
+.elezone-wc-product__summary form.cart {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	align-items: center;
+	margin-bottom: 24px;
+	padding: 20px;
+	background: #f9f9f9;
+	border-radius: 10px;
+}
+
+.elezone-wc-product__summary .variations {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.elezone-wc-product__summary .variations th.label {
+	text-align: right;
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	font-weight: normal;
+	color: #333;
+	padding: 8px 0;
+	width: 80px;
+}
+
+.elezone-wc-product__summary .variations td.value {
+	padding: 8px 0;
+}
+
+.elezone-wc-product__summary .variations select {
+	width: 100%;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 8px 12px;
+	font-family: inherit;
+	appearance: none;
+	background: #fff url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E") no-repeat left 12px center;
+	background-size: 12px;
+}
+
+.elezone-wc-product__summary .single_variation_wrap {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.elezone-wc-product__summary .woocommerce-variation-price {
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	font-size: 16px;
+	color: #fdb900;
+	margin-bottom: 10px;
+}
+
+.elezone-wc-product__summary .quantity {
+	display: flex;
+	align-items: center;
+}
+
+.elezone-wc-product__summary .quantity input.qty {
+	width: 70px;
+	height: 44px;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	text-align: center;
+	font-family: inherit;
+	font-size: 15px;
+}
+
+.elezone-wc-product__summary button.single_add_to_cart_button {
+	height: 44px;
+	padding: 0 30px;
+	border: 0;
+	border-radius: 10px;
+	background: #fdb900;
+	color: #fff;
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	font-size: 15px;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.elezone-wc-product__summary button.single_add_to_cart_button:hover {
+	background: #e5a700;
+}
+
+.elezone-wc-product__summary .product_meta {
+	font-size: 13px;
+	color: #777;
+	border-top: 1px solid #eee;
+	padding-top: 16px;
+	margin-top: 20px;
+}
+
+.elezone-wc-product__summary .product_meta a {
+	color: #fdb900;
+}
+
+.elezone-wc-product__summary .product_meta > span {
+	display: block;
+	margin-bottom: 8px;
+}
+
+/* Tabs */
+.elezone-wc-product__bottom {
+	margin-top: 50px;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs {
+	padding: 0 !important;
+	margin: 0 0 24px !important;
+	border-bottom: 1px solid #eee !important;
+	display: flex;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs::before,
+.woocommerce div.product .woocommerce-tabs ul.tabs::after {
+	display: none !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	margin: 0 0 0 20px !important;
+	padding: 0 !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li::before,
+.woocommerce div.product .woocommerce-tabs ul.tabs li::after {
+	display: none !important;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+	color: #333 !important;
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif !important;
+	padding: 10px 0 !important;
+	font-weight: normal !important;
+	display: block;
+	border-bottom: 2px solid transparent;
+}
+
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+	color: #fdb900 !important;
+	border-bottom-color: #fdb900;
+}
+
+.woocommerce div.product .woocommerce-tabs .panel {
+	margin: 0;
+	padding: 20px 0;
+	border: 0;
+	box-shadow: none;
+}
+
+.woocommerce div.product .woocommerce-tabs .panel h2 {
+	font-size: 18px;
+	margin-bottom: 16px;
+}
+
+/* Related Products */
+.elezone-wc-product__bottom .related.products > h2,
+.elezone-wc-product__bottom .upsells.products > h2 {
+	font-size: 22px;
+	margin-bottom: 26px;
+	color: #2b2626;
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.elezone-wc-product__bottom .related.products > h2::after,
+.elezone-wc-product__bottom .upsells.products > h2::after {
+	content: '';
+	width: 60px;
+	height: 3px;
+	background: #fdb900;
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}

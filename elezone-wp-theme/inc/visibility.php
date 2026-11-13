@@ -100,6 +100,22 @@ function elezone_register_section_visibility( $wp_customize ) {
 				'single_share'   => __( 'Share Buttons', 'elezone' ),
 			),
 		),
+		'shop'        => array(
+			'title' => __( 'Shop Archive', 'elezone' ),
+			'items' => array(
+				'shop_page_banner'  => __( 'Archive Banner', 'elezone' ),
+				'shop_page_sidebar' => __( 'Shop Sidebar', 'elezone' ),
+				'shop_page_grid'    => __( 'Products Grid', 'elezone' ),
+			),
+		),
+		'product'     => array(
+			'title' => __( 'Single Product', 'elezone' ),
+			'items' => array(
+				'product_page_banner'  => __( 'Product Banner', 'elezone' ),
+				'product_page_sidebar' => __( 'Product Sidebar', 'elezone' ),
+				'product_page_related' => __( 'Related Products', 'elezone' ),
+			),
+		),
 	);
 
 	foreach ( $groups as $group_key => $group ) {

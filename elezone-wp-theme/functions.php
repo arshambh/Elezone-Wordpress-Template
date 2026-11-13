@@ -25,9 +25,11 @@ require_once ELEZONE_THEME_DIR . '/inc/class-mega-menu-walker.php';
 require_once ELEZONE_THEME_DIR . '/inc/project-meta.php';
 require_once ELEZONE_THEME_DIR . '/inc/colors.php';
 require_once ELEZONE_THEME_DIR . '/inc/cf7-integration.php';
+require_once ELEZONE_THEME_DIR . '/inc/woocommerce.php';
 
 require_once ELEZONE_THEME_DIR . '/inc/starter-content.php';
 require_once ELEZONE_THEME_DIR . '/inc/starter-content-data.php';
+require_once ELEZONE_THEME_DIR . '/inc/starter-generator.php';
 
 /**
  * One-time migration: copy legacy arsham_* theme_mods to elezone_*.
