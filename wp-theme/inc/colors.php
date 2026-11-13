@@ -149,3 +149,31 @@ function arsham_colors_css() {
 
 	return $css;
 }
+
+/**
+ * Enqueue the customizer control script with reset buttons.
+ */
+function arsham_customizer_controls_scripts() {
+	wp_enqueue_script(
+		'arsham-customizer',
+		arsham_asset( 'Js/customizer.js' ),
+		array( 'jquery', 'customize-controls' ),
+		ARSHAM_THEME_VERSION,
+		true
+	);
+
+	wp_localize_script(
+		'arsham-customizer',
+		'arshamCustomizer',
+		array(
+			'resetLabel'      => __( 'Reset to original', 'arshamdecor' ),
+			'emptyLabel'      => __( 'Already at original value', 'arshamdecor' ),
+			'resetAllLabel'   => __( 'Reset all colors', 'arshamdecor' ),
+			'resetAllHint'    => __( 'Clears every color. The original theme palette returns.', 'arshamdecor' ),
+			'confirmReset'    => __( 'Reset ALL colors to their original values?', 'arshamdecor' ),
+			'resetDone'       => __( 'Colors reset', 'arshamdecor' ),
+			'resetNothing'    => __( 'Nothing to reset', 'arshamdecor' ),
+		)
+	);
+}
+add_action( 'customize_controls_enqueue_scripts', 'arsham_customizer_controls_scripts' );
