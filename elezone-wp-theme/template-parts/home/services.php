@@ -5,6 +5,10 @@
  * @package Elezone
  */
 
+if ( ! elezone_is_section_visible( 'services' ) ) {
+	return;
+}
+
 $services = new WP_Query(
 	array(
 		'post_type'      => 'service',

@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! elezone_is_section_visible( 'about_goals' ) ) {
+	return;
+}
+
 $tagline = elezone_get_option( 'about_goals_tagline' );
 $title   = elezone_get_option( 'about_goals_title' );
 $items   = elezone_get_option( 'about_goals_items' );

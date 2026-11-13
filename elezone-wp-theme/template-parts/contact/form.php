@@ -15,6 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! elezone_is_section_visible( 'contact_form' ) ) {
+	return;
+}
+
 $cf7_active = function_exists( 'elezone_cf7_is_active' ) && elezone_cf7_is_active();
 $form_id    = $cf7_active ? elezone_get_cf7_form_id() : 0;
 $is_admin   = current_user_can( 'manage_options' );

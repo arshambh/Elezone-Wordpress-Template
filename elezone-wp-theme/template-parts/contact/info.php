@@ -12,6 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! elezone_is_section_visible( 'contact_info' ) ) {
+	return;
+}
+
 $address        = elezone_get_option( 'address' );
 $business_hours = elezone_get_option( 'business_hours' );
 $phone          = elezone_get_option( 'phone' );

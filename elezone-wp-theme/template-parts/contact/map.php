@@ -12,6 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! elezone_is_section_visible( 'contact_map' ) ) {
+	return;
+}
+
 $map_embed = elezone_get_option( 'map_embed' );
 
 if ( empty( $map_embed ) ) {

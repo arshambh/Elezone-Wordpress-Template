@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! elezone_is_section_visible( 'about_awards' ) ) {
+	return;
+}
+
 $tagline = elezone_get_option( 'about_awards_tagline' );
 $title   = elezone_get_option( 'about_awards_title' );
 $text    = elezone_get_option( 'about_awards_text' );

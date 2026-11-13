@@ -4,6 +4,10 @@
  *
  * @package Elezone
  */
+
+if ( ! elezone_is_section_visible( 'brand' ) ) {
+	return;
+}
 ?>
 <div class="container eslimipic">
 	<div class="row">

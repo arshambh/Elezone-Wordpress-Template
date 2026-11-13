@@ -10,6 +10,10 @@ $section_title  = get_query_var( 'projects_section_title' );
 $carousel_class = get_query_var( 'projects_carousel_class' );
 $variant        = get_query_var( 'projects_variant' );
 $more_url       = get_query_var( 'projects_more_url' );
+
+if ( ! elezone_is_section_visible( 'interior' === $variant ? 'projects_interior' : 'projects_facade' ) ) {
+	return;
+}
 if ( ! $more_url ) {
 	$more_url = '#';
 }

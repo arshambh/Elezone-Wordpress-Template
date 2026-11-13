@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! elezone_is_section_visible( 'about_stats' ) ) {
+	return;
+}
+
 $raw   = (string) elezone_get_option( 'about_stats_items' );
 $lines = array_filter( array_map( 'trim', explode( "\n", $raw ) ) );
 

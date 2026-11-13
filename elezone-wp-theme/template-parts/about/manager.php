@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( ! elezone_is_section_visible( 'about_manager' ) ) {
+	return;
+}
+
 $tagline    = elezone_get_option( 'about_manager_tagline' );
 $name       = elezone_get_option( 'about_manager_name' );
 $position   = elezone_get_option( 'about_manager_position' );

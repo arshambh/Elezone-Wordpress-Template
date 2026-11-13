@@ -4,6 +4,10 @@
  *
  * @package Elezone
  */
+
+if ( ! elezone_is_section_visible( 'intro' ) ) {
+	return;
+}
 ?>
 <section class="container bg-cudark text-white radius15 text-lg-right text-center my-5">
 	<div class="row py-4 px-3">

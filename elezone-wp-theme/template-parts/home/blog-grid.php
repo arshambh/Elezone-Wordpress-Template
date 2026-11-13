@@ -5,6 +5,10 @@
  * @package Elezone
  */
 
+if ( ! elezone_is_section_visible( 'blog' ) ) {
+	return;
+}
+
 $posts_query = new WP_Query(
 	array(
 		'post_type'           => 'post',

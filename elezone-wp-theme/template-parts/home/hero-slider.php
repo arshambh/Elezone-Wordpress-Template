@@ -5,6 +5,10 @@
  * @package Elezone
  */
 
+if ( ! elezone_is_section_visible( 'hero' ) ) {
+	return;
+}
+
 $slides = new WP_Query(
 	array(
 		'post_type'      => 'slide',

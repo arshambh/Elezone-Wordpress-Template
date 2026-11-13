@@ -4,6 +4,10 @@
  *
  * @package Elezone
  */
+
+if ( ! elezone_is_section_visible( 'cta' ) ) {
+	return;
+}
 ?>
 <div class="container">
 	<div class="row bg-warning px-5 py-3 radius10">
