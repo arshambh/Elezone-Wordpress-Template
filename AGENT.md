@@ -241,6 +241,15 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
 ├── .git/
 ├── .gitignore                       ← اصلاح‌شده (Icon? → Icon)
 ├── AGENT.md                         ← این فایل
+├── init-prompt.txt                  ← متن درخواست اولیه‌ی ساخت قالب
+├── elezone-wp-theme.zip             ← zip آماده‌ی نصب (~۶۰ MB)
+├── Sample-HTML/                     ← ⭐ مرجع اصلی HTML/CSS/JS که قالب از آن ساخته شده
+│   ├── index.html                   # صفحه اصلی (۱۱ سکشن)
+│   ├── Aboutus2.html                # درباره ما
+│   ├── blog_grid.html               # گرید وبلاگ
+│   ├── blog_destails.html           # جزئیات پست (تایپو در نام فایل: details)
+│   ├── Contactus2.html              # تماس با ما
+│   └── Css/ Fonts/ Img/ Js/         # دارایی‌های مرجع
 └── elezone-wp-theme/                ← پوشه قالب وردپرس
     ├── style.css                    # شناسنامه قالب (Theme Name: Elezone)
     ├── functions.php                # bootstrap + helperها + ۲ migration
@@ -280,7 +289,9 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   ├── comment-phone.php        # ⭐ فیلد موبایل اجباری نظرات + ایمیل اختیاری
     │   ├── required-plugins.php     # ⭐ چک و اعلان افزونه‌های الزامی (CF7)
     │   ├── visibility.php           # ⭐ کلیدهای نمایش/مخفی سکشن‌ها (قانون ۴)
-    │   └── jalali-date.php          # تبدیل تاریخ شمسی برای نمایش در قالب
+    │   ├── jalali-date.php          # تبدیل تاریخ شمسی برای نمایش در قالب
+    │   ├── starter-generator.php    # ⭐ تولید داده نمونه دلخواه (v1.2.0)
+    │   └── woocommerce.php          # ⭐ یکپارچه‌سازی WooCommerce (v1.1.0)
     │
     ├── template-parts/
     │   ├── header/offcanvas.php     # منوی موبایل آفلاین
@@ -294,6 +305,7 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   │   ├── cta-band.php
     │   │   └── blog-grid.php
     │   ├── cards/project-card.php   # کارت پروژه (variant-aware)
+    │   ├── cards/product-card.php   # ⭐ کارت محصول WooCommerce (v1.1.0)
     │   ├── contact/                 # partialهای صفحه تماس
     │   │   ├── form.php             # فرم (nonce + honeypot + transient message)
     │   │   ├── info.php             # اطلاعات تماس از Customizer
@@ -311,13 +323,14 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   └── footer/                  # (رزرو — خالی)
     │
     ├── assets/
-    │   ├── Css/                     # ۶ فایل (بعد از پاکسازی)
+    │   ├── Css/                     # ۷ فایل (بعد از پاکسازی)
     │   │   ├── Main.css             # Bootstrap 4.1.1 + FontAwesome Pro
     │   │   ├── Style.css            # IRANSans @font-face + استایل اصلی
     │   │   ├── Menu.css             # Mega Menu
     │   │   ├── owl.carousel.min.css
     │   │   ├── owl.theme.min.css
-    │   │   └── hoverimg.css
+    │   │   ├── hoverimg.css
+    │   │   └── WooCommerce.css      # ⭐ استایل فروشگاه (v1.1.0)
     │   ├── Js/                      # ۵ فایل (بعد از پاکسازی)
     │   │   ├── bootstrap.min.js
     │   │   ├── Custom.js            # search, mobile menu, sticky
@@ -332,6 +345,11 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   │   └── Shot/                # ۲۲ اسکرین‌شات دموها
     │   └── Fonts/                   # ۱۹ فایل (IRANSans + FontAwesome woff2)
     │
+    ├── woocommerce/                 # ⭐ overrideهای WooCommerce (v1.1.0)
+    │   ├── archive-product.php
+    │   ├── content-product.php
+    │   ├── content-single-product.php
+    │   └── single-product.php
     └── languages/
         ├── fa_IR.po                 # ترجمه منبع (۵.۰۱ KB، ۷۲ رشته)
         └── fa_IR.mo                 # ✅ کامپایل‌شده (۴.۹۱۹ KB، magic 0x950412DE)
@@ -739,16 +757,17 @@ delete_option( 'elezone_folder_migration_done' );
 | مورد | تعداد |
 |---|---|
 | فایل PHP (ریشه) | ۱۸ |
-| فایل PHP (inc) | ۱۴ |
-| فایل PHP (template-parts) | ۲۰ |
+| فایل PHP (inc) | ۱۶ |
+| فایل PHP (template-parts) | ۲۱ |
+| فایل PHP (woocommerce override) | ۴ |
 | فایل JS | ۵ |
-| فایل CSS | ۶ |
+| فایل CSS | ۷ |
 | تصاویر | ۹۱ + ۱۳ icons + ۲۲ Shot |
 | فونت | ۱۹ |
 | ترجمه | ۷۲ رشته (`.po` + `.mo`) |
-| **کل فایل‌ها** | **~۱۷۰** |
+| **کل فایل‌ها** | **~۱۷۸** |
 | **حجم کل** | **~۲۳.۹ MB** |
-| **Git commits** | **۶ (+ تغییرات جاری commit نشده)** |
+| **Git commits** | **۶ (working tree تمیز — همه push شده)** |
 | **باگ رفع‌شده** | **۱۸** |
 
 ---
@@ -796,6 +815,8 @@ e965176 feat: complete Elezone v1.0.0 release
 | ۱۹ | گرید وبلاگ (`index.php` بازنویسی + `post-card.php` + pagination) | ✅ |
 | ۲۰ | جزئیات وبلاگ (`single.php` بازنویسی + `sidebar.php` + شمارنده بازدید + دکمه‌های اشتراک) | ✅ |
 | ۲۱ | پنل Sections گسترش یافت به ۲۲ چک‌باکس در ۵ گروه | ✅ |
+| ۲۲ | یکپارچه‌سازی WooCommerce v1.1.0 (`inc/woocommerce.php` + ۴ override + `product-card.php` + `WooCommerce.css` + ۶ کلید Section) | ✅ |
+| ۲۳ | تولید داده نمونه دلخواه v1.2.0 (`inc/starter-generator.php` — پست/برگه/پروژه/خدمت/محصول متغیر) | ✅ |
 | ⏳ | `screenshot.png` | اختیاری |
 | ⏳ | تست نهایی در وردپرس | توصیه اکید قبل از انتشار |
 
@@ -804,3 +825,5 @@ e965176 feat: complete Elezone v1.0.0 release
 *آخرین به‌روزرسانی: 2026-11-13 — نسخه 1.0.0 + افزودن Contact Page (آماده برای v1.1.0)*
 
 > **📌 هم‌ترازسازی مستندات با ساختار واقعی (2026-11-13):** پس از بازبینی `directory_tree`، موارد زیر اصلاح شد: `inc/` از ۱۰ به ۱۴ فایل (افزودن `visibility.php` و `jalali-date.php` که در درخت نیامده بودند)، PHP ریشه از ۱۶ به ۱۸ فایل، حذف `template-parts/content/` از درخت (در واقعیت وجود ندارد)، و افزودن `docs/CF7-SETUP.md`. آمار در جدول «📊 آمار پروژه» و ردیف ۱۸ در جدول باگ‌ها به‌روز شد.
+>
+> **📌 هم‌ترازسازی دوم (2026-11-13، بازبینی کامل با `git status` تمیز):** موارد باقی‌مانده اصلاح شدند: `inc/` از ۱۴ به **۱۶** فایل (افزودن `starter-generator.php` و `woocommerce.php`)، `assets/Css/` از ۶ به **۷** (افزودن `WooCommerce.css`)، `template-parts/` از ۲۰ به **۲۱** (افزودن `cards/product-card.php`)، افزودن پوشه‌ی `woocommerce/` با ۴ override به درخت، افزودن `Sample-HTML/` (مرجع اصلی ساخت قالب) و `init-prompt.txt` و `elezone-wp-theme.zip` به درخت ریشه، و به‌روزرسانی ردیف Git در آمار (working tree تمیز). دو ردیف ۲۲ و ۲۳ (WooCommerce و Generator) هم به جدول «وضعیت نهایی» اضافه شدند.
