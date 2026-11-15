@@ -28,22 +28,27 @@ if ( post_password_required() ) {
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'elezone-wc-product ez-modern-product', $product ); ?>>
 	
 	<div class="elezone-wc-product__top ez-hero-section">
+		<?php if ( elezone_is_section_visible( 'product_gallery' ) ) : ?>
 		<!-- گالری تصاویر -->
 		<div class="elezone-wc-product__gallery ez-gallery-wrap">
 			<?php do_action( 'woocommerce_before_single_product_summary' ); ?>
 		</div>
+		<?php endif; ?>
 		
+		<?php if ( elezone_is_section_visible( 'product_summary' ) ) : ?>
 		<!-- اطلاعات و خرید -->
 		<div class="summary entry-summary elezone-wc-product__summary ez-product-info">
 			<?php do_action( 'woocommerce_single_product_summary' ); ?>
-			
 		</div>
+		<?php endif; ?>
 	</div>
 	
+	<?php if ( elezone_is_section_visible( 'product_tabs' ) ) : ?>
 	<!-- توضیحات و مشخصات (Tabs) -->
 	<div class="elezone-wc-product__bottom ez-tabs-section">
 		<?php do_action( 'woocommerce_after_single_product_summary' ); ?>
 	</div>
+	<?php endif; ?>
 </div>
 <?php
 do_action( 'woocommerce_after_single_product' );

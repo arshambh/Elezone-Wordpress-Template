@@ -2041,3 +2041,10 @@ body .ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
     margin: 0 !important;
     padding: 0 !important;
 }
+
+
+/* Single Product Layout Fix when one section is hidden */
+.elezone-wc-product__top > div:only-child {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+}

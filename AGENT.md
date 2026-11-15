@@ -544,7 +544,9 @@ elezone-wp-theme/ → zip (style.css در ریشه)
 
 **گروه Single Product:**
 - `product_page_banner` — partial `template-parts/hero/banner` در `single-product.php`
-- `product_page_sidebar` — `elezone_wc_product_sidebar()` در `single-product.php` (سایدبار ستون چپ با ساختار وبلاگ؛ اگر غیرفعال باشد، `col-12` استفاده می‌شود)
+- `product_gallery` — گالری تصاویر محصول (قسمت چپ در `content-single-product.php`)
+- `product_summary` — اطلاعات و فرم خرید محصول (قسمت راست در `content-single-product.php`)
+- `product_tabs` — تب‌های توضیحات و مشخصات محصول (بخش پایین در `content-single-product.php`)
 - `product_page_related` — `remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 )` روی `template_redirect`
 
 **سایدبار جدید ثبت‌شده:** `elezone-product-sidebar` (در `widgets_init`). اگر ویجت نداشته باشد، به `product_search` fallback می‌کند.
