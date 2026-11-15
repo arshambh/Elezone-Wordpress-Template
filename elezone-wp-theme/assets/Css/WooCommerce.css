@@ -975,24 +975,91 @@
     display: none;
 }
 
-/* استایل جدول مشخصات فنی (Additional Information) */
+/* ============================================================
+   Modern Additional Information (Shop Attributes) — Clean Grid Cards
+   ============================================================ */
+
 .ez-modern-product .woocommerce-Tabs-panel table.shop_attributes {
     width: 100%;
+    display: block;
+    border: 0;
     border-collapse: collapse;
-    margin-top: 16px;
+    margin: 20px 0 0;
+    background: transparent;
 }
 
-.ez-modern-product .woocommerce-Tabs-panel table.shop_attributes th,
-.ez-modern-product .woocommerce-Tabs-panel table.shop_attributes td {
-    padding: 16px;
-    border: 1px solid #eaeaea;
-    text-align: right;
+/* ============================================================
+   Modern Specs — Grid Cards (Digikala/Modern Persian Style)
+   ============================================================ */
+
+/* 1. نابودی کامل ساختار جدول */
+.woocommerce-Tabs-panel table.shop_attributes {
+    display: block !important;
+    width: 100% !important;
+    border: none !important;
+    background: transparent !important;
+    margin-top: 24px !important;
 }
 
-.ez-modern-product .woocommerce-Tabs-panel table.shop_attributes th {
-    background-color: #fafafa;
-    font-weight: 600;
-    width: 30%;
+/* 2. تبدیل ردیف‌ها به یک گرید (شبکه) از کارت‌ها */
+.woocommerce-Tabs-panel table.shop_attributes tbody {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+}
+
+/* 3. طراحی کارت مستقل برای هر مشخصه */
+.woocommerce-Tabs-panel table.shop_attributes tr {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    background: #f8f9fa !important; /* پس‌زمینه خاکستری بسیار روشن */
+    border: 1px solid #eaedf0 !important;
+    border-radius: 12px !important;
+    padding: 16px 20px !important;
+    transition: all 0.3s ease !important;
+}
+
+.woocommerce-Tabs-panel table.shop_attributes tr:hover {
+    border-color: var(--ez-primary, #fdb900) !important;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.05) !important;
+    transform: translateY(-2px) !important;
+    background: #ffffff !important;
+}
+
+/* 4. عنوان مشخصه (بالای کارت) */
+.woocommerce-Tabs-panel table.shop_attributes th {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 0 8px 0 !important;
+    border: none !important;
+    background: transparent !important;
+    font-family: IRANSans, Tahoma, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #6c757d !important;
+    text-align: right !important;
+}
+
+/* 5. مقدار مشخصه (پایین کارت) */
+.woocommerce-Tabs-panel table.shop_attributes td {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #212529 !important;
+    text-align: right !important;
+}
+
+.woocommerce-Tabs-panel table.shop_attributes td p {
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: right !important;
 }
 
 /* ============================================================
@@ -1767,4 +1834,72 @@ body .ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
 }
 .ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d1d1d1"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') !important;
+}
+
+
+/* ============================================================
+   Modern Bootstrap-Inspired Product Attributes Table (High Contrast)
+   ============================================================ */
+
+/* 1. جدول اصلی با حاشیه و سایه پررنگ‌تر */
+.woocommerce-Tabs-panel table.shop_attributes {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 24px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important; /* حاشیه تیره‌تر برای دیده شدن */
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important; /* سایه عمیق‌تر */
+}
+
+.woocommerce-Tabs-panel table.shop_attributes tbody {
+    display: table-row-group !important;
+    width: 100% !important;
+}
+
+.woocommerce-Tabs-panel table.shop_attributes tr {
+    display: table-row !important;
+}
+
+/* سلول‌های جدول */
+.woocommerce-Tabs-panel table.shop_attributes th,
+.woocommerce-Tabs-panel table.shop_attributes td {
+    display: table-cell !important;
+    padding: 16px 20px !important;
+    vertical-align: middle !important;
+    border-bottom: 1px solid #cbd5e1 !important; /* خطوط بین ردیف‌ها پررنگ‌تر */
+    text-align: right !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+}
+
+/* حذف حاشیه پایین از آخرین ردیف */
+.woocommerce-Tabs-panel table.shop_attributes tr:last-child th,
+.woocommerce-Tabs-panel table.shop_attributes tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* 2. استایل ستون عنوان (رنگ / گارانتی) - خاکستری متمایز */
+.woocommerce-Tabs-panel table.shop_attributes th {
+    width: 30% !important;
+    background-color: #eef2f6 !important; /* خاکستری متمایز از پس‌زمینه */
+    font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif !important;
+    font-weight: 700 !important;
+    color: #475569 !important; /* متن تیره‌تر */
+    border-left: 1px solid #cbd5e1 !important; /* جداکننده عمودی پررنگ */
+}
+
+/* 3. استایل ستون مقدار (خاکستری / ۲۴ ماه) - سفید خالص */
+.woocommerce-Tabs-panel table.shop_attributes td {
+    background-color: #ffffff !important;
+    font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif !important;
+    font-weight: 700 !important;
+    color: #0f172a !important; /* مشکی مایل به آبی برای کنتراست بالا */
+}
+
+.woocommerce-Tabs-panel table.shop_attributes td p {
+    margin: 0 !important;
+    padding: 0 !important;
 }
