@@ -1461,18 +1461,34 @@
    ============================================================ */
 
 /* 1. راست‌چین کردن متن و مکان‌نما در تمام فیلدهای ورودی */
-.ez-modern-product .comment-form input[type="text"],
-.ez-modern-product .comment-form input[type="tel"],
-.ez-modern-product .comment-form input[type="email"],
-.ez-modern-product .comment-form textarea {
+body .ez-modern-product .comment-form input[type="text"],
+body .ez-modern-product .comment-form input[type="tel"],
+body .ez-modern-product .comment-form input[type="email"],
+body #respond .comment-form-author input,
+body #respond .comment-form-email input,
+body #respond .comment-form-phone input {
     text-align: right !important;
     direction: rtl !important;
     width: 100% !important;
     float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* 1.1. تنظیم عرض textarea روی 75 درصد و راست‌چین کردن آن */
+body .ez-modern-product .comment-form textarea,
+body #respond .comment-form-comment textarea {
+    text-align: right !important;
+    direction: rtl !important;
+    width: 75% !important;
+    float: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 /* 2. اطمینان از اینکه کانتینر فیلدها (form-group) تمام‌عرض و راست‌چین است */
-.ez-modern-product .comment-form .form-group {
+body .ez-modern-product .comment-form .form-group,
+body #respond .comment-form .form-group {
     float: none !important;
     width: 100% !important;
     margin-bottom: 16px !important;
@@ -1480,8 +1496,10 @@
 }
 
 /* 3. راست‌چین کردن پلیس‌هولدرها (اگر مرورگر پشتیبانی کند) */
-.ez-modern-product .comment-form input::placeholder,
-.ez-modern-product .comment-form textarea::placeholder {
+body .ez-modern-product .comment-form input::placeholder,
+body .ez-modern-product .comment-form textarea::placeholder,
+body #respond .comment-form input::placeholder,
+body #respond .comment-form textarea::placeholder {
     text-align: right !important;
     direction: rtl !important;
 }
