@@ -349,6 +349,7 @@ Elezone-Wordpress-Template/          ← ریشه مخزن Git
     │   ├── archive-product.php
     │   ├── content-product.php
     │   ├── content-single-product.php
+    │   ├── single-product-reviews.php
     │   └── single-product.php
     └── languages/
         ├── fa_IR.po                 # ترجمه منبع (۵.۰۱ KB، ۷۲ رشته)
@@ -531,6 +532,7 @@ elezone-wp-theme/ → zip (style.css در ریشه)
 | `woocommerce/content-product.php` | آیتم حلقه با `wc_product_class()` |
 | `woocommerce/single-product.php` | پوستهٔ صفحهٔ محصول |
 | `woocommerce/content-single-product.php` | محتوای محصول با حفظ کامل hookها |
+| `woocommerce/single-product-reviews.php` | override قالب نظرات/ریویوهای صفحهٔ محصول |
 | `assets/Css/WooCommerce.css` | استایل فروشگاه بر پایهٔ توکن‌های رنگ قالب |
 
 ### کلیدهای نمایش/مخفی جدید (قانون ۴)
@@ -759,13 +761,13 @@ delete_option( 'elezone_folder_migration_done' );
 | فایل PHP (ریشه) | ۱۸ |
 | فایل PHP (inc) | ۱۶ |
 | فایل PHP (template-parts) | ۲۱ |
-| فایل PHP (woocommerce override) | ۴ |
+| فایل PHP (woocommerce override) | ۵ |
 | فایل JS | ۵ |
 | فایل CSS | ۷ |
 | تصاویر | ۹۱ + ۱۳ icons + ۲۲ Shot |
 | فونت | ۱۹ |
 | ترجمه | ۷۲ رشته (`.po` + `.mo`) |
-| **کل فایل‌ها** | **~۱۷۸** |
+| **کل فایل‌ها** | **~۱۷۹** |
 | **حجم کل** | **~۲۳.۹ MB** |
 | **Git commits** | **۶ (working tree تمیز — همه push شده)** |
 | **باگ رفع‌شده** | **۱۸** |
@@ -815,7 +817,7 @@ e965176 feat: complete Elezone v1.0.0 release
 | ۱۹ | گرید وبلاگ (`index.php` بازنویسی + `post-card.php` + pagination) | ✅ |
 | ۲۰ | جزئیات وبلاگ (`single.php` بازنویسی + `sidebar.php` + شمارنده بازدید + دکمه‌های اشتراک) | ✅ |
 | ۲۱ | پنل Sections گسترش یافت به ۲۲ چک‌باکس در ۵ گروه | ✅ |
-| ۲۲ | یکپارچه‌سازی WooCommerce v1.1.0 (`inc/woocommerce.php` + ۴ override + `product-card.php` + `WooCommerce.css` + ۶ کلید Section) | ✅ |
+| ۲۲ | یکپارچه‌سازی WooCommerce v1.1.0 (`inc/woocommerce.php` + ۵ override + `product-card.php` + `WooCommerce.css` + ۶ کلید Section) | ✅ |
 | ۲۳ | تولید داده نمونه دلخواه v1.2.0 (`inc/starter-generator.php` — پست/برگه/پروژه/خدمت/محصول متغیر) | ✅ |
 | ⏳ | `screenshot.png` | اختیاری |
 | ⏳ | تست نهایی در وردپرس | توصیه اکید قبل از انتشار |
