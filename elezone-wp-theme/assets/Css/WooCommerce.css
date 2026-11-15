@@ -357,91 +357,229 @@
 	font-size: 14px;
 }
 
-/* Variations Form */
+/* ============================================================
+   Modern Refactored Variations Form
+   ============================================================ */
+
+/* 1. تبدیل فرم به یک کارت مدرن و تمیز */
+.woocommerce div.product form.cart,
 .elezone-wc-product__summary form.cart {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 15px;
-	align-items: center;
-	margin-bottom: 24px;
-	padding: 20px;
-	background: #f9f9f9;
-	border-radius: 10px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    margin-bottom: 32px !important;
+    padding: 28px !important;
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    border: 1px solid #eaedf0 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
 }
 
+/* 2. نابودی ساختار جدول ویژگی‌ها */
+.woocommerce div.product .variations,
 .elezone-wc-product__summary .variations {
-	width: 100%;
-	margin-bottom: 15px;
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 0 !important;
 }
 
-.elezone-wc-product__summary .variations th.label {
-	text-align: right;
-	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
-	font-weight: normal;
-	color: #333;
-	padding: 8px 0;
-	width: 80px;
+.woocommerce div.product .variations tbody,
+.elezone-wc-product__summary .variations tbody {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
 }
 
+.woocommerce div.product .variations tr,
+.elezone-wc-product__summary .variations tr {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 16px !important;
+    width: 100% !important;
+}
+
+/* 3. استایل لیبل و مقدار با استفاده از Flexbox برای هم‌ترازی دقیق عمودی */
+.woocommerce div.product .variations th.label,
+.elezone-wc-product__summary .variations th.label,
+.woocommerce div.product .variations td.value,
 .elezone-wc-product__summary .variations td.value {
-	padding: 8px 0;
+    display: flex !important;
+    align-items: center !important;
+    height: auto !important;
+    min-height: 48px !important; /* هم‌ارتفاع با سلکت باکس */
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
 }
 
+.woocommerce div.product .variations th.label,
+.elezone-wc-product__summary .variations th.label {
+    flex: 0 0 80px !important;
+    justify-content: flex-start !important;
+    text-align: right !important;
+    font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    font-size: 15px !important;
+}
+
+.woocommerce div.product .variations td.value,
+.elezone-wc-product__summary .variations td.value {
+    flex: 1 1 auto !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+}
+
+/* لینک reset از جریان layout خارج شود تا ارتفاع اضافه نکند */
+.woocommerce div.product .variations .reset_variations,
+.elezone-wc-product__summary .variations .reset_variations {
+    position: absolute !important;
+    left: -9999px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.woocommerce div.product .variations select,
 .elezone-wc-product__summary .variations select {
-	width: 100%;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	padding: 8px 12px;
-	font-family: inherit;
-	appearance: none;
-	background: #fff url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E") no-repeat left 12px center;
-	background-size: 12px;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin-bottom: 0 !important;
 }
 
+/* حذف مارجین‌های اضافی از لیبل */
+.woocommerce div.product .variations label,
+.elezone-wc-product__summary .variations label {
+    margin: 0 !important;
+    line-height: 1 !important;
+    display: block !important;
+}
+
+/* 4. استایل سلکت باکس (Dropdown) */
+.woocommerce div.product .variations select,
+.elezone-wc-product__summary .variations select {
+    width: 100% !important;
+    height: 48px !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 10px !important;
+    padding: 0 16px !important;
+    font-family: inherit !important;
+    font-size: 14px !important;
+    color: #333 !important;
+    background-color: #f9fafb !important;
+    outline: none !important;
+    appearance: none !important;
+    /* Custom SVG Arrow (Left side) */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: left 16px center !important;
+    background-size: 16px !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+}
+
+.woocommerce div.product .variations select:focus,
+.elezone-wc-product__summary .variations select:focus {
+    border-color: var(--ez-primary, #d4a24a) !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(212, 162, 74, 0.1) !important;
+}
+
+/* 5. بخش تعداد و دکمه خرید */
+.woocommerce div.product .single_variation_wrap,
 .elezone-wc-product__summary .single_variation_wrap {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	gap: 15px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
 }
 
-.elezone-wc-product__summary .woocommerce-variation-price {
-	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
-	font-size: 16px;
-	color: #fdb900;
-	margin-bottom: 10px;
+.woocommerce div.product .woocommerce-variation-add-to-cart,
+.elezone-wc-product__summary .woocommerce-variation-add-to-cart {
+    display: flex !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    margin-top: 8px !important;
 }
 
+/* 6. استایل فیلد تعداد */
+.woocommerce div.product .quantity,
 .elezone-wc-product__summary .quantity {
-	display: flex;
-	align-items: center;
+    display: flex !important;
+    align-items: center !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 10px !important;
+    background: #ffffff !important;
+    width: 100px !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
 }
 
+.woocommerce div.product .quantity input.qty,
 .elezone-wc-product__summary .quantity input.qty {
-	width: 70px;
-	height: 44px;
-	border: 1px solid #ddd;
-	border-radius: 10px;
-	text-align: center;
-	font-family: inherit;
-	font-size: 15px;
+    width: 100% !important;
+    height: 48px !important;
+    border: none !important;
+    background: transparent !important;
+    text-align: center !important;
+    font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif !important;
+    font-size: 16px !important;
+    color: #333 !important;
+    -moz-appearance: textfield !important;
 }
 
+.woocommerce div.product .quantity input.qty::-webkit-outer-spin-button,
+.woocommerce div.product .quantity input.qty::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+/* 7. استایل دکمه افزودن به سبد خرید */
+.woocommerce div.product button.single_add_to_cart_button,
 .elezone-wc-product__summary button.single_add_to_cart_button {
-	height: 44px;
-	padding: 0 30px;
-	border: 0;
-	border-radius: 10px;
-	background: #fdb900;
-	color: #fff;
-	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
-	font-size: 15px;
-	cursor: pointer;
-	transition: background 0.2s ease;
+    flex: 1 !important;
+    height: 48px !important;
+    padding: 0 24px !important;
+    border: none !important;
+    border-radius: 10px !important;
+    background: var(--ez-primary, #d4a24a) !important;
+    color: #ffffff !important;
+    font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
+.woocommerce div.product button.single_add_to_cart_button:hover,
 .elezone-wc-product__summary button.single_add_to_cart_button:hover {
-	background: #e5a700;
+    background: #c08b36 !important;
+    box-shadow: 0 4px 12px rgba(212, 162, 74, 0.3) !important;
+}
+
+/* 8. رسپانسیو */
+@media (max-width: 576px) {
+    .woocommerce div.product form.cart,
+    .elezone-wc-product__summary form.cart {
+        padding: 20px !important;
+    }
+    .woocommerce div.product .variations tr,
+    .elezone-wc-product__summary .variations tr {
+        grid-template-columns: 70px 1fr !important;
+    }
+    .woocommerce div.product .woocommerce-variation-add-to-cart,
+    .elezone-wc-product__summary .woocommerce-variation-add-to-cart {
+        flex-direction: column !important;
+    }
+    .woocommerce div.product .quantity,
+    .elezone-wc-product__summary .quantity {
+        width: 100% !important;
+    }
 }
 
 .elezone-wc-product__summary .product_meta {
