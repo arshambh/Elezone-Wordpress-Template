@@ -105,6 +105,7 @@ function elezone_register_section_visibility( $wp_customize ) {
 			'items' => array(
 				'shop_page_banner'  => __( 'Archive Banner', 'elezone' ),
 				'shop_page_sidebar' => __( 'Shop Sidebar', 'elezone' ),
+				'shop_page_fallback_categories' => __( 'Fallback Categories', 'elezone' ),
 				'shop_page_grid'    => __( 'Products Grid', 'elezone' ),
 			),
 		),

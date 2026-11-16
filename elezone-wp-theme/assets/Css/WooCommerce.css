@@ -2048,3 +2048,87 @@ body .ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
     flex: 1 1 100% !important;
     max-width: 100% !important;
 }
+
+/* ============================================================
+   Sidebar: Product Categories (widget & fallback, unified look)
+   ============================================================ */
+
+/* Fallback list (rendered by inc/woocommerce.php when no widget)
+   and the WooCommerce Product Categories widget share the same look. */
+.cati-blog ul.list-unstyled,
+.cati-blog ul.product-categories {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: IRANSans, Tahoma, sans-serif;
+}
+
+.cati-blog ul.list-unstyled li,
+.cati-blog ul.product-categories li {
+    padding: 6px 0 !important;
+    border-bottom: 1px dashed #eee;
+}
+
+.cati-blog ul.list-unstyled li:last-child,
+.cati-blog ul.product-categories li:last-child {
+    border-bottom: 0;
+}
+
+.cati-blog ul.list-unstyled li a,
+.cati-blog ul.product-categories li a {
+    display: inline-block;
+    color: #333 !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    transition: color .2s ease, transform .2s ease;
+}
+
+.cati-blog ul.list-unstyled li a:hover,
+.cati-blog ul.product-categories li a:hover {
+    color: #fdb900 !important;
+    transform: translateX(-3px);
+}
+
+/* Ensure no decorative dash prefix appears before category names */
+.cati-blog ul.list-unstyled li a::before,
+.cati-blog ul.list-unstyled li a span::before,
+.cati-blog ul.product-categories li a::before,
+.cati-blog ul.product-categories li a span::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* WooCommerce widget active item — kill the default highlight/background */
+.cati-blog ul.product-categories li.current-cat,
+.cati-blog ul.product-categories li.current-cat-parent,
+.cati-blog ul.product-categories li.cat-item.current-cat > a {
+    background: transparent !important;
+    color: #fdb900 !important;
+    font-weight: 700;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* WooCommerce widget count bubble — hidden by request */
+.cati-blog ul.product-categories li .count {
+    display: none !important;
+}
+
+/* Also hide inline "(n)" that WooCommerce may append inside the link */
+.cati-blog ul.product-categories li a .count,
+.cati-blog ul.product-categories li a > span.count {
+    display: none !important;
+}
+
+/* Child categories (sub-list inside widget) */
+.cati-blog ul.product-categories ul.children {
+    list-style: none !important;
+    padding-inline-start: 16px !important;
+    margin: 0 !important;
+}
+
+/* Kill the default WooCommerce widget padding in case it applied */
+.cati-blog .widget_product_categories {
+    padding: 0 !important;
+    background: transparent !important;
+}

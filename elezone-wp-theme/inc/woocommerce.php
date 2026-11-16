@@ -73,6 +73,24 @@ function elezone_woocommerce_wrappers() {
 
 	add_action( 'woocommerce_before_main_content', 'elezone_wc_wrapper_start', 10 );
 	add_action( 'woocommerce_after_main_content', 'elezone_wc_wrapper_end', 10 );
+
+	// The toolbar in archive-product.php renders these controls itself
+	// inside a single row, so remove the defaults to avoid duplication.
+	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+	// The product card renders a rating block with its own review count,
+	// so drop the default rating that core prints after the title.
+	remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
+
+	// archive-product.php renders a themed empty state, so hide the core
+	// "No products were found" paragraph it would otherwise print twice.
+	remove_action( 'woocommerce_no_products_found', 'wc_no_products_found', 10 );
+
+	// The product card renders its own sale badge with the discount
+	// percentage, so drop the core onsale flash to avoid a duplicate
+	// badge appearing on the thumbnail.
+	remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
 }
 
 /**
@@ -129,7 +147,7 @@ function elezone_wc_register_sidebar() {
 			'description'   => __( 'Widgets shown beside the product listing. Falls back to product categories when empty.', 'elezone' ),
 			'before_widget' => '<div id="%1$s" class="cati-blog mb-4 %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="d-flex flex-row justify-content-between bg-warning text-white py-2 px-4 mt-3 IRANSans_Medium bright radius10"><h2>',
+			'before_title'  => '<div class="d-flex flex-row justify-content-between bg-warning text-dark py-2 px-4 mt-3 IRANSans_Medium bright radius10"><h2>',
 			'after_title'   => '</h2></div>',
 		)
 	);
@@ -141,7 +159,7 @@ function elezone_wc_register_sidebar() {
 			'description'   => __( 'Widgets shown beside a single product (price filter, search, promo, etc.).', 'elezone' ),
 			'before_widget' => '<div id="%1$s" class="cati-blog mb-4 %2$s">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<div class="d-flex flex-row justify-content-between bg-warning text-white py-2 px-4 mt-3 IRANSans_Medium bright radius10"><h2>',
+			'before_title'  => '<div class="d-flex flex-row justify-content-between bg-warning text-dark py-2 px-4 mt-3 IRANSans_Medium bright radius10"><h2>',
 			'after_title'   => '</h2></div>',
 		)
 	);
@@ -161,24 +179,35 @@ function elezone_wc_shop_sidebar() {
 
 	if ( is_active_sidebar( 'elezone-shop-sidebar' ) ) {
 		dynamic_sidebar( 'elezone-shop-sidebar' );
-	} else {
+	} elseif ( elezone_is_section_visible( 'shop_page_fallback_categories' ) ) {
 		echo '<div class="cati-blog mb-4">';
 		echo '<div class="d-flex flex-row justify-content-between bg-warning text-white py-2 px-4 mt-3 IRANSans_Medium bright radius10"><h2>' . esc_html__( 'دسته‌بندی محصولات', 'elezone' ) . '</h2></div>';
-		echo '<ul class="list-unstyled p-3">';
-		wp_list_categories(
-			array(
-				'taxonomy'   => 'product_cat',
-				'title_li'   => '',
-				'show_count' => true,
-				'hide_empty' => false,
-			)
-		);
-		echo '</ul>';
+		$uncategorized = get_term_by( 'slug', 'uncategorized', 'product_cat' );
+		$exclude_ids   = array();
+		if ( $uncategorized && ! is_wp_error( $uncategorized ) ) {
+			$exclude_ids[] = (int) $uncategorized->term_id;
+		}
+		$product_cats = get_terms( array(
+			'taxonomy'   => 'product_cat',
+			'hide_empty' => false,
+			'exclude'    => $exclude_ids,
+		) );
+		if ( ! empty( $product_cats ) && ! is_wp_error( $product_cats ) ) {
+			echo '<ul class="list-unstyled p-3">';
+			foreach ( $product_cats as $cat ) {
+				$cat_link = get_term_link( $cat );
+				if ( is_wp_error( $cat_link ) ) {
+					continue;
+				}
+				echo '<li><a href="' . esc_url( $cat_link ) . '"><span>' . esc_html( $cat->name ) . '</span></a></li>';
+			}
+			echo '</ul>';
+		}
 		echo '</div>';
 	}
 
 	echo '</div>';
-	echo '</div>'; // .col-xl-3
+	echo '</aside>';
 }
 
 /**
@@ -187,8 +216,11 @@ function elezone_wc_shop_sidebar() {
  * @return bool
  */
 function elezone_wc_has_sidebar() {
-	return elezone_is_section_visible( 'shop_page_sidebar' )
-		&& ( is_active_sidebar( 'elezone-shop-sidebar' ) || is_tax( 'product_cat' ) || is_shop() );
+	// Must mirror the exact condition that lets elezone_wc_shop_sidebar()
+	// render content (widgets OR fallback). The old version also required
+	// is_shop()/is_tax()/is_active_sidebar(), which silently disagreed with
+	// the sidebar renderer on pages where only the fallback was drawn.
+	return elezone_is_section_visible( 'shop_page_sidebar' );
 }
 
 /**
@@ -217,16 +249,27 @@ function elezone_wc_product_sidebar() {
 
 		echo '<div class="cati-blog mb-4">';
 		echo '<div class="d-flex flex-row justify-content-between bg-warning text-white py-2 px-4 mt-3 IRANSans_Medium bright radius10"><h2>' . esc_html__( 'دسته‌بندی محصولات', 'elezone' ) . '</h2></div>';
-		echo '<ul class="list-unstyled p-3">';
-		wp_list_categories(
-			array(
-				'taxonomy'   => 'product_cat',
-				'title_li'   => '',
-				'show_count' => true,
-				'hide_empty' => false,
-			)
-		);
-		echo '</ul>';
+		$uncategorized = get_term_by( 'slug', 'uncategorized', 'product_cat' );
+		$exclude_ids   = array();
+		if ( $uncategorized && ! is_wp_error( $uncategorized ) ) {
+			$exclude_ids[] = (int) $uncategorized->term_id;
+		}
+		$product_cats = get_terms( array(
+			'taxonomy'   => 'product_cat',
+			'hide_empty' => false,
+			'exclude'    => $exclude_ids,
+		) );
+		if ( ! empty( $product_cats ) && ! is_wp_error( $product_cats ) ) {
+			echo '<ul class="list-unstyled p-3">';
+			foreach ( $product_cats as $cat ) {
+				$cat_link = get_term_link( $cat );
+				if ( is_wp_error( $cat_link ) ) {
+					continue;
+				}
+				echo '<li><a href="' . esc_url( $cat_link ) . '"><span>' . esc_html( $cat->name ) . '</span></a></li>';
+			}
+			echo '</ul>';
+		}
 		echo '</div>';
 	}
 
@@ -247,6 +290,35 @@ function elezone_wc_conditionally_remove_related() {
 	if ( ! elezone_is_section_visible( 'product_page_related' ) ) {
 		remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 	}
+}
+
+/* -------------------------------------------------------------------------
+ * 4b. Hide category counts in the Product Categories widget
+ * ---------------------------------------------------------------------- */
+
+add_filter( 'woocommerce_product_categories_widget_args', 'elezone_wc_hide_widget_cat_count' );
+/**
+ * Force `show_count` to false and exclude the "Uncategorized" term
+ * in the WooCommerce Product Categories widget.
+ *
+ * @param array $args Widget query arguments.
+ * @return array
+ */
+function elezone_wc_hide_widget_cat_count( $args ) {
+	if ( ! is_array( $args ) ) {
+		return $args;
+	}
+
+	$args['show_count'] = false;
+
+	$uncategorized = get_term_by( 'slug', 'uncategorized', 'product_cat' );
+	if ( $uncategorized && ! is_wp_error( $uncategorized ) ) {
+		$exclude = isset( $args['exclude'] ) ? (array) $args['exclude'] : array();
+		$exclude[] = (int) $uncategorized->term_id;
+		$args['exclude'] = array_unique( $exclude );
+	}
+
+	return $args;
 }
 
 /* -------------------------------------------------------------------------
@@ -331,6 +403,20 @@ function elezone_wc_enqueue_assets() {
 		elezone_asset( 'Css/WooCommerce.css' ),
 		array(),
 		ELEZONE_THEME_VERSION
+	);
+
+	// Archive-only stylesheet. Loaded after the main WooCommerce sheet so
+	// it wins without relying on !important. Scoped to .elezone-wc-shop.
+	// Versioned by filemtime so a CSS edit busts the browser cache even
+	// when ELEZONE_THEME_VERSION has not been bumped.
+	$archive_css_path = get_template_directory() . '/assets/Css/WooCommerce-Archive.css';
+	$archive_css_ver  = file_exists( $archive_css_path ) ? filemtime( $archive_css_path ) : ELEZONE_THEME_VERSION;
+
+	wp_enqueue_style(
+		'elezone-woocommerce-archive',
+		elezone_asset( 'Css/WooCommerce-Archive.css' ),
+		array( 'elezone-woocommerce' ),
+		$archive_css_ver
 	);
 }
 
