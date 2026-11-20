@@ -34,7 +34,8 @@ function elezone_enqueue_assets() {
 	wp_enqueue_script( 'elezone-bootstrap', elezone_asset( 'Js/bootstrap.min.js' ), array( 'jquery' ), '4.1.1', true );
 	wp_enqueue_script( 'owl-carousel', elezone_asset( 'Js/owl.carousel.js' ), array( 'jquery' ), '2.3.4', true );
 	wp_enqueue_script( 'elezone-custom', elezone_asset( 'Js/Custom.js' ), array( 'jquery', 'owl-carousel' ), ELEZONE_THEME_VERSION, true );
-	// Menu.js removed (was a duplicate of Custom.js)
+	wp_enqueue_script( 'elezone-menu', elezone_asset( 'Js/Menu.js' ), array( 'jquery' ), ELEZONE_THEME_VERSION, true );
+	// Menu.js handles the mobile off-canvas menu toggle (#of-trigger), close button (#of-close-off-canvas), site mask click, sticky header, and header search.
 
 	// Carousel initialisation (added for the WP version - see init.js).
 	wp_enqueue_script( 'elezone-init', elezone_asset( 'Js/init.js' ), array( 'jquery', 'owl-carousel' ), ELEZONE_THEME_VERSION, true );

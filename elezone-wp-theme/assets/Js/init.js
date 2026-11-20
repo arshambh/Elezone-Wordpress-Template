@@ -74,5 +74,39 @@
 		}
 	}
 
-	$(document).ready(initCarousels);
+	function initHeaderSearch() {
+			$(document).on('click', '.m_search', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				var $searchWrap = $(this).closest('.menu_wrapper, .mobnav, header').find('form.search_wrap').first();
+				if (!$searchWrap.length) {
+					$searchWrap = $('form.search_wrap').first();
+				}
+				var willOpen = !$searchWrap.hasClass('active');
+				$('form.search_wrap').removeClass('active');
+				if (willOpen) {
+					$searchWrap.addClass('active');
+					$searchWrap.find('input[type="text"], input[type="search"]').first().trigger('focus');
+				}
+			});
+
+			$(document).on('click', 'form.search_wrap', function (e) {
+				e.stopPropagation();
+			});
+
+			$(document).on('click', function () {
+				$('form.search_wrap').removeClass('active');
+			});
+
+			$(document).on('keydown', function (e) {
+				if (e.key === 'Escape') {
+					$('form.search_wrap').removeClass('active');
+				}
+			});
+		}
+
+		$(document).ready(function () {
+			initCarousels();
+			initHeaderSearch();
+		});
 })(jQuery);
