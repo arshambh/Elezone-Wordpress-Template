@@ -223,3 +223,36 @@ function elezone_get_logo_url( $location = 'header' ) {
 
 	return $url;
 }
+
+/**
+ * Archive title without the "Category:" / "Tag:" / "Author:" prefix.
+ *
+ * The default the_archive_title() prepends localized prefixes that hurt
+ * SEO and read poorly in the <h1>. This helper returns only the term or
+ * date label, with a sensible fallback for unknown archive contexts.
+ *
+ * @return string
+ */
+function elezone_archive_title() {
+	if ( is_category() ) {
+		$title = single_cat_title( '', false );
+	} elseif ( is_tag() ) {
+		$title = single_tag_title( '', false );
+	} elseif ( is_author() ) {
+		$title = get_the_author();
+	} elseif ( is_year() ) {
+		$title = get_the_date( 'Y' );
+	} elseif ( is_month() ) {
+		$title = get_the_date( 'F Y' );
+	} elseif ( is_day() ) {
+		$title = get_the_date();
+	} elseif ( is_post_type_archive() ) {
+		$title = post_type_archive_title( '', false );
+	} elseif ( is_tax() ) {
+		$title = single_term_title( '', false );
+	} else {
+		$title = __( 'بایگانی', 'elezone' );
+	}
+
+	return $title;
+}

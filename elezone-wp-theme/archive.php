@@ -9,7 +9,7 @@ get_header();
 ?>
 <main class="container py-5">
 	<header class="mb-4 text-right">
-		<h1 class="h3 IRANSans_Bold"><?php the_archive_title(); ?></h1>
+		<h1 class="h3 IRANSans_Bold"><?php echo esc_html( elezone_archive_title() ); ?></h1>
 		<?php the_archive_description( '<div class="text-muted">', '</div>' ); ?>
 	</header>
 	<?php if ( have_posts() ) : ?>

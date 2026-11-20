@@ -21,6 +21,7 @@ $blog_url     = $blog_page_id ? get_permalink( $blog_page_id ) : '';
 if ( elezone_is_section_visible( 'single_banner' ) ) {
 	get_template_part( 'template-parts/hero/banner', null, array(
 		'title'  => elezone_get_option( 'single_page_banner_title' ),
+		'tag'    => 'div', // Post title below is the single <h1>.
 		'crumbs' => array(
 			array( 'label' => 'صفحه اصلی', 'url' => home_url( '/' ) ),
 			array( 'label' => 'وبلاگ', 'url' => $blog_url ),
@@ -29,7 +30,7 @@ if ( elezone_is_section_visible( 'single_banner' ) ) {
 	) );
 }
 ?>
-<section class="container p-4">
+<main class="container p-4">
 	<div class="row">
 		<?php get_template_part( 'template-parts/blog/sidebar' ); ?>
 
@@ -80,6 +81,6 @@ if ( elezone_is_section_visible( 'single_banner' ) ) {
 			</div>
 		</div>
 	</div>
-</section>
+</main>
 <?php
 get_footer();

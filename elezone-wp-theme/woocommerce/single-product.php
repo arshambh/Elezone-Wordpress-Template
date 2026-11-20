@@ -21,6 +21,7 @@ if ( elezone_is_section_visible( 'product_page_banner' ) ) {
 		null,
 		array(
 			'title'  => get_the_title( get_queried_object_id() ),
+			'tag'    => 'div', // Product title below is the single <h1>.
 			'crumbs' => array(
 				array(
 					'label' => __( 'صفحه اصلی', 'elezone' ),

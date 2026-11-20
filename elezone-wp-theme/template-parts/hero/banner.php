@@ -25,13 +25,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 $title  = isset( $args['title'] ) ? (string) $args['title'] : '';
 $crumbs = ( isset( $args['crumbs'] ) && is_array( $args['crumbs'] ) ) ? $args['crumbs'] : array();
 
+// Heading tag is configurable so a page keeps exactly ONE <h1>.
+// Pass tag => 'div' (or 'h2') when the page's real content title is the h1.
+$tag = isset( $args['tag'] ) ? strtolower( (string) $args['tag'] ) : 'h1';
+if ( ! in_array( $tag, array( 'h1', 'h2', 'h3', 'div', 'p', 'span' ), true ) ) {
+	$tag = 'h1';
+}
+
 if ( '' === $title ) {
 	return;
 }
 ?>
 <section class="banner_area">
 	<div class="container">
-		<h1 class="text-white IRANSans_Bold"><?php echo esc_html( $title ); ?></h1>
+		<<?php echo $tag; // phpcs:ignore WordPress.Security.EscapeOutput ?> class="text-white IRANSans_Bold banner_title"><?php echo esc_html( $title ); ?></<?php echo $tag; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
 		<?php if ( ! empty( $crumbs ) ) : ?>
 			<div class="breadcrumb_content">
 				<ul>

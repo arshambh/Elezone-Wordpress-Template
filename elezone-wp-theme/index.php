@@ -10,6 +10,7 @@ get_header();
 if ( elezone_is_section_visible( 'blog_page_banner' ) ) {
 	get_template_part( 'template-parts/hero/banner', null, array(
 		'title'  => elezone_get_option( 'blog_page_banner_title' ),
+		'tag'    => 'div', // Real content title below is the single <h1>.
 		'crumbs' => array(
 			array( 'label' => 'صفحه اصلی', 'url' => home_url( '/' ) ),
 			array( 'label' => elezone_get_option( 'blog_page_banner_title' ) ),
@@ -18,7 +19,7 @@ if ( elezone_is_section_visible( 'blog_page_banner' ) ) {
 }
 ?>
 <?php if ( elezone_is_section_visible( 'blog_page_grid' ) ) : ?>
-<section class="container p-md-5 p-4">
+<main class="container p-md-5 p-4">
 	<div class="d-flex flex-row mb-4">
 		<div class="Dottedstocol ml-3"></div>
 		<div class="singletitle">
@@ -62,7 +63,7 @@ if ( elezone_is_section_visible( 'blog_page_banner' ) ) {
 	<?php else : ?>
 		<p class="text-center py-5">هنوز مطلبی منتشر نشده است.</p>
 	<?php endif; ?>
-</section>
+</main>
 <?php endif; ?>
 <?php
 get_footer();
