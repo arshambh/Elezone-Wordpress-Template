@@ -60,3 +60,64 @@ Tags: rtl-language-support, custom-menu, custom-logo, featured-images, translati
 	border-color: #fdb900;
 	box-shadow: 0 0 0 4px rgba(253, 185, 0, 0.12);
 }
+
+
+/* ==========================================================================
+   Search results page (search.php) — clean two-section layout
+   ========================================================================== */
+
+.search-results {
+	min-height: 40vh;
+}
+
+.search-results__section + .search-results__section {
+	border-top: 1px dashed #e3e3e3;
+	padding-top: 2rem;
+}
+
+/* Section heading block mirrors the theme's .singletitle / .Dottedstocol */
+.search-results .singletitle h2 {
+	font-size: 1.15rem;
+	font-family: IRANSans_Bold, IRANSans, sans-serif;
+	color: #2b2626;
+	margin-top: 2px;
+}
+
+.search-results .singletitle span {
+	display: inline-block;
+	margin-bottom: 2px;
+}
+
+/* Search products live in ul.products inside .elezone-wc-shop, so the shop
+   grid + card + badge styles apply verbatim. Trim the shop's top/bottom
+   padding here so the section sits cleanly inside the search page. */
+.search-results .elezone-wc-shop {
+	padding-block: 0;
+}
+
+/* Blog posts use the theme .row; keep columns equal height. */
+.search-results .row {
+	align-items: stretch;
+}
+
+.search-results .blog_style {
+	height: 100%;
+}
+
+/* Empty state */
+.search-results__empty {
+	color: #6c757d;
+}
+
+.search-results__empty > i {
+	display: block;
+	font-size: 3rem;
+	color: #fdb900;
+	margin-bottom: 0.5rem;
+}
+
+.search-results__empty p {
+	font-family: IRANSans_Medium, IRANSans, sans-serif;
+	font-size: 1rem;
+	color: #444;
+}

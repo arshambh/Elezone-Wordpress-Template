@@ -489,3 +489,28 @@ function elezone_remove_review_rating( $args ) {
     $args['comment_field'] = '';
     return $args;
 }
+
+
+/* -------------------------------------------------------------------------
+ * 8. Search page: keep the main query on posts
+ * ---------------------------------------------------------------------- */
+
+add_action( 'pre_get_posts', 'elezone_search_query_posts_only' );
+/**
+ * On the front-end search page, limit the main query to standard posts.
+ *
+ * Products are rendered in a dedicated section of search.php via a
+ * separate WP_Query, so including them in the main loop here would
+ * otherwise print every product twice.
+ *
+ * @param WP_Query $query Current query.
+ */
+function elezone_search_query_posts_only( $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+
+	if ( $query->is_search() ) {
+		$query->set( 'post_type', 'post' );
+	}
+}
