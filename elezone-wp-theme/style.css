@@ -14,3 +14,13 @@ Tags: rtl-language-support, custom-menu, custom-logo, featured-images, translati
 */
 
 /* All layout styles live in assets/Css/. Use this file (or assets/Css/custom.css) for overrides. */
+
+
+/* Single post featured image: always full width of its column, scaling down responsively */
+.detailblog img.elezone-featured-full {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+	object-fit: cover;
+}

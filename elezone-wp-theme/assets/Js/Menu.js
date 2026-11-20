@@ -19,7 +19,10 @@
 
         document_ready: function () {
             of_theme.my_account_modal();
-            of_theme.search_header();
+            // Search toggle is handled by assets/Js/init.js (initHeaderSearch).
+            // Keeping a second handler here caused a conflict that immediately
+            // re-closed the search box on every click.
+            // of_theme.search_header();
             of_theme.canvas_menu_mobile();
             //of_theme.of_nav_to_select();
             of_theme.of_sticky_header();
