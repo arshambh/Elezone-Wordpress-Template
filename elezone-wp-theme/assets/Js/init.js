@@ -105,8 +105,53 @@
 			});
 		}
 
-		$(document).ready(function () {
-			initCarousels();
-			initHeaderSearch();
-		});
+		function initMobileMenu() {
+				var $body = $('body');
+
+				// Inject expand arrows for mobile submenus if not already present
+				$('#of-mobile-nav .menu-item-has-children').each(function () {
+					var $item = $(this);
+					if (!$item.children('.explain-menu').length) {
+						$item.append('<span class="explain-menu" aria-hidden="true"><i class="fal fa-angle-down"></i></span>');
+					}
+				});
+
+				// Open off-canvas menu
+				$(document).on('click', '#of-trigger', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					$body.addClass('mobile-js-menu lock-scroll');
+					$('.of-site-mask').addClass('active');
+				});
+
+				// Close off-canvas menu via close button or backdrop mask
+				$(document).on('click', '#of-close-off-canvas, .of-site-mask', function (e) {
+					e.preventDefault();
+					$body.removeClass('mobile-js-menu lock-scroll');
+					$('.of-site-mask').removeClass('active');
+				});
+
+				// Toggle submenus in mobile menu
+				$(document).on('click', '#of-mobile-nav .explain-menu', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					var $parent = $(this).closest('li');
+					$parent.toggleClass('show-sub-menu');
+					$parent.children('.sub-menu').stop(true, true).slideToggle(200);
+				});
+
+				// Close on Escape key
+				$(document).on('keydown', function (e) {
+					if (e.key === 'Escape' && $body.hasClass('mobile-js-menu')) {
+						$body.removeClass('mobile-js-menu lock-scroll');
+						$('.of-site-mask').removeClass('active');
+					}
+				});
+  }
+
+  $(document).ready(function () {
+		initCarousels();
+		initHeaderSearch();
+		initMobileMenu();
+	});
 })(jQuery);
