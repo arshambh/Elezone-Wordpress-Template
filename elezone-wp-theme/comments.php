@@ -70,7 +70,7 @@ $comment_open = comments_open();
 $reply_id     = isset( $_GET['replytocom'] ) ? (int) $_GET['replytocom'] : 0;
 $phone_cookie = isset( $_COOKIE['comment_author_phone'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['comment_author_phone'] ) ) : '';
 ?>
-<section id="comments" class="comments-area comment p-md-3 mt-3 text-right">
+<section id="comments" class="comments-area comment p-md-3 mt-3 text-right elezone-blog-box">
 	<?php if ( have_comments() ) : ?>
 		<h6 class="IRANSans-Bold pl-2 ml-3 IRANSansWeb_Medium">
 			<?php

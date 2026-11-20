@@ -58,7 +58,7 @@ if ( elezone_is_section_visible( 'single_banner' ) ) {
 									<?php if ( has_post_thumbnail() ) : ?>
 										<?php the_post_thumbnail( 'full', array( 'class' => 'img-fluid mb-4 radius15 elezone-featured-full' ) ); ?>
 									<?php endif; ?>
-									<div class="post-content"><?php the_content(); ?></div>
+									<div class="post-content elezone-blog-box"><?php the_content(); ?></div>
 								</div>
 							</div>
 						<?php endif; ?>

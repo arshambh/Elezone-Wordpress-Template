@@ -36,7 +36,7 @@ if ( empty( $ad_image ) ) {
 				</div>
 				<ul class="list-unstyled p-3">
 					<?php foreach ( $categories as $cat ) : ?>
-						<li><a href="<?php echo esc_url( get_category_link( $cat ) ); ?>"><span>- <?php echo esc_html( $cat->name ); ?> (<?php echo (int) $cat->count; ?>)</span></a></li>
+						<li><a href="<?php echo esc_url( get_category_link( $cat ) ); ?>"><span>- <?php echo esc_html( $cat->name ); ?></span></a></li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
