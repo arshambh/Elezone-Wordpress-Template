@@ -1266,7 +1266,7 @@
     background: #ffffff;
     border-radius: 16px;
     /* سایه سه لایه برای حس عمق واقعی */
-    box-shadow: 
+    box-shadow:
         0 10px 30px -5px rgba(0, 0, 0, 0.08),
         0 4px 10px -2px rgba(0, 0, 0, 0.04),
         0 0 0 1px rgba(0, 0, 0, 0.02);
@@ -1276,7 +1276,7 @@
 /* افکت هاور (بالا آمدن باکس) */
 .ez-modern-product .ez-hero-section:hover,
 .ez-modern-product .ez-tabs-section:hover {
-    box-shadow: 
+    box-shadow:
         0 20px 40px -5px rgba(0, 0, 0, 0.12),
         0 8px 16px -4px rgba(0, 0, 0, 0.06),
         0 0 0 1px rgba(0, 0, 0, 0.03);
@@ -2138,7 +2138,6 @@ body .ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
    ========================================================================== */
 
 .ez-checkout-section {
-	padding: 48px 0 72px;
 	direction: rtl;
 	text-align: right;
 	font-family: IRANSans, Tahoma, sans-serif;
@@ -2386,7 +2385,6 @@ body .ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
    ========================================================================== */
 
 .ez-cart-section {
-	padding: 48px 0 72px;
 	direction: rtl;
 	text-align: right;
 	font-family: IRANSans, Tahoma, sans-serif;

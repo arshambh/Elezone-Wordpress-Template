@@ -23,6 +23,7 @@ require_once ELEZONE_THEME_DIR . '/inc/comment-phone.php';
 require_once ELEZONE_THEME_DIR . '/inc/visibility.php';
 require_once ELEZONE_THEME_DIR . '/inc/class-mega-menu-walker.php';
 require_once ELEZONE_THEME_DIR . '/inc/project-meta.php';
+require_once ELEZONE_THEME_DIR . '/inc/page-banner-meta.php';
 require_once ELEZONE_THEME_DIR . '/inc/colors.php';
 require_once ELEZONE_THEME_DIR . '/inc/cf7-integration.php';
 require_once ELEZONE_THEME_DIR . '/inc/woocommerce.php';

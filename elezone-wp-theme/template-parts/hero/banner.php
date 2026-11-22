@@ -35,8 +35,14 @@ if ( ! in_array( $tag, array( 'h1', 'h2', 'h3', 'div', 'p', 'span' ), true ) ) {
 if ( '' === $title ) {
 	return;
 }
+
+$banner_bg_url = isset( $args['bg_image'] ) ? esc_url_raw( (string) $args['bg_image'] ) : '';
+if ( '' === $banner_bg_url && function_exists( 'elezone_get_banner_image_url' ) ) {
+	$banner_bg_url = esc_url_raw( elezone_get_banner_image_url() );
+}
+$banner_style = '' !== $banner_bg_url ? ' style="background-image:url(' . esc_url( $banner_bg_url ) . ');background-size:cover;background-position:center;"' : '';
 ?>
-<section class="banner_area">
+<section class="banner_area"<?php echo $banner_style; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
 	<div class="container">
 		<<?php echo $tag; // phpcs:ignore WordPress.Security.EscapeOutput ?> class="text-white IRANSans_Bold banner_title"><?php echo esc_html( $title ); ?></<?php echo $tag; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
 		<?php if ( ! empty( $crumbs ) ) : ?>

@@ -46,6 +46,15 @@ $banner_args = array(
 
 <section class="ez-cart-section" dir="rtl">
 	<div class="container">
+		<div class="d-flex flex-row mb-3">
+			<div class="Dottedstocol ml-3"></div>
+			<div class="singletitle">
+				<a href="<?php echo esc_url( function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' ) ); ?>">
+					<span><?php esc_html_e( 'فروشگاه', 'elezone' ); ?></span>
+				</a>
+				<h2 class="testt text-right"><?php echo esc_html( $cart_title ); ?></h2>
+			</div>
+		</div>
 		<?php do_action( 'woocommerce_before_cart' ); ?>
 
 		<form class="woocommerce-cart-form ez-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">

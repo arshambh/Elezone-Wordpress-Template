@@ -9,45 +9,24 @@
 
 defined( 'ABSPATH' ) || exit;
 
+?>
+
+<?php
 $checkout_title = function_exists( 'get_the_title' ) && get_the_ID()
 	? get_the_title( get_the_ID() )
 	: __( 'تسویه‌حساب و تکمیل سفارش', 'elezone' );
-
-$banner_args = array(
-	'title'  => $checkout_title,
-	'crumbs' => array(
-		array(
-			'label' => __( 'صفحه اصلی', 'elezone' ),
-			'text'  => __( 'صفحه اصلی', 'elezone' ),
-			'url'   => home_url( '/' ),
-			'link'  => home_url( '/' ),
-		),
-		array(
-			'label' => function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'shop' ) > 0
-				? get_the_title( wc_get_page_id( 'shop' ) )
-				: __( 'فروشگاه', 'elezone' ),
-			'text'  => function_exists( 'wc_get_page_id' ) && wc_get_page_id( 'shop' ) > 0
-				? get_the_title( wc_get_page_id( 'shop' ) )
-				: __( 'فروشگاه', 'elezone' ),
-			'url'   => function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' ),
-			'link'  => function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' ),
-		),
-		array(
-			'label' => $checkout_title,
-			'text'  => $checkout_title,
-			'url'   => '',
-			'link'  => '',
-		),
-	),
-);
-
-if ( function_exists( 'elezone_is_section_visible' ) && elezone_is_section_visible( 'checkout_page_banner' ) && locate_template( 'template-parts/hero/banner.php' ) ) {
-	get_template_part( 'template-parts/hero/banner', null, $banner_args );
-}
 ?>
-
 <section class="ez-checkout-section" dir="rtl">
 	<div class="container">
+		<div class="d-flex flex-row mb-3">
+			<div class="Dottedstocol ml-3"></div>
+			<div class="singletitle">
+				<a href="<?php echo esc_url( function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' ) ); ?>">
+					<span><?php esc_html_e( 'فروشگاه', 'elezone' ); ?></span>
+				</a>
+				<h2 class="testt text-right"><?php echo esc_html( $checkout_title ); ?></h2>
+			</div>
+		</div>
 		<?php
 		/**
 		 * Hook: woocommerce_before_checkout_form.
