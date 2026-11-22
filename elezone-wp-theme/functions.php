@@ -256,3 +256,12 @@ function elezone_archive_title() {
 
 	return $title;
 }
+
+
+function disable_bootstrap_on_elementor() {
+    if (is_singular() && \Elementor\Plugin::$instance->documents->get(get_the_ID())->is_built_with_elementor()) {
+        wp_dequeue_style('bootstrap');
+        wp_dequeue_script('bootstrap');
+    }
+}
+add_action('wp_enqueue_scripts', 'disable_bootstrap_on_elementor', 100);
