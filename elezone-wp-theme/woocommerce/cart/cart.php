@@ -41,9 +41,7 @@ $banner_args = array(
 	),
 );
 
-if ( function_exists( 'elezone_is_section_visible' ) && elezone_is_section_visible( 'cart_page_banner' ) && locate_template( 'template-parts/hero/banner.php' ) ) {
-	get_template_part( 'template-parts/hero/banner', null, $banner_args );
-}
+// Banner is rendered in header.php for cart and checkout pages.
 ?>
 
 <section class="ez-cart-section" dir="rtl">

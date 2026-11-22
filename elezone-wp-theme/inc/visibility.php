@@ -119,6 +119,12 @@ function elezone_register_section_visibility( $wp_customize ) {
 				'product_page_related' => __( 'Related Products', 'elezone' ),
 			),
 		),
+		'cart'        => array(
+			'title' => __( 'Cart Page', 'elezone' ),
+			'items' => array(
+				'cart_page_banner' => __( 'Cart Banner', 'elezone' ),
+			),
+		),
 		'checkout'    => array(
 			'title' => __( 'Checkout Page', 'elezone' ),
 			'items' => array(

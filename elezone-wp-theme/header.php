@@ -63,3 +63,52 @@ $logo_img      = '<img src="' . esc_url( $logo_url ) . '" alt="' . esc_attr( get
 	</header>
 
 	<div class="clearfix"></div>
+
+<?php
+$is_wc_cart     = function_exists( 'is_cart' ) && is_cart();
+$is_wc_checkout = function_exists( 'is_checkout' ) && is_checkout();
+
+if ( ( $is_wc_cart || $is_wc_checkout ) && locate_template( 'template-parts/hero/banner.php' ) ) :
+	$banner_key     = $is_wc_cart ? 'cart_page_banner' : 'checkout_page_banner';
+	$banner_allowed = ! function_exists( 'elezone_is_section_visible' ) || elezone_is_section_visible( $banner_key );
+
+	if ( $banner_allowed ) :
+		$page_title = get_the_title();
+		if ( ! $page_title ) {
+			$page_title = $is_wc_cart ? __( 'سبد خرید', 'elezone' ) : __( 'تسویه حساب', 'elezone' );
+		}
+
+		$shop_id    = function_exists( 'wc_get_page_id' ) ? wc_get_page_id( 'shop' ) : 0;
+		$shop_title = $shop_id > 0 ? get_the_title( $shop_id ) : __( 'فروشگاه', 'elezone' );
+		$shop_url   = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
+
+		get_template_part(
+			'template-parts/hero/banner',
+			null,
+			array(
+				'title'  => $page_title,
+				'crumbs' => array(
+					array(
+						'label' => __( 'صفحه اصلی', 'elezone' ),
+						'text'  => __( 'صفحه اصلی', 'elezone' ),
+						'url'   => home_url( '/' ),
+						'link'  => home_url( '/' ),
+					),
+					array(
+						'label' => $shop_title,
+						'text'  => $shop_title,
+						'url'   => $shop_url,
+						'link'  => $shop_url,
+					),
+					array(
+						'label' => $page_title,
+						'text'  => $page_title,
+						'url'   => '',
+						'link'  => '',
+					),
+				),
+			)
+		);
+	endif;
+endif;
+?>
