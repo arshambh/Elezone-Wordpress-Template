@@ -514,3 +514,97 @@ function elezone_search_query_posts_only( $query ) {
 		$query->set( 'post_type', 'post' );
 	}
 }
+
+/* -------------------------------------------------------------------------
+ * 9. Checkout billing fields: remove country/region selector
+ * ---------------------------------------------------------------------- */
+
+add_filter( 'woocommerce_checkout_fields', 'elezone_wc_remove_checkout_country_field' );
+/**
+ * Remove the billing country/region field from the checkout billing form.
+ *
+ * @param array $fields Checkout fields.
+ * @return array
+ */
+function elezone_wc_remove_checkout_country_field( $fields ) {
+	if ( isset( $fields['billing']['billing_country'] ) ) {
+		unset( $fields['billing']['billing_country'] );
+	}
+
+	if ( isset( $fields['billing']['billing_address_1'] ) ) {
+		$fields['billing']['billing_address_1']['label']       = __( 'آدرس', 'elezone' );
+		$fields['billing']['billing_address_1']['placeholder'] = __( 'آدرس کامل، خیابان، پلاک و واحد', 'elezone' );
+	}
+
+	if ( isset( $fields['billing']['billing_address_2'] ) ) {
+		unset( $fields['billing']['billing_address_2'] );
+	}
+
+	if ( isset( $fields['billing']['billing_email'] ) ) {
+		$fields['billing']['billing_email']['required'] = false;
+	}
+
+	if ( isset( $fields['billing']['billing_city'] ) ) {
+		$fields['billing']['billing_city']['required'] = true;
+	}
+
+	$ordered_keys = array(
+		'billing_first_name',
+		'billing_last_name',
+		'billing_company',
+		'billing_email',
+		'billing_state',
+		'billing_city',
+		'billing_postcode',
+		'billing_phone',
+		'billing_address_1',
+	);
+
+	$priority = 10;
+	$reordered_billing = array();
+
+	foreach ( $ordered_keys as $field_key ) {
+		if ( isset( $fields['billing'][ $field_key ] ) ) {
+			$fields['billing'][ $field_key ]['priority'] = $priority;
+			$reordered_billing[ $field_key ] = $fields['billing'][ $field_key ];
+			$priority += 10;
+		}
+	}
+
+	foreach ( $fields['billing'] as $field_key => $field_data ) {
+		if ( ! isset( $reordered_billing[ $field_key ] ) ) {
+			$field_data['priority'] = $priority;
+			$reordered_billing[ $field_key ] = $field_data;
+			$priority += 10;
+		}
+	}
+
+	$fields['billing'] = $reordered_billing;
+
+	add_filter( 'woocommerce_default_address_fields', 'elezone_wc_single_address_field' );
+
+	return $fields;
+}
+
+/**
+ * Keep only a single street address field labeled "آدرس".
+ *
+ * @param array $address_fields Default address fields.
+ * @return array
+ */
+function elezone_wc_single_address_field( $address_fields ) {
+	if ( isset( $address_fields['address_1'] ) ) {
+		$address_fields['address_1']['label']       = __( 'آدرس', 'elezone' );
+		$address_fields['address_1']['placeholder'] = __( 'آدرس کامل، خیابان، پلاک و واحد', 'elezone' );
+	}
+
+	if ( isset( $address_fields['address_2'] ) ) {
+		unset( $address_fields['address_2'] );
+	}
+
+	if ( isset( $address_fields['city'] ) ) {
+		$address_fields['city']['required'] = true;
+	}
+
+	return $address_fields;
+}

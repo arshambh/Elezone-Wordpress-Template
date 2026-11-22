@@ -2132,3 +2132,567 @@ body .ez-modern-product .comment-form-rating p.stars.selected a.active ~ a {
     padding: 0 !important;
     background: transparent !important;
 }
+
+/* ==========================================================================
+   Elezone WooCommerce Checkout Page (RTL)
+   ========================================================================== */
+
+.ez-checkout-section {
+	padding: 48px 0 72px;
+	direction: rtl;
+	text-align: right;
+	font-family: IRANSans, Tahoma, sans-serif;
+}
+
+.ez-checkout-grid {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.ez-checkout-details-col,
+.ez-checkout-summary-col {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 24px;
+}
+
+.ez-checkout-card {
+	background: #ffffff;
+	border: 1px solid #eaedf0;
+	border-radius: 10px;
+	padding: 28px 26px;
+	box-shadow: 0 5px 15px 3px rgba(154, 161, 171, 0.14);
+}
+
+.ez-checkout-summary-card {
+	position: sticky;
+	top: 100px;
+}
+
+.ez-checkout-box-title,
+.woocommerce-billing-fields h3,
+.woocommerce-shipping-fields h3,
+.woocommerce-additional-fields h3 {
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	font-size: 16px;
+	font-weight: 700;
+	margin: 0 0 20px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #eaedf0;
+	color: #2b2626;
+}
+
+.woocommerce-additional-fields {
+	margin-top: 28px;
+}
+
+/* Fix stretched / narrow fields in billing, shipping & additional notes */
+.ez-checkout-form .form-row {
+	width: 100% !important;
+	float: none !important;
+	margin: 0 0 18px !important;
+	padding: 0 !important;
+}
+
+.ez-checkout-form .form-row label {
+	display: block;
+	width: 100%;
+	margin-bottom: 6px;
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	font-size: 13px;
+	color: #2b2626;
+}
+
+.ez-checkout-form .woocommerce-input-wrapper {
+	display: block;
+	width: 100%;
+}
+
+.ez-checkout-form input.input-text,
+.ez-checkout-form select.select,
+.ez-checkout-form textarea.input-text {
+	width: 100% !important;
+	max-width: 100% !important;
+	min-height: 44px;
+	padding: 10px 14px;
+	font-family: IRANSans, Tahoma, sans-serif;
+	font-size: 13px;
+	line-height: 1.6;
+	color: #333333;
+	background-color: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 10px;
+	box-sizing: border-box;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ez-checkout-form textarea.input-text {
+	min-height: 105px;
+	resize: vertical;
+}
+
+.ez-checkout-form input.input-text:focus,
+.ez-checkout-form select.select:focus,
+.ez-checkout-form textarea.input-text:focus {
+	outline: none;
+	border-color: var(--ez-primary, #fdb900);
+	box-shadow: 0 0 0 3px rgba(253, 185, 0, 0.16);
+}
+
+/* Select2 full width inside checkout */
+.ez-checkout-form .select2-container {
+	width: 100% !important;
+}
+
+.ez-checkout-form .select2-container--default .select2-selection--single {
+	height: 44px;
+	border: 1px solid #d1d5db;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	padding: 0 10px;
+}
+
+.ez-checkout-form .select2-container--default .select2-selection--single .select2-selection__rendered {
+	padding-right: 4px;
+	padding-left: 20px;
+	line-height: 42px;
+	color: #333333;
+}
+
+.ez-checkout-form .select2-container--default .select2-selection--single .select2-selection__arrow {
+	height: 42px;
+	left: 8px;
+	right: auto;
+}
+
+/* Coupon notice & form */
+.woocommerce-form-coupon-toggle .woocommerce-info {
+	background: #f9fafb;
+	border: 1px solid #e5e7eb;
+	border-right: 4px solid var(--ez-primary, #fdb900);
+	border-radius: 10px;
+	padding: 14px 18px;
+	margin-bottom: 16px;
+}
+
+.woocommerce-checkout .checkout_coupon {
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+	padding: 18px;
+	margin-bottom: 24px;
+	background: #ffffff;
+}
+
+/* Order review table & payment box */
+.ez-order-review table.shop_table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.ez-order-review table.shop_table th,
+.ez-order-review table.shop_table td {
+	padding: 12px 10px;
+	border-bottom: 1px solid #eef2f6;
+	text-align: right;
+	vertical-align: middle;
+	font-size: 13px;
+}
+
+.ez-order-review table.shop_table .order-total th,
+.ez-order-review table.shop_table .order-total td {
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+	color: var(--ez-primary, #fdb900);
+	border-top: 2px solid #e5e7eb;
+	border-bottom: none;
+}
+
+#payment.woocommerce-checkout-payment {
+	background: #f9fafb;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+	padding: 18px;
+}
+
+#payment .wc_payment_methods {
+	list-style: none;
+	margin: 0 0 18px;
+	padding: 0;
+}
+
+#payment .wc_payment_methods li {
+	margin-bottom: 12px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+#payment .wc_payment_methods li:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+#payment .payment_box {
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	padding: 12px 14px;
+	margin-top: 8px;
+	font-size: 12.5px;
+}
+
+.woocommerce-privacy-policy-text {
+	font-size: 12.5px;
+	line-height: 1.9;
+	color: #555555;
+	margin-bottom: 16px;
+}
+
+#payment #place_order {
+	width: 100%;
+	min-height: 48px;
+	border: none;
+	border-radius: 10px;
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	cursor: pointer;
+	background-color: var(--ez-primary, #fdb900);
+	color: #ffffff;
+	transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+#payment #place_order:hover {
+	background-color: #e5a700;
+}
+
+@media (max-width: 991.98px) {
+	.ez-checkout-summary-card {
+		position: static;
+	}
+
+	.ez-checkout-card {
+		padding: 20px 16px;
+	}
+}
+
+/* ==========================================================================
+   Elezone WooCommerce Cart Page (RTL)
+   ========================================================================== */
+
+.ez-cart-section {
+	padding: 48px 0 72px;
+	direction: rtl;
+	text-align: right;
+	font-family: IRANSans, Tahoma, sans-serif;
+}
+
+.ez-cart-grid {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.ez-cart-items-col,
+.ez-cart-totals-col {
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-bottom: 24px;
+}
+
+.ez-cart-card {
+	background: #ffffff;
+	border: 1px solid #eaedf0;
+	border-radius: 10px;
+	padding: 24px;
+	box-shadow: 0 5px 15px 3px rgba(154, 161, 171, 0.14);
+}
+
+.ez-cart-totals-card {
+	position: sticky;
+	top: 100px;
+}
+
+.ez-cart-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0 !important;
+	border: 0 !important;
+}
+
+.ez-cart-table th {
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	font-size: 13px;
+	font-weight: 700;
+	color: #2b2626;
+	padding: 12px 10px;
+	border-bottom: 2px solid #eaedf0;
+	text-align: right;
+}
+
+.ez-cart-table td {
+	padding: 16px 10px;
+	border-bottom: 1px solid #eef2f6;
+	vertical-align: middle;
+	font-size: 13px;
+	color: #333333;
+	text-align: right;
+}
+
+.ez-cart-table .product-thumbnail img {
+	width: 72px;
+	height: 72px;
+	object-fit: cover;
+	border-radius: 10px;
+	border: 1px solid #eaedf0;
+}
+
+.ez-cart-table .product-name a {
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	font-weight: 600;
+	color: #2b2626;
+	text-decoration: none;
+}
+
+.ez-cart-table .product-name a:hover {
+	color: var(--ez-primary, #fdb900);
+}
+
+.ez-cart-table .product-name dl.variation {
+	margin: 6px 0 0;
+	font-size: 12px;
+	color: #666666;
+}
+
+.ez-cart-table .product-name dl.variation dt,
+.ez-cart-table .product-name dl.variation dd {
+	display: inline-block;
+	margin: 0 0 0 6px;
+}
+
+.ez-cart-remove {
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background: #fff5f5 !important;
+	color: #dc2626 !important;
+	font-size: 18px;
+	line-height: 1;
+	text-decoration: none !important;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.ez-cart-remove:hover {
+	background: #dc2626 !important;
+	color: #ffffff !important;
+}
+
+.ez-cart-table .quantity input.qty {
+	width: 68px;
+	height: 40px;
+	border: 1px solid #d1d5db;
+	border-radius: 10px;
+	text-align: center;
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	font-size: 14px;
+	color: #2b2626;
+	background: #f9fafb;
+}
+
+.ez-cart-actions {
+	padding-top: 20px !important;
+	border-bottom: none !important;
+}
+
+.ez-cart-actions-inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+}
+
+.ez-coupon-box {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+}
+
+.ez-coupon-box input.input-text {
+	min-width: 170px;
+	height: 42px;
+	padding: 0 14px;
+	border: 1px solid #d1d5db;
+	border-radius: 10px;
+	font-family: IRANSans, Tahoma, sans-serif;
+	font-size: 13px;
+}
+
+.ez-coupon-box input.input-text:focus {
+	outline: none;
+	border-color: var(--ez-primary, #fdb900);
+	box-shadow: 0 0 0 3px rgba(253, 185, 0, 0.16);
+}
+
+.ez-cart-form button.button {
+	height: 42px;
+	padding: 0 20px;
+	border: none;
+	border-radius: 10px;
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+	background-color: var(--ez-primary, #fdb900) !important;
+	color: #ffffff !important;
+	transition: background-color 0.2s ease;
+}
+
+.ez-cart-form button.button:hover {
+	background-color: #e5a700 !important;
+}
+
+/* Cart totals box */
+.ez-cart-totals-card .cart_totals h2 {
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	font-size: 16px;
+	font-weight: 700;
+	color: #2b2626;
+	margin: 0 0 18px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #eaedf0;
+}
+
+.ez-cart-totals-card .cart_totals table.shop_table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 0 !important;
+	margin-bottom: 20px;
+}
+
+.ez-cart-totals-card .cart_totals table.shop_table th,
+.ez-cart-totals-card .cart_totals table.shop_table td {
+	padding: 12px 6px;
+	border-bottom: 1px solid #eef2f6;
+	font-size: 13px;
+	text-align: right;
+}
+
+.ez-cart-totals-card .cart_totals table.shop_table tr.order-total th,
+.ez-cart-totals-card .cart_totals table.shop_table tr.order-total td {
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	font-size: 15px;
+	font-weight: 700;
+	color: var(--ez-primary, #fdb900);
+	border-top: 2px solid #eaedf0;
+	border-bottom: none;
+}
+
+.ez-cart-totals-card .wc-proceed-to-checkout a.checkout-button {
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 48px;
+	padding: 12px 20px !important;
+	border-radius: 10px !important;
+	background-color: var(--ez-primary, #fdb900) !important;
+	color: #ffffff !important;
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif !important;
+	font-size: 15px !important;
+	font-weight: 700 !important;
+	text-decoration: none !important;
+	transition: background-color 0.2s ease;
+}
+
+.ez-cart-totals-card .wc-proceed-to-checkout a.checkout-button:hover {
+	background-color: #e5a700 !important;
+}
+
+@media (max-width: 991.98px) {
+	.ez-cart-totals-card {
+		position: static;
+	}
+
+	.ez-cart-card {
+		padding: 18px 14px;
+	}
+}
+
+/* ==========================================================================
+   Elezone WooCommerce Cart Block (.wc-block-cart) Styling (RTL)
+   ========================================================================== */
+
+.wc-block-cart {
+	font-family: IRANSans, Tahoma, sans-serif;
+	direction: rtl;
+	text-align: right;
+	padding-top: 32px;
+	padding-bottom: 64px;
+}
+
+.wc-block-cart .wc-block-cart__main,
+.wc-block-cart .wc-block-cart__sidebar {
+	background: #ffffff;
+	border: 1px solid #eaedf0;
+	border-radius: 10px;
+	padding: 24px;
+	box-shadow: 0 5px 15px 3px rgba(154, 161, 171, 0.14);
+}
+
+.wc-block-cart .wc-block-cart-items__header th,
+.wc-block-cart .wc-block-cart-items__row td {
+	border-color: #eef2f6;
+	font-family: IRANSans, Tahoma, sans-serif;
+}
+
+.wc-block-cart .wc-block-cart-item__image img {
+	border-radius: 10px;
+}
+
+.wc-block-cart .wc-block-cart-item__product .wc-block-components-product-name {
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	color: #2b2626;
+}
+
+.wc-block-cart .wc-block-components-totals-wrapper,
+.wc-block-cart .wc-block-components-totals-coupon {
+	border-color: #eef2f6;
+}
+
+.wc-block-cart .wc-block-components-totals-item__label,
+.wc-block-cart .wc-block-components-totals-item__value {
+	font-family: IRANSans_Medium, IRANSans, Tahoma, sans-serif;
+	color: #2b2626;
+}
+
+.wc-block-cart .wc-block-components-totals-footer-item .wc-block-components-totals-item__value,
+.wc-block-cart .wc-block-components-totals-footer-item .wc-block-components-totals-item__label {
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif;
+	color: var(--ez-primary, #fdb900);
+}
+
+.wc-block-cart .wc-block-cart__submit-button,
+.wc-block-cart .wc-block-components-button:not(.is-link) {
+	background-color: var(--ez-primary, #fdb900) !important;
+	color: #ffffff !important;
+	border-radius: 10px !important;
+	font-family: IRANSans_Bold, IRANSans, Tahoma, sans-serif !important;
+	border: none !important;
+	transition: background-color 0.2s ease;
+}
+
+.wc-block-cart .wc-block-cart__submit-button:hover,
+.wc-block-cart .wc-block-components-button:not(.is-link):hover {
+	background-color: #e5a700 !important;
+}
