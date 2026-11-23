@@ -42,4 +42,4 @@
 3. **فرم دیدگاه محصول (`woocommerce/single-product-reviews.php`):** در فرم ارسالی دیدگاه محصول کنترل انتخاب امتیاز (`rating`) دیده نمی‌شود در حالی که در نمایش دیدگاه‌های تأییدشده رندر می‌شود[cite: 9].
 4. **شناسه تکراری در فرم جستجو:** `id="ajax-form-search"` و `id="search-form-text"` در `searchform.php` (و در هدر) به کار رفته‌اند که در صورت حضور هم‌زمان در یک صفحه می‌تواند باعث تداخل ID در DOM شود[cite: 15].
 5. **تصاویر نمونه در `inc/starter-generator.php`:** تولید پست‌ها از `blog-img1.jpg` تا `blog-img4.jpg` استفاده می‌کند که باید وجود آن در `assets/Img/` بررسی شود و هنگام حذف آیتم‌ها با `wp_delete_post(..., true)` فایل‌های attachment ضمیمه‌شده به صورت خودکار پاک نمی‌شوند[cite: 16].
-6. **مقادیر هاردکدشده:** در `template-parts/home/intro-band.php` متن ثابت «شرکت فنی و مهندسی ایلتای» و در `template-parts/home/cta-band.php` مقدار مستقیم `cta_phone` در `href="tel:..."` قرار گرفته است[cite: 11, 12].
+6. **مقادیر هاردکدشده:** در `template-parts/home/intro-band.php` متن ثابت «گروه فوق تخصصی، اِلِزون» و در `template-parts/home/cta-band.php` مقدار مستقیم `cta_phone` در `href="tel:..."` قرار گرفته است[cite: 11, 12].
