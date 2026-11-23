@@ -22,7 +22,7 @@ $logo_html         = '<img src="' . esc_url( $footer_logo_url ) . '" class="img-
 					</div>
 				</div>
 				<div class="col-xl-2 col-md-6 mb-3">
-					<h3>دموهای اصلی</h3>
+					<h3>آدرس های مفید</h3>
 					<?php if ( has_nav_menu( 'footer-demos' ) ) : ?>
 						<?php
 						wp_nav_menu( array(
