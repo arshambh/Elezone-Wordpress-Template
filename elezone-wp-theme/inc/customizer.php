@@ -254,5 +254,137 @@ function elezone_customize_register( $wp_customize ) {
 			'section'     => 'elezone_blog',
 		)
 	) );
+
+	/* Homepage Selected Products layout ------------------------------------ */
+
+	$wp_customize->add_section( 'elezone_home_products_section', array(
+		'title'    => __( 'Elezone - Selected Products', 'elezone' ),
+		'priority' => 45,
+	) );
+
+	$wp_customize->add_setting( 'elezone_home_products_layout', array(
+		'default'           => elezone_defaults()['home_products_layout'] ?? 'grid',
+		'sanitize_callback' => function ( $val ) {
+			return in_array( $val, array( 'grid', 'carousel' ), true ) ? $val : 'grid';
+		},
+		'transport'         => 'refresh',
+	) );
+
+	$wp_customize->add_control( 'elezone_home_products_layout', array(
+		'label'   => __( 'Homepage Selected Products Layout', 'elezone' ),
+		'section' => 'elezone_home_products_section',
+		'type'    => 'radio',
+		'choices' => array(
+			'grid'     => __( 'Grid (Shop Layout)', 'elezone' ),
+			'carousel' => __( 'Carousel (Owl Carousel)', 'elezone' ),
+		),
+	) );
+
+	$wp_customize->add_setting( 'elezone_home_products_autoplay', array(
+		'default'           => (bool) ( elezone_defaults()['home_products_autoplay'] ?? 0 ),
+		'sanitize_callback' => 'rest_sanitize_boolean',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'elezone_home_products_autoplay', array(
+		'label'   => __( 'Carousel Autoplay', 'elezone' ),
+		'section' => 'elezone_home_products_section',
+		'type'    => 'checkbox',
+	) );
+
+	$wp_customize->add_setting( 'elezone_home_products_autoplay_speed', array(
+		'default'           => elezone_defaults()['home_products_autoplay_speed'] ?? 4000,
+		'sanitize_callback' => function ( $val ) {
+			$n = absint( $val );
+			return $n >= 1000 ? min( $n, 20000 ) : 4000;
+		},
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'elezone_home_products_autoplay_speed', array(
+		'label'       => __( 'Carousel Autoplay Interval (ms)', 'elezone' ),
+		'section'     => 'elezone_home_products_section',
+		'type'        => 'number',
+		'input_attrs' => array( 'min' => 1000, 'max' => 20000, 'step' => 500 ),
+	) );
+
+	$wp_customize->add_setting( 'elezone_home_products_cols_desktop', array(
+		'default'           => elezone_defaults()['home_products_cols_desktop'] ?? 4,
+		'sanitize_callback' => function ( $val ) {
+			$n = absint( $val );
+			return in_array( $n, array( 2, 3, 4, 5, 6 ), true ) ? $n : 4;
+		},
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'elezone_home_products_cols_desktop', array(
+		'label'   => __( 'Items on Desktop (≥ 1200px)', 'elezone' ),
+		'section' => 'elezone_home_products_section',
+		'type'    => 'select',
+		'choices' => array(
+			2 => '2',
+			3 => '3',
+			4 => '4',
+			5 => '5',
+			6 => '6',
+		),
+	) );
+
+	$wp_customize->add_setting( 'elezone_home_products_cols_tablet', array(
+		'default'           => elezone_defaults()['home_products_cols_tablet'] ?? 2,
+		'sanitize_callback' => function ( $val ) {
+			$n = absint( $val );
+			return in_array( $n, array( 1, 2, 3, 4 ), true ) ? $n : 2;
+		},
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'elezone_home_products_cols_tablet', array(
+		'label'   => __( 'Items on Tablet (576px–1199px)', 'elezone' ),
+		'section' => 'elezone_home_products_section',
+		'type'    => 'select',
+		'choices' => array(
+			1 => '1',
+			2 => '2',
+			3 => '3',
+			4 => '4',
+		),
+	) );
+
+	$wp_customize->add_setting( 'elezone_home_products_cols_mobile', array(
+		'default'           => elezone_defaults()['home_products_cols_mobile'] ?? 1,
+		'sanitize_callback' => function ( $val ) {
+			$n = absint( $val );
+			return in_array( $n, array( 1, 2 ), true ) ? $n : 1;
+		},
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'elezone_home_products_cols_mobile', array(
+		'label'   => __( 'Items on Mobile (< 576px)', 'elezone' ),
+		'section' => 'elezone_home_products_section',
+		'type'    => 'select',
+		'choices' => array(
+			1 => '1',
+			2 => '2',
+		),
+	) );
+
+	$wp_customize->add_setting( 'elezone_home_products_nav', array(
+		'default'           => (bool) ( elezone_defaults()['home_products_nav'] ?? 1 ),
+		'sanitize_callback' => 'rest_sanitize_boolean',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'elezone_home_products_nav', array(
+		'label'   => __( 'Show Carousel Navigation Arrows', 'elezone' ),
+		'section' => 'elezone_home_products_section',
+		'type'    => 'checkbox',
+	) );
+
+	$wp_customize->add_setting( 'elezone_home_products_dots', array(
+		'default'           => (bool) ( elezone_defaults()['home_products_dots'] ?? 0 ),
+		'sanitize_callback' => 'rest_sanitize_boolean',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'elezone_home_products_dots', array(
+		'label'   => __( 'Show Carousel Pagination Dots', 'elezone' ),
+		'section' => 'elezone_home_products_section',
+		'type'    => 'checkbox',
+	) );
 }
 add_action( 'customize_register', 'elezone_customize_register' );

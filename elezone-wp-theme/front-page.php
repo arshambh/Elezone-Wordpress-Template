@@ -41,6 +41,7 @@ wp_reset_postdata();
 ?>
 
 <?php get_template_part( 'template-parts/home/intro-band' ); ?>
+<?php get_template_part( 'template-parts/home/selected-products' ); ?>
 <?php get_template_part( 'template-parts/home/services' ); ?>
 <?php get_template_part( 'template-parts/home/cta-band' ); ?>
 

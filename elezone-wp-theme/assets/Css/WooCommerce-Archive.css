@@ -53,6 +53,14 @@
 	line-height: 1.7;
 }
 
+.elezone-home-products__shop.elezone-wc-shop {
+	padding-block: 8px 24px;
+}
+
+.elezone-home-products__shop.elezone-wc-shop {
+	padding-block: 8px 24px;
+}
+
 /* Two-column CSS grid: sidebar on the inline-start (right in RTL),
    main content filling the rest. Falls back to a single column below 992px. */
 .elezone-wc-shop__layout {

@@ -64,6 +64,7 @@ function elezone_register_section_visibility( $wp_customize ) {
 				'services'          => __( 'Services', 'elezone' ),
 				'cta'               => __( 'CTA Band', 'elezone' ),
 				'projects_facade'   => __( 'Facade Projects Carousel', 'elezone' ),
+				'home_products'     => __( 'Selected Products', 'elezone' ),
 				'blog'              => __( 'Blog Grid', 'elezone' ),
 			),
 		),

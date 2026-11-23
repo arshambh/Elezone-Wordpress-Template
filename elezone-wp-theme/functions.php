@@ -27,6 +27,7 @@ require_once ELEZONE_THEME_DIR . '/inc/page-banner-meta.php';
 require_once ELEZONE_THEME_DIR . '/inc/colors.php';
 require_once ELEZONE_THEME_DIR . '/inc/cf7-integration.php';
 require_once ELEZONE_THEME_DIR . '/inc/woocommerce.php';
+require_once ELEZONE_THEME_DIR . '/inc/home-products.php';
 
 require_once ELEZONE_THEME_DIR . '/inc/starter-content.php';
 require_once ELEZONE_THEME_DIR . '/inc/starter-content-data.php';
@@ -169,7 +170,15 @@ function elezone_defaults() {
 		'blog_page_tagline'        => 'مقالات سایت',
 		'blog_page_title'          => 'دسته مقالات مربوط به مهندسی سازه',
 		'single_page_banner_title' => 'جزئیات مطالب',
-		'blog_sidebar_ad_image'    => '',
+		'blog_sidebar_ad_image'        => '',
+		'home_products_layout'         => 'grid',
+		'home_products_autoplay'       => 0,
+		'home_products_autoplay_speed' => 4000,
+		'home_products_cols_desktop'   => 4,
+		'home_products_cols_tablet'    => 2,
+		'home_products_cols_mobile'    => 1,
+		'home_products_nav'            => 1,
+		'home_products_dots'           => 0,
 	);
 }
 

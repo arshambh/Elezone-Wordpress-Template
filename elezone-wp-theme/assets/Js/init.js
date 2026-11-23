@@ -72,6 +72,48 @@
 				}
 			});
 		}
+
+		// Homepage selected products carousel
+		$('.owl-home-products').each(function () {
+			var $slider = $(this);
+			if ($slider.hasClass('owl-loaded')) {
+				return;
+			}
+
+			var autoplay      = String($slider.data('autoplay')) === '1' || $slider.data('autoplay') === true;
+			var autoplaySpeed = parseInt($slider.data('autoplay-speed'), 10) || 4000;
+			var colsDesktop   = parseInt($slider.data('cols-desktop'), 10) || 4;
+			var colsTablet    = parseInt($slider.data('cols-tablet'), 10) || 2;
+			var colsMobile    = parseInt($slider.data('cols-mobile'), 10) || 1;
+			var showNav       = $slider.data('nav') !== undefined
+				? (String($slider.data('nav')) === '1' || $slider.data('nav') === true)
+				: true;
+			var showDots      = $slider.data('dots') !== undefined
+				? (String($slider.data('dots')) === '1' || $slider.data('dots') === true)
+				: false;
+
+			$slider.owlCarousel({
+				loop: true,
+				rtl: true,
+				margin: 24,
+				smartSpeed: 600,
+				autoplay: autoplay,
+				autoplayTimeout: autoplaySpeed,
+				autoplayHoverPause: true,
+				nav: showNav,
+				dots: showDots,
+				navText: [
+					'<i class="fal fa-angle-right"></i>',
+					'<i class="fal fa-angle-left"></i>'
+				],
+				responsive: {
+					0:    { items: colsMobile },
+					576:  { items: colsTablet },
+					992:  { items: Math.max(colsTablet, Math.min(colsDesktop, 3)) },
+					1200: { items: colsDesktop }
+				}
+			});
+		});
 	}
 
 	function initHeaderSearch() {
