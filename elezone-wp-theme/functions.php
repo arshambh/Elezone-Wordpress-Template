@@ -80,7 +80,7 @@ add_action( 'after_setup_theme', 'elezone_migrate_from_old_theme_folder' );
 function elezone_defaults() {
 	return array(
 		'phone'            => '09304567000',
-		'mobile'           => '09125468547',
+		'mobile'           => '09125468000',
 		'email'            => 'Info@test.com',
 		'address'          => 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.',
 		'business_hours'   => 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.',
