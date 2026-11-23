@@ -55,21 +55,7 @@ $logo_html         = '<img src="' . esc_url( $footer_logo_url ) . '" class="img-
 						?>
 					<?php endif; ?>
 				</div>
-				<div class="col-xl-4 col-md-6 mb-3">
-					<h3>عضویت در خبرنامه</h3>
-					<p>ثبت نام کنید و آخرین نکات را از طریق ایمیل دریافت کنید ، جهت ثبت نام فقط کافی ست که آدرس ایمیل را در کادر زیر وارد نمایید</p>
-					<form class="newsletter p_relative mt-3" method="post" action="#">
-						<input type="email" name="elezone_newsletter_email" placeholder="آدرس ایمیل" required>
-						<button class="submit_btn" type="submit"><i class="fab fa-telegram-plane"></i></button>
-					</form>
-					<ul class="fo_social mt-3 float-right">
-						<li class="round-btn btn-whatsapp"><span>شبکه های اجتماعی :</span></li>
-						<li class="round-btn btn-whatsapp"><a href="<?php echo esc_url( elezone_get_option( 'social_whatsapp' ) ); ?>" aria-label="WhatsApp"><i class="fab fa-whatsapp m-1 fa-2x" aria-hidden="true"></i></a></li>
-						<li class="round-btn btn-telegram"><a href="<?php echo esc_url( elezone_get_option( 'social_telegram' ) ); ?>" aria-label="Telegram"><i class="fab fa-telegram-plane m-1 fa-2x" aria-hidden="true"></i></a></li>
-						<li class="round-btn btn-instagram"><a href="<?php echo esc_url( elezone_get_option( 'social_instagram' ) ); ?>" aria-label="Instagram"><i class="fab fa-instagram m-1 fa-2x" aria-hidden="true"></i></a></li>
-						<li class="round-btn btn-facebook"><a href="<?php echo esc_url( elezone_get_option( 'social_facebook' ) ); ?>" aria-label="Facebook"><i class="fab fa-facebook-f m-1 fa-2x"></i></a></li>
-					</ul>
-				</div>
+				<?php elezone_render_footer_newsletter(); ?>
 			</div>
 
 			<div class="row pt-3">

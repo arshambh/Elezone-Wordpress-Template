@@ -28,6 +28,7 @@ require_once ELEZONE_THEME_DIR . '/inc/colors.php';
 require_once ELEZONE_THEME_DIR . '/inc/cf7-integration.php';
 require_once ELEZONE_THEME_DIR . '/inc/woocommerce.php';
 require_once ELEZONE_THEME_DIR . '/inc/home-products.php';
+require_once ELEZONE_THEME_DIR . '/inc/newsletter.php';
 
 require_once ELEZONE_THEME_DIR . '/inc/starter-content.php';
 require_once ELEZONE_THEME_DIR . '/inc/starter-content-data.php';
