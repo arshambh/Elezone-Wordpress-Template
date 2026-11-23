@@ -47,8 +47,8 @@ function elezone_create_starter_post( $type, $title, $image = '', $excerpt = '',
 function elezone_create_slides() {
 	if ( get_option( 'elezone_starter_slides_done' ) ) { return; }
 	$items = array(
-		array( 'title' => 'طراحی مدرن',   'image' => 'slide9.jpg' ),
-		array( 'title' => 'معماری خلاق',  'image' => 'slide8.jpg' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی',   'image' => 'slide9.jpg' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی',  'image' => 'slide8.jpg' ),
 	);
 	$order = 1;
 	foreach ( $items as $s ) {
@@ -60,12 +60,12 @@ function elezone_create_slides() {
 function elezone_create_benefits() {
 	if ( get_option( 'elezone_starter_benefits_done' ) ) { return; }
 	$items = array(
-		array( 'title' => 'مشاوره 24 ساعته',   'image' => 'icons/support-benefit-icon.svg' ),
-		array( 'title' => 'کنترل کیفی',        'image' => 'icons/quality-benefit-icon.svg' ),
-		array( 'title' => 'کارفرمایان مجرب',   'image' => 'icons/credit-benefit-icon.svg' ),
-		array( 'title' => 'هزینه بصرفه',       'image' => 'icons/guarantee-benefit-icon.svg' ),
-		array( 'title' => 'نشان اعتبار',       'image' => 'icons/train-benefit-icon.svg' ),
-		array( 'title' => 'پیاده سازی ایده',   'image' => 'icons/certificate-benefit-icon.svg' ),
+		array( 'title' => 'لورم ایپسوم',   'image' => 'icons/support-benefit-icon.svg' ),
+		array( 'title' => 'لورم ایپسوم',   'image' => 'icons/quality-benefit-icon.svg' ),
+		array( 'title' => 'لورم ایپسوم',   'image' => 'icons/credit-benefit-icon.svg' ),
+		array( 'title' => 'لورم ایپسوم',   'image' => 'icons/guarantee-benefit-icon.svg' ),
+		array( 'title' => 'لورم ایپسوم',   'image' => 'icons/train-benefit-icon.svg' ),
+		array( 'title' => 'لورم ایپسوم',   'image' => 'icons/certificate-benefit-icon.svg' ),
 	);
 	$order = 1;
 	foreach ( $items as $b ) {
@@ -78,9 +78,9 @@ function elezone_create_services() {
 	if ( get_option( 'elezone_starter_services_done' ) ) { return; }
 	$body = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.';
 	$items = array(
-		array( 'title' => 'کد نویسی تمیز',   'image' => 'icons/icon10.png' ),
-		array( 'title' => 'رنگ بندی جذاب',   'image' => 'icons/icon9.png' ),
-		array( 'title' => 'طراحی واکنشگرا',  'image' => 'icons/icon8.png' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی',   'image' => 'icons/icon10.png' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی',   'image' => 'icons/icon9.png' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی',   'image' => 'icons/icon8.png' ),
 	);
 	$order = 1;
 	foreach ( $items as $s ) {
@@ -94,30 +94,32 @@ function elezone_create_projects() {
 
 	$interior_term = term_exists( 'interior', 'project_type' );
 	if ( ! $interior_term ) {
-		$interior_term = wp_insert_term( 'دکوراسیون داخلی', 'project_type', array( 'slug' => 'interior' ) );
+		$interior_term = wp_insert_term( 'لورم ایپسوم ۱', 'project_type', array( 'slug' => 'interior' ) );
 	}
 	$interior_id = is_array( $interior_term ) ? (int) $interior_term['term_id'] : (int) $interior_term;
 
 	$facade_term = term_exists( 'facade', 'project_type' );
 	if ( ! $facade_term ) {
-		$facade_term = wp_insert_term( 'نمای ساختمانی', 'project_type', array( 'slug' => 'facade' ) );
+		$facade_term = wp_insert_term( 'لورم ایپسوم ۲', 'project_type', array( 'slug' => 'facade' ) );
 	}
 	$facade_id = is_array( $facade_term ) ? (int) $facade_term['term_id'] : (int) $facade_term;
 
+	$body = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.';
+
 	$interior = array(
-		array( 'title' => 'طراحی دکوراسیون داخلی منزل اقدسیه', 'image' => '1.jpg', 'duration' => '120', 'city' => 'تهران',    'area' => '200' ),
-		array( 'title' => 'طراحی دکوراسیون داخلی منزل اقدسیه', 'image' => '2.jpg', 'duration' => '90',  'city' => 'تبریز',    'area' => '900' ),
-		array( 'title' => 'طراحی دکوراسیون داخلی منزل اقدسیه', 'image' => '4.jpg', 'duration' => '60',  'city' => 'کرمانشاه', 'area' => '350' ),
-		array( 'title' => 'طراحی دکوراسیون داخلی منزل اقدسیه', 'image' => '1.jpg', 'duration' => '40',  'city' => 'گیلان',    'area' => '250' ),
-		array( 'title' => 'طراحی دکوراسیون داخلی منزل اقدسیه', 'image' => '2.jpg', 'duration' => '80',  'city' => 'اصفهان',   'area' => '480' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '1.jpg', 'duration' => '120', 'city' => 'لورم ایپسوم', 'area' => '200' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '2.jpg', 'duration' => '90',  'city' => 'لورم ایپسوم', 'area' => '900' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '4.jpg', 'duration' => '60',  'city' => 'لورم ایپسوم', 'area' => '350' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '1.jpg', 'duration' => '40',  'city' => 'لورم ایپسوم', 'area' => '250' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '2.jpg', 'duration' => '80',  'city' => 'لورم ایپسوم', 'area' => '480' ),
 	);
 	foreach ( $interior as $p ) {
 		elezone_create_starter_post(
 			'project',
 			$p['title'],
 			$p['image'],
-			$p['title'],
-			'',
+			$body,
+			$body,
 			0,
 			array(
 				'project_duration' => $p['duration'],
@@ -129,19 +131,19 @@ function elezone_create_projects() {
 	}
 
 	$facade = array(
-		array( 'title' => 'نمای ساختمانی سنگ مرمر',   'image' => '13.jpg', 'duration' => '120', 'stone' => 'مرمر' ),
-		array( 'title' => 'نمای ساختمانی سنگ گرانیت', 'image' => '2.jpg',  'duration' => '90',  'stone' => 'گرانیت' ),
-		array( 'title' => 'نمای ساختمانی سنگ مرمر',   'image' => '14.jpg', 'duration' => '60',  'stone' => 'مرمر' ),
-		array( 'title' => 'نمای ساختمانی سنگ گرانیت', 'image' => '16.jpg', 'duration' => '40',  'stone' => 'گرانیت' ),
-		array( 'title' => 'نمای ساختمانی سنگ گرانیت', 'image' => '4.jpg',  'duration' => '40',  'stone' => 'گرانیت' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '13.jpg', 'duration' => '120', 'stone' => 'لورم ایپسوم' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '2.jpg',  'duration' => '90',  'stone' => 'لورم ایپسوم' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '14.jpg', 'duration' => '60',  'stone' => 'لورم ایپسوم' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '16.jpg', 'duration' => '40',  'stone' => 'لورم ایپسوم' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => '4.jpg',  'duration' => '40',  'stone' => 'لورم ایپسوم' ),
 	);
 	foreach ( $facade as $p ) {
 		elezone_create_starter_post(
 			'project',
 			$p['title'],
 			$p['image'],
-			$p['title'],
-			'',
+			$body,
+			$body,
 			0,
 			array(
 				'project_duration' => $p['duration'],
@@ -158,10 +160,10 @@ function elezone_create_blog_posts() {
 	if ( get_option( 'elezone_starter_posts_done' ) ) { return; }
 	$body = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. این یک متن نمونه برای نمایش ساختار پست است.';
 	$items = array(
-		array( 'title' => 'اصول طراحی مدرن',         'image' => 'grid-img5.jpg' ),
-		array( 'title' => 'دکوراسیون داخلی',           'image' => 'grid-img3.jpg' ),
-		array( 'title' => 'بایدها ونبایدهای دیزاین',   'image' => 'grid-img.jpg' ),
-		array( 'title' => 'هنر خلاقیت در طراحی',       'image' => 'grid-img4.jpg' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => 'grid-img5.jpg' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => 'grid-img3.jpg' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => 'grid-img.jpg' ),
+		array( 'title' => 'لورم ایپسوم متن ساختگی', 'image' => 'grid-img4.jpg' ),
 	);
 	foreach ( $items as $p ) {
 		elezone_create_starter_post( 'post', $p['title'], $p['image'], 'لورم ایپسوم متن ساختگی.', $body );

@@ -4,7 +4,7 @@
 
 - **نسخه:** 1.0.0 (+ Contact / About / Blog / WooCommerce / Generator)[cite: 4]
 - **Text Domain:** `elezone`[cite: 4]
-- **سازنده:** ArshamCoder[cite: 4]
+- **سازنده:** Elezone[cite: 4]
 
 ---
 
