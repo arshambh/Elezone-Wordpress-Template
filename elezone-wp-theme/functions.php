@@ -219,3 +219,23 @@ function disable_bootstrap_on_elementor() {
     }
 }
 add_action('wp_enqueue_scripts', 'disable_bootstrap_on_elementor', 100);
+
+
+// 1) تغییر پیشوند product-category به pl در لینک دسته‌بندی محصولات
+function custom_woocommerce_category_permalink( $category_permalink, $term, $taxonomy ) {
+    if ( $taxonomy === 'product_cat' ) {
+        $category_permalink = str_replace( '/product-category/', '/pl/', $category_permalink );
+    }
+    return $category_permalink;
+}
+add_filter( 'term_link', 'custom_woocommerce_category_permalink', 10, 3 );
+
+// 2) افزودن قانون بازنویسی برای آدرس جدید /pl/
+function custom_woocommerce_category_rewrite_rule() {
+    add_rewrite_rule(
+        'pl/([^/]+)/?$',
+        'index.php?product_cat=$matches[1]',
+        'top'
+    );
+}
+add_action( 'init', 'custom_woocommerce_category_rewrite_rule' );
